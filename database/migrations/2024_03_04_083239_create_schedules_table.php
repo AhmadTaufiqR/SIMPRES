@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('clock_out');
             $table->string('day');
             $table->string('hour_to');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

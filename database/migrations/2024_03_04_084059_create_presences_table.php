@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('schedules_id')->constrained();
             $table->dateTime('start_attendance');
             $table->dateTime('end_attendance');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

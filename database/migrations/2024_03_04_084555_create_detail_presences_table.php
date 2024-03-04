@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('documentation');
             $table->string('letter');
             $table->string('attendance');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
