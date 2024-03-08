@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\TeacherController;
+use App\Models\Teacher;
+use Database\Seeders\TeachersSeeder;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,17 +15,23 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 //Contoh Dari penulisan Route Get didalam route web
 // Route::get('/teacher', [TeacherController::class, 'adding_teacher']);
 
-//Teacher
-Route::prefix('teacher')->group(function () {
-});
 
+
+
+//teacher1
+Route::get('/', [TeacherController::class, 'index']);
+Route::post('/teacher-create-data', [TeacherController::class, 'store']);
+Route::get('/teacher', [TeacherController::class, 'show']);
+Route::get('/teacher-create', [TeacherController::class, 'create']); // Menampilkan form tambah data admin
+Route::post('/teacher-create-data', [TeacherController::class, 'store']);
+// Route::get('admin/{id}/edit', [AdminController::class, 'edit']);
+Route::post('teacher/{id}/edit', [TeacherController::class, 'update']);
+Route::delete('/teacher/{id}/hapus', [TeacherController::class, 'hapus'])->name('teacher.hapus');    
 // //Course
 Route::prefix('course')->group(function () {
 });
