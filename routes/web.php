@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HeadmasterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +16,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 //Contoh Dari penulisan Route Get didalam route web
 // Route::get('/teacher', [TeacherController::class, 'adding_teacher']);
+
+Route::group(['namespace' => 'headmaster'], function () {
+    Route::get('/headmaster', [HeadmasterController::class, 'index']);
+    Route::get('/create', [HeadmasterController::class, 'setting']);
+    Route::post('headmaster/create', [HeadmasterController::class, 'store']);
+});
 
 //Teacher
 Route::prefix('teacher')->group(function () {
@@ -80,6 +84,18 @@ Route::post('/register', [UserController::class, 'store'])->name('register.store
     // Route::get('admin/{id}/edit', [AdminController::class, 'edit']);
     Route::get('admin/{id}/edit', [AdminController::class, 'update']);
     Route::delete('admin/{id}/hapus', [AdminController::class, 'hapus'])->name('admin.hapus');
+// });
+
+// Route::get('/', function () {
+//     return view('headmasters');
+// });
+// Route::get('/', function () {
+//     return view('edit');
+// });
+
+=======
+// Route::get('/', function () {
+//     return view('welcome');
 // });
 
 
