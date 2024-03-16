@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+    data-sidebar-image="none" data-preloader="disable">
 
 <head>
 
@@ -32,7 +33,8 @@
             <div class="bg-overlay"></div>
 
             <div class="shape">
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 120">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 1440 120">
                     <path d="M 0,36 C 144,53.6 432,123.2 720,124 C 1008,124.8 1296,56.8 1440,40L1440 140L0 140z"></path>
                 </svg>
             </div>
@@ -68,37 +70,48 @@
                                     <form method="post" action="{{ route('login.store') }}">
                                         @csrf
                                         @if (session()->has('loginError'))
-                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                            {{ session('loginError') }}
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                          </div>
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                {{ session('loginError') }}
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                    aria-label="Close"></button>
+                                            </div>
                                         @endif
                                         <div class="mb-3">
-                                            <label for="username" class="form-label">Username</label>
-                                            <input type="text" id="email" name="email" class="form-control @error('email') is invalid
-                                            @enderror form-control" id="username" placeholder="Email">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="text" id="email" name="email"
+                                                class="form-control @error('email') is invalid
+                                            @enderror form-control"
+                                                id="username" placeholder="Email">
                                         </div>
                                         @error('email')
                                             <small class="btn btn-danger">{{ $message }}</small>
                                         @enderror
                                         <div class="mb-3">
                                             <div class="float-end">
-                                                <a href="{{ route('forgot-password') }}" class="text-muted">Forgot password?</a>
+                                                <a href="{{ route('forgot-password') }}" class="text-muted">Forgot
+                                                    password?</a>
                                             </div>
                                             <label class="form-label" for="password-input">Password</label>
                                             <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <input type="password" id="password" name="password" class="form-control @error('password') is invalid
-                                                 @enderror pe-5 password-input" placeholder="Enter password" id="password-input">
-                                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
+                                                <input type="password" id="password" name="password"
+                                                    class="form-control @error('password') is invalid
+                                                 @enderror pe-5 password-input"
+                                                    placeholder="Enter password" id="password-input">
+                                                <button
+                                                    class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
+                                                    type="button" id="password-addon"><i
+                                                        class="ri-eye-fill align-middle"></i></button>
                                             </div>
                                             @error('password')
-                                            <small class="btn btn-danger">{{ $message }}</small>
-                                        @enderror
+                                                <small class="btn btn-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
-                                            <label class="form-check-label" for="auth-remember-check">Remember me</label>
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="auth-remember-check">
+                                            <label class="form-check-label" for="auth-remember-check">Remember
+                                                me</label>
                                         </div>
 
                                         <div class="mt-4">
@@ -110,10 +123,18 @@
                                                 <h5 class="fs-13 mb-4 title">Sign In with</h5>
                                             </div>
                                             <div>
-                                                <button type="button" class="btn btn-primary btn-icon waves-effect waves-light"><i class="ri-facebook-fill fs-16"></i></button>
-                                                <button type="button" class="btn btn-danger btn-icon waves-effect waves-light"><i class="ri-google-fill fs-16"></i></button>
-                                                <button type="button" class="btn btn-dark btn-icon waves-effect waves-light"><i class="ri-github-fill fs-16"></i></button>
-                                                <button type="button" class="btn btn-info btn-icon waves-effect waves-light"><i class="ri-twitter-fill fs-16"></i></button>
+                                                <button type="button"
+                                                    class="btn btn-primary btn-icon waves-effect waves-light"><i
+                                                        class="ri-facebook-fill fs-16"></i></button>
+                                                <button type="button"
+                                                    class="btn btn-danger btn-icon waves-effect waves-light"><i
+                                                        class="ri-google-fill fs-16"></i></button>
+                                                <button type="button"
+                                                    class="btn btn-dark btn-icon waves-effect waves-light"><i
+                                                        class="ri-github-fill fs-16"></i></button>
+                                                <button type="button"
+                                                    class="btn btn-info btn-icon waves-effect waves-light"><i
+                                                        class="ri-twitter-fill fs-16"></i></button>
                                             </div>
                                         </div>
                                     </form>
@@ -124,7 +145,8 @@
                         <!-- end card -->
 
                         <div class="mt-4 text-center">
-                            <p class="mb-0">Don't have an account ? <a href="{{url('/register')}}"> Signup </a> </p>
+                            <p class="mb-0">Don't have an account ? <a href="{{ url('/register') }}"> Signup </a>
+                            </p>
                         </div>
 
                     </div>
@@ -142,7 +164,10 @@
                     <div class="col-lg-12">
                         <div class="text-center">
                             <p class="mb-0 text-muted">&copy;
-                                <script>document.write(new Date().getFullYear())</script> Velzon. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script> Velzon. Crafted with <i class="mdi mdi-heart text-danger"></i>
+                                by Themesbrand
                             </p>
                         </div>
                     </div>

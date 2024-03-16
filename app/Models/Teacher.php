@@ -12,7 +12,5 @@ class Teacher extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = [ 'nip', 'name', 'email', 'password', 'address','gender','phone'];
-    protected $table = 'teachers';
-    public $timestamps=false;
+    protected $fillable = ['nip', 'name', 'email', 'password', 'address', 'gender', 'phone'];
 }
