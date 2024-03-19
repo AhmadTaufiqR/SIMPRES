@@ -186,9 +186,12 @@
                                         @if (isset($headmaster) && $headmaster->name != '')
                                             <span
                                                 class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ $headmaster->name }}</span>
+                                        @elseif (isset($admin) && $admin->name != '')
+                                        <span
+                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ $admin->name }}</span>
                                         @else
-                                            <span
-                                                class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">-</span>
+                                        <span
+                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">-</span>
                                         @endif
                                         <span
                                             class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
@@ -199,6 +202,8 @@
                                 <!-- item-->
                                 @if (isset($headmaster) && $headmaster->name != '')
                                     <h6 class="dropdown-header">Welcome {{ $headmaster->name }}</h6>
+                                @elseif (isset($admin) && $admin->name != '')
+                                    <h6 class="dropdown-header">Welcome {{ $admin->name }}</h6>
                                 @else
                                     <h6 class="dropdown-header">-</h6>
                                 @endif
@@ -212,7 +217,7 @@
                                 <a class="dropdown-item" href="auth-lockscreen-basic.html"><i
                                         class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Lock screen</span></a>
-                                <a class="dropdown-item" href="/"><i
+                                <a class="dropdown-item" href="auth-logout-basic.html"><i
                                         class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle" data-key="t-logout">Logout</span></a>
                             </div>
@@ -264,7 +269,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link active" href="/headmaster">
+                            <a class="nav-link menu-link active" href="/headmaster-create">
                                 <i class="las la-user" wi></i> <span data-key="t-headmasters">Kepala
                                     Sekolah</span>
                             </a>
@@ -321,6 +326,8 @@
                                 <div class="p-2">
                                     @if (isset($headmaster) && $headmaster->name != '')
                                         <h3 class="text-white mb-1">{{ $headmaster->name }}</h3>
+                                    @elseif (isset($admin) && $admin->name != '')
+                                        <h3 class="text-white mb-1">{{ $admin->name }}</h3>
                                     @else
                                         <h3 class="text-white mb-1">-</h3>
                                     @endif
@@ -329,6 +336,16 @@
                                         @if (isset($headmaster) && $headmaster->phone != '')
                                             <div class="me-2"><i
                                                     class="ri-map-pin-user-line me-1 text-white-75 fs-16 align-middle"></i>{{ $headmaster->address }}
+                                            </div>
+                                            <div>
+                                                <i
+                                                    class="ri-building-line me-1 text-white-75 fs-16 align-middle"></i>SMP
+                                                Negeri 1 Maesan
+                                            </div>
+
+                                        @elseif (isset($admin) && $admin->phone != '')
+                                            <div class="me-2"><i
+                                                    class="ri-map-pin-user-line me-1 text-white-75 fs-16 align-middle"></i>{{ $admin->address }}
                                             </div>
                                             <div>
                                                 <i
@@ -367,18 +384,6 @@
                                             </a>
                                         </li>
                                     </ul>
-
-                                    @if (isset($headmaster) && $headmaster->name != '')
-                                        <div class="flex-shrink-0">
-                                            <a href="/headmaster-create" class="btn btn-success"><i
-                                                    class="ri-edit-box-line align-bottom"></i>Edit Profile</a>
-                                        </div>
-                                    @else
-                                        <div class="flex-shrink-0">
-                                            <a href="/headmaster-create" class="btn btn-success"><i
-                                                    class="ri-edit-box-line align-bottom"></i>Tambah Profile</a>
-                                        </div>
-                                    @endif
                                 </div>
                                 <!-- Tab panes -->
                                 <div class="tab-content pt-4 text-muted">
@@ -426,6 +431,28 @@
                                                                             </th>
                                                                             <td class="text-muted">
                                                                                 {{ $headmaster->address }}</td>
+                                                                        </tr>
+                                                                    @elseif (isset($admin) && $admin->name != '')
+                                                                        <tr>
+                                                                            <th class="ps-0" scope="row">Name
+                                                                                :
+                                                                            </th>
+                                                                            <td class="text-muted">
+                                                                                {{ $admin->name }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th class="ps-0" scope="row">
+                                                                                Username
+                                                                                :</th>
+                                                                            <td class="text-muted ">
+                                                                                {{ $admin->username }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th class="ps-0" scope="row">
+                                                                                Phone
+                                                                            </th>
+                                                                            <td class="text-muted ">
+                                                                                {{ $admin->phone }}</td>
                                                                         </tr>
                                                                     @else
                                                                         <tr>
