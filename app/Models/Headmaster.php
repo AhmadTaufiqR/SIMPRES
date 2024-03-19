@@ -9,5 +9,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Headmaster extends Model
 {
     use HasFactory;
+
+    protected $table = 'headmasters';
+    protected $fillable = [
+        'nip',
+        'name',
+        'username',
+        'password',
+        'phone',
+        'address'
+    ];
+
     use SoftDeletes;
 }

@@ -180,7 +180,7 @@
                                         src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
                                         <span
-                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">adadas</span>
+                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">fsdfssf</span>
                                         <span
                                             class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
                                     </span>
@@ -188,7 +188,7 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <h6 class="dropdown-header">Welcome hrthrt</h6>
+                                <h6 class="dropdown-header">Welcome tyjty</h6>
                                 <a class="dropdown-item" href="pages-profile.html"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Profile</span></a>
@@ -208,6 +208,35 @@
                 </div>
             </div>
         </header>
+
+        <!-- removeNotificationModal -->
+        <div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            id="NotificationModalbtn-close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mt-2 text-center">
+                            <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
+                                colors="primary:#f7b84b,secondary:#f06548"
+                                style="width:100px;height:100px"></lord-icon>
+                            <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
+                                <h4>Are you sure ?</h4>
+                                <p class="text-muted mx-4 mb-0">Are you sure you want to remove this Notification ?</p>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                            <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn w-sm btn-danger" id="delete-notification">Yes, Delete
+                                It!</button>
+                        </div>
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
         <!-- ========== App Menu ========== -->
         <div class="app-menu navbar-menu">
             <!-- LOGO -->
@@ -257,12 +286,12 @@
                                 Tabel</span>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link active" href="/admin">
+                            <a class="nav-link menu-link" href="/admin">
                                 <i class="ri-account-circle-line"></i> <span data-key="t-headmasters">Admin</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="/teacher">
+                            <a class="nav-link menu-link active" href="/teacher">
                                 <i class="las la-graduation-cap"></i> <span data-key="t-headmasters">Tenaga
                                     Pengajar</span>
                             </a>
@@ -306,7 +335,7 @@
                         <div class="card" id="invoiceList">
                             <div class="card-header border-0">
                                 <div class="d-flex align-items-center">
-                                    <h5 class="card-title mb-0 flex-grow-1">Admin</h5>
+                                    <h5 class="card-title mb-0 flex-grow-1">Guru</h5>
                                     <div class="flex-shrink-0">
                                         <div class="d-flex gap-2 flex-wrap">
                                             <button class="btn btn-primary" id="remove-actions"
@@ -314,7 +343,8 @@
                                                     class="ri-delete-bin-2-line"></i></button>
                                             <button href="" class="btn btn-danger" data-bs-toggle="modal"
                                                 data-bs-target="#signupModals"><i
-                                                    class="ri-add-line align-bottom me-1"></i> Tambah Admin</button>
+                                                    class="ri-add-line align-bottom me-1"></i>Tambah Data Guru</button>
+
 
 
                                             <div id="signupModals" class="modal fade" tabindex="-1"
@@ -322,20 +352,36 @@
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content border-0 overflow-hidden">
                                                         <div class="modal-header p-3">
-                                                            <h4 class="card-title mb-0">Tambah Admin</h4>
+
+                                                            <h4 class="card-title mb-0">TAMBAH DATA GURU</h4>
                                                             <button type="button" class="btn-close"
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
 
                                                         <div class="modal-body">
-                                                            <form action="/admin-create-data" method="POST">
+                                                            <form action='/teacher-create-data' method="POST">
                                                                 @csrf
+
                                                                 <div class="mb-3">
-                                                                    <label for="name" class="form-label">Name
-                                                                    </label>
-                                                                    <input type="name" name="name"
-                                                                        class="form-control"
-                                                                        value="{{ old('name') }}" id="name"
+                                                                    <label for="username"
+                                                                        class="form-label">NIP</label>
+                                                                    <input type="text" name="nip"
+                                                                        class="form-control" required
+                                                                        value="{{ old('nip') }}" id="nip"
+                                                                        placeholder="Enter your nip">
+                                                                    <span class="text-danger">*nip hanya bisa diisi
+                                                                        satu kali</span>
+                                                                    @error('nip')
+                                                                        <span
+                                                                            class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="name"
+                                                                        class="form-label">Name</label>
+                                                                    <input type="text" name="name"
+                                                                        class="form-control" required
+                                                                        value="{{ old('name') }}" id="nama"
                                                                         placeholder="Enter your name">
                                                                     @error('name')
                                                                         <span
@@ -343,25 +389,25 @@
                                                                     @enderror
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="phone" class="form-label">Phone
-                                                                    </label>
-                                                                    <input type="number" name="phone"
-                                                                        class="form-control"
-                                                                        value="{{ old('phone') }}" id="phone"
-                                                                        placeholder="Enter your phone">
-                                                                    @error('phone')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
+                                                                    <label for="name" class="form-label">JENIS
+                                                                        KELAMIN</label>
+                                                                    <select class="form-control" name="gender"
+                                                                        id="choices-single-no-search" data-choices
+                                                                        data-choices-search-false required
+                                                                        data-choices-removeItem>
+                                                                        <option value="">Select gender</option>
+                                                                        <option value="Laki-Laki">Laki-Laki</option>
+                                                                        <option value="Perempuan">Perempuan</option>
+                                                                    </select>
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="username"
-                                                                        class="form-label">Username</label>
-                                                                    <input type="text" name="username"
-                                                                        class="form-control"
-                                                                        value="{{ old('username') }}" id="username"
-                                                                        placeholder="Enter your username">
-                                                                    @error('username')
+                                                                    <label for="name"
+                                                                        class="form-label">Email</label>
+                                                                    <input type="email" name="email"
+                                                                        class="form-control" required
+                                                                        value="{{ old('email') }}" id="email"
+                                                                        placeholder="Enter your email">
+                                                                    @error('email')
                                                                         <span
                                                                             class="text-danger">{{ $message }}</span>
                                                                     @enderror
@@ -370,11 +416,34 @@
                                                                     <label for="exampleInputPassword1"
                                                                         class="form-label">Password</label>
                                                                     <input type="password" name="password"
-                                                                        class="form-control"
+                                                                        class="form-control" required
                                                                         value="{{ old('password') }}"
                                                                         id="exampleInputPassword1"
                                                                         placeholder="Enter your password">
-                                                                    @error('passowrd')
+                                                                    @error('password')
+                                                                        <span
+                                                                            class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="address"
+                                                                        class="form-label">Address</label>
+                                                                    <input type="text" name="address"
+                                                                        class="form-control" required
+                                                                        value="{{ old('address') }}" id="address"
+                                                                        placeholder="Enter your address">
+                                                                </div>
+                                                                @error('address')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                                <div class="mb-3">
+                                                                    <label for="name"
+                                                                        class="form-label">Phone</label>
+                                                                    <input type="text" name="phone"
+                                                                        class="form-control" required
+                                                                        value="{{ old('phone') }}" id="phone"
+                                                                        placeholder="Enter your phone">
+                                                                    @error('phone')
                                                                         <span
                                                                             class="text-danger">{{ $message }}</span>
                                                                     @enderror
@@ -382,12 +451,15 @@
                                                                 <div class="text-end">
                                                                     <button type="submit" name="submit"
                                                                         class="btn btn-primary">Simpan</button>
+                                                                    <button type="reset"
+                                                                        class="btn btn-warning">Reset</button>
                                                                 </div>
-                                                            </form>
+
                                                         </div>
-                                                    </div><!-- /.modal-content -->
-                                                </div><!-- /.modal-dialog -->
-                                            </div><!-- /.modal -->
+                                                        </form>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
                                         </div>
                                     </div>
                                 </div>
@@ -415,72 +487,87 @@
                                     <div class="card-body">
                                         <div>
                                             <div class="table-responsive table-card">
-                                                <table class="table align-middle table-nowrap">
+
+                                                <table class="table align-middle table-nowrap" id="invoiceTable">
                                                     <thead class="text-muted">
                                                         <tr>
-                                                            <th scope="col">ID</th>
-                                                            <th class="sort text-uppercase" data-sort="name">Nama</th>
-                                                            <th class="sort text-uppercase" data-sort="name">No Telp
+                                                            <th class="sort text-uppercase" data-sort="NIP">NIP</th>
+                                                            <th class="sort text-uppercase" data-sort="email">name
                                                             </th>
-                                                            <th class="sort text-uppercase" data-sort="username">
-                                                                Username</th>
-                                                            <th class="sort text-uppercase" data-sort="action">Action
+                                                            <th class="sort text-uppercase" data-sort="country">email
+                                                            </th>
+                                                            <th class="sort text-uppercase" data-sort="date">address
+                                                            </th>
+                                                            <th class="sort text-uppercase" data-sort="status">gender
+                                                            </th>
+                                                            <th class="sort text-uppercase" data-sort="action">phone
+                                                            </th>
+                                                            <th class="sort text-uppercase" data-sort="action">action
                                                             </th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody class="list form-check-all" id="invoice-list-data">
-                                                        @foreach ($admin as $admins)
+                                                    <tbody class="list form-check-all">
+                                                        @foreach ($teacher as $teachers)
                                                             <tr>
-                                                                <td>{{ $loop->iteration }}</td>
-                                                                <td>{{ $admins->name }}</td>
-                                                                <td>{{ $admins->phone }}</td>
-                                                                <td>{{ $admins->username }}</td>
+                                                                <td>{{ $teachers->nip }}</td>
+                                                                <td>{{ $teachers->name }}</td>
+                                                                <td>{{ $teachers->email }}</td>
+                                                                <td>{{ $teachers->address }}</td>
+                                                                <td>{{ $teachers->gender }}</td>
+                                                                <td>{{ $teachers->phone }}</td>
                                                                 <td>
                                                                     <button
-                                                                        class="btn btn-sm btn-success edit-item-btn"
+                                                                        class="btn btn-success btn-sm mx-2 edit-item-btn"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#editModals-{{ $admins->id }}">Edit</button>
+                                                                        data-bs-target="#editModals-{{ $teachers->id }}">Edit</button>
                                                                     <button
                                                                         class="btn btn-danger btn-sm remove-item-btn"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#deleteRecordModal-{{ $admins->id }}">Delete</button>
+                                                                        data-bs-target="#deleteRecordModal-{{ $teachers->id }}">Hapus</button>
 
                                                                 </td>
-                                                                <div id="editModals-{{ $admins->id }}"
+
+                                                                <div id="editModals-{{ $teachers->id }}"
                                                                     class="modal fade" tabindex="-1"
                                                                     aria-hidden="true" style="display: none;">
                                                                     <div class="modal-dialog modal-dialog-centered">
                                                                         <div
                                                                             class="modal-content border-0 overflow-hidden">
                                                                             <div class="modal-header p-3">
-
-                                                                                @if (session('status'))
-                                                                                    <div class="alert alert-succes">
-                                                                                        {{ session('status') }}</div>
-                                                                                @endif
-                                                                                <h4 class="card-title mb-0">Tambah
-                                                                                    Admin</h4>
+                                                                                <h4 class="card-title mb-0">EDIT DATA
+                                                                                    GURU</h4>
                                                                                 <button type="button"
                                                                                     class="btn-close"
                                                                                     data-bs-dismiss="modal"
                                                                                     aria-label="Close"></button>
                                                                             </div>
-
                                                                             <div class="modal-body">
                                                                                 <form
-                                                                                    action="{{ url('admin/' . $admins->id . '/edit') }} "method="POST">
+                                                                                    action='{{ url('teacher/' . $teachers->id . '/edit') }}'
+                                                                                    method="POST">
                                                                                     @csrf
-                                                                                    @method('GET')
-
+                                                                                    <div class="mb-3">
+                                                                                        <label for="nip"
+                                                                                            class="form-label">Nip</label>
+                                                                                        <input type="text"
+                                                                                            name="nip"
+                                                                                            class="form-control"
+                                                                                            value="{{ $teachers->nip }}"
+                                                                                            id="nip"
+                                                                                            placeholder="Enter your nip">
+                                                                                        @error('nip')
+                                                                                            <span
+                                                                                                class="text-danger">{{ $message }}</span>
+                                                                                        @enderror
+                                                                                    </div>
                                                                                     <div class="mb-3">
                                                                                         <label for="name"
-                                                                                            class="form-label">Name
-                                                                                        </label>
+                                                                                            class="form-label">Name</label>
                                                                                         <input type="name"
                                                                                             name="name"
                                                                                             class="form-control"
-                                                                                            value="{{ $admins->name }}"
-                                                                                            id="name"
+                                                                                            value="{{ $teachers->name }}"
+                                                                                            id="nama"
                                                                                             placeholder="Enter your name">
                                                                                         @error('name')
                                                                                             <span
@@ -488,30 +575,15 @@
                                                                                         @enderror
                                                                                     </div>
                                                                                     <div class="mb-3">
-                                                                                        <label for="phone"
-                                                                                            class="form-label">Phone
-                                                                                        </label>
-                                                                                        <input type="number"
-                                                                                            name="phone"
+                                                                                        <label for="name"
+                                                                                            class="form-label">Email</label>
+                                                                                        <input type="email"
+                                                                                            name="email"
                                                                                             class="form-control"
-                                                                                            value="{{ $admins->phone }}"
-                                                                                            id="phone"
-                                                                                            placeholder="Enter your phone">
-                                                                                        @error('phone')
-                                                                                            <span
-                                                                                                class="text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                    <div class="mb-3">
-                                                                                        <label for="username"
-                                                                                            class="form-label">Username</label>
-                                                                                        <input type="text"
-                                                                                            name="username"
-                                                                                            class="form-control"
-                                                                                            value="{{ $admins->username }}"
-                                                                                            id="username"
-                                                                                            placeholder="Enter your username">
-                                                                                        @error('username')
+                                                                                            value="{{ $teachers->email }}"
+                                                                                            id="email"
+                                                                                            placeholder="Enter your email">
+                                                                                        @error('email')
                                                                                             <span
                                                                                                 class="text-danger">{{ $message }}</span>
                                                                                         @enderror
@@ -523,27 +595,57 @@
                                                                                         <input type="password"
                                                                                             name="password"
                                                                                             class="form-control"
-                                                                                            value="{{ $admins->name }}"
                                                                                             id="exampleInputPassword1"
-                                                                                            placeholder="Enter your password">
-                                                                                        @error('passowrd')
+                                                                                            placeholder="Enter new password">
+                                                                                        @error('password')
+                                                                                            <span
+                                                                                                class="text-danger">{{ $message }}</span>
+                                                                                        @enderror
+                                                                                    </div>
+                                                                                    <div class="mb-3">
+                                                                                        <label for="address"
+                                                                                            class="form-label">Address</label>
+                                                                                        <input type="text"
+                                                                                            name="address"
+                                                                                            class="form-control"
+                                                                                            value="{{ $teachers->address }}"
+                                                                                            id="address"
+                                                                                            placeholder="Enter your address">
+                                                                                        @error('address')
+                                                                                            <span
+                                                                                                class="text-danger">{{ $message }}</span>
+                                                                                        @enderror
+                                                                                    </div>
+                                                                                    <div class="mb-3">
+                                                                                        <label for="name"
+                                                                                            class="form-label">Phone</label>
+                                                                                        <input type="text"
+                                                                                            name="phone"
+                                                                                            class="form-control"
+                                                                                            value="{{ $teachers->phone }}"
+                                                                                            id="phone"
+                                                                                            placeholder="Enter your phone">
+                                                                                        @error('phone')
                                                                                             <span
                                                                                                 class="text-danger">{{ $message }}</span>
                                                                                         @enderror
                                                                                     </div>
                                                                                     <div class="text-end">
                                                                                         <button type="submit"
-                                                                                            class="btn btn-primary">Update</button>
+                                                                                            class="btn btn-primary">Simpan</button>
+                                                                                        <button type="reset"
+                                                                                            class="btn btn-warning">HAPUS</button>
+
                                                                                     </div>
                                                                                 </form>
                                                                             </div>
                                                                         </div><!-- /.modal-content -->
                                                                     </div><!-- /.modal-dialog -->
-                                                                </div><!-- /.modal -->
+                                                                </div><!-- /.modal -->
 
                                                                 <!-- Modal -->
                                                                 <div class="modal fade zoomIn"
-                                                                    id="deleteRecordModal-{{ $admins->id }}"
+                                                                    id="deleteRecordModal-{{ $teachers->id }}"
                                                                     tabindex="-1" aria-hidden="true">
                                                                     <div class="modal-dialog modal-dialog-centered">
                                                                         <div class="modal-content">
@@ -575,9 +677,8 @@
                                                                                     <button type="button"
                                                                                         class="btn w-sm btn-light"
                                                                                         data-bs-dismiss="modal">Close</button>
-
                                                                                     <form method="POST"
-                                                                                        action="{{ route('admin.hapus', $admins->id) }}"
+                                                                                        action="{{ route('teacher.hapus', $teachers->id) }}"
                                                                                         class="d-inline">
                                                                                         @csrf
                                                                                         @method('DELETE')
@@ -586,15 +687,16 @@
                                                                                             Delete
                                                                                             It!</button>
                                                                                     </form>
+
+
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <!--end modal -->
-
-                                                            </tr>
                                                         @endforeach
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -686,6 +788,15 @@
 
     </div>
     <!-- END layout-wrapper -->
+
+    <!--preloader-->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner-border text-primary avatar-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
 
     <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-settings-offcanvas">
         <div class="d-flex align-items-center bg-primary bg-gradient p-3 offcanvas-header">
@@ -904,20 +1015,6 @@
         </div>
     </div>
 
-    <!--start back-to-top-->
-    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
-        <i class="ri-arrow-up-line"></i>
-    </button>
-    <!--end back-to-top-->
-
-    <!--preloader-->
-    <div id="preloader">
-        <div id="status">
-            <div class="spinner-border text-primary avatar-sm" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
-    </div>
 
 
     <!-- JAVASCRIPT -->
