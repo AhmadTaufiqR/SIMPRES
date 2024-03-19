@@ -13,52 +13,36 @@ class AdminController extends Controller
         return view('pages.aisyah.admin', ['admin' => $admin]);
     }
 
-    public function create()
-    {
-       return view('templates.aisyah.create');
-    }
-    
     public function store(Request $request)
-    {
-    //    return view('pages.aisyah.admin');
-    $request->validate([
-        'name' => 'required',
-        'username' => 'required',
-        'password' => 'required',
-    ]);
-      $admin = Admin::create([ 
-            'name' => $request->input('name'),
-            'username' => $request->input('username'),
-            'password' => $request->input('password'),
-        ]);
-    if($admin){
-        return redirect('admin')->with('status', 'admin create');
-    } else {
-        var_dump('kososng');
-    }
-    }
-
-    // public function edit(int $id)
-    // {
-    //     $admin = Admin::findOrFail($id);
-    //     // return $admin;
-    //     return view('admin.edit', compact($admin));
-    // }
-
-
-    public function update(Request $request, int $id) 
     {
         $request->validate([
             'name' => 'required',
             'username' => 'required',
+            'phone' => 'required',
             'password' => 'required',
         ]);
-          Admin::findOrFail($id)->update([ 
-                'name' => $request->input('name'),
-                'username' => $request->input('username'),
-                'password' => $request->input('password'),
-            ]);
-            return redirect()->back()->with('status', 'admin update');
+        $admin = Admin::create([
+            'name' => $request->input('name'),
+            'username' => $request->input('username'),
+            'phone' => $request->input('phone'),
+            'password' => $request->input('password'),
+        ]);
+        if ($admin) {
+            return redirect('admin')->with('Success', 'Data admin berhasil ditambahkan');
+        } else {
+            var_dump('kososng');
+        }
+    }
+
+    public function update(Request $request, int $id)
+    {
+        Admin::findOrFail($id)->update([
+            'name' => $request->input('name'),
+            'username' => $request->input('username'),
+            'phone' => $request->input('phone'),
+            'password' => $request->input('password'),
+        ]);
+        return redirect()->back()->with('Success', 'Data admin berhasil diubah');
     }
     public function hapus(int $id)
     {
@@ -67,6 +51,6 @@ class AdminController extends Controller
             dd('Record not found');
         }
         $admin->delete();
-        return redirect()->back()->with('status', 'Admin berhasil dihapus');
+        return redirect()->back()->with('Success', 'Data admin berhasil dihapus');
     }
 }

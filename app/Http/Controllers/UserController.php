@@ -53,23 +53,20 @@ class UserController extends Controller
             'email' => 'required|email|exists:users,email'
         ], $customMessage);
 
-            [
-                'email' => $request->email,
-                'created_at'=>now(),
-            ];
+        [
+            'email' => $request->email,
+            'created_at' => now(),
+        ];
 
         $user = User::where('email', '=', $request->input('email'))->first();
 
         if ($user) {
-            // return var_dump('Berhasil');
-             return redirect('reset-password')->with('users', $request->input('email'));
-            // return view('templates.amel.reset-password', compact('user'));
+            return redirect('reset-password')->with('users', $request->input('email'));
         }
     }
 
     public function showResetForm()
     {
-        // $user = User::where('email', '=', )
         return view('templates.amel.reset-password');
     }
 
@@ -89,25 +86,24 @@ class UserController extends Controller
         return redirect('reset-password')->withErrors('Kamu Gagal');
     }
 
-    
+
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
- 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
- 
-            return redirect()->intended('dashboard');
-        }
- 
-        return back()->with('loginError', 'Login Failed');
+            $credentials = $request->validate([
+                'email' => ['required'],
+                'password' => ['required'],
+            ]);
+
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+                return redirect('headmaster')->with('Success', 'Login Success');
+            }
+            return back()->with('loginError', 'Login Failed');
+        
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -130,25 +126,24 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function store_reset_pw (Request $request)
+    public function store_reset_pw(Request $request)
     {
         $request->validate([
-            'email'=> ['required', 'string'],
-            'password'=> ['required', 'confirmed','min:3']
+            'email' => ['required', 'string'],
+            'password' => ['required', 'confirmed', 'min:3']
         ]);
 
-        $users=User::create([
-            'email'=>$request->email,
-            'password'=>Hash::make(value: $request->password),
+        $users = User::create([
+            'email' => $request->email,
+            'password' => Hash::make(value: $request->password),
         ]);
 
-        $user=" ";
-        if (!$user){
+        $user = " ";
+        if (!$user) {
             return redirect()->route('users.create')->with('success', 'Password berhasil diubah');
         } else {
             return redirect()->back()->with('error', 'Gagal membuat password baru');
         }
-        
     }
 
     /**

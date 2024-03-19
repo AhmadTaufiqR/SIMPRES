@@ -15,14 +15,8 @@ class TeacherController extends Controller
         return view('templates.Rayhans.Guru', compact('teacher'));
     }
 
-    public function create()
-    {
-        return view('Teacher.create');
-    }
-
     public function store(Request $request)
     {
-        //    return view('pages.aisyah.admin');
         $request->validate([
             'nip' => 'required',
             'name' => 'required',
@@ -36,50 +30,36 @@ class TeacherController extends Controller
             'nip' => $request->input('nip'),
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => $request->input('password'),
+            'password' => bcrypt($request->input('password')),
             'address' => $request->input('address'),
             'gender' => $request->input('gender'),
             'phone' => $request->input('phone'),
         ]);
         if ($teacher) {
-            return redirect('/')->with('status', 'guru create');
+            return redirect('/teacher')->with('Success', 'Yeeayy!! Data guru berhasil ditambahkan');
         } else {
-            var_dump('kosong');
+            return redirect('/teacher')->withErrors('Data guru gagal ditambahkan');
         }
     }
-    public function update(Request $request, int $id)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'nip' => 'required',
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'address' => 'required',
-            'gender' => 'required',
-            'phone' => 'required',
-        ]);
-        Teacher::findOrFail($id)->update([
+        $teacher = Teacher::findOrFail($id)->update([
             'nip' => $request->input('nip'),
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => $request->input('password'),
+            'password' => bcrypt($request->input('password')),
             'address' => $request->input('address'),
-            'gender' => $request->input('gender'),
             'phone' => $request->input('phone'),
         ]);
-        return redirect()->back()->with('status', 'Guru update');
-
-
-        
-        // if($admin){
-        //     return redirect('admin')->with('status', 'adminupdate');
-        // } else {
-        //     var_dump('kososng');
-        // }
+        if ($teacher) {
+            return redirect()->back()->with('Success', 'Yeeayy!! Data guru berhasil diubah');
+        } else {
+            return redirect('/teacher')->withErrors('Data guru gagal diubah');
+        }
     }
 
 
-    
+
 
     public function hapus(int $id)
     {
@@ -88,10 +68,6 @@ class TeacherController extends Controller
             dd('Record not found');
         }
         $teacher->delete();
-        return redirect()->back()->with('status', 'Guru berhasil dihapus');
+        return redirect()->back()->with('Success', 'Yeeayy!! Data guru berhasil dihapus');
     }
 }
-
-
-
-  
