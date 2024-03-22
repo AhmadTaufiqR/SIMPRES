@@ -331,8 +331,7 @@
                                                             <form action="/admin-create-data" method="POST">
                                                                 @csrf
                                                                 <div class="mb-3">
-                                                                    <label for="name" class="form-label">Name
-                                                                    </label>
+                                                                    <label for="name" class="form-label">Name</label>
                                                                     <input type="name" name="name"
                                                                         class="form-control"
                                                                         value="{{ old('name') }}" id="name"
