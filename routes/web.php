@@ -6,7 +6,8 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HeadmasterController;
-
+use App\Http\Controllers\RoomController;
+use App\Models\Room;
 
 Route::group(['namespace' => 'headmaster'], function () {
     Route::get('/headmaster', [HeadmasterController::class, 'index']);
@@ -39,8 +40,13 @@ Route::group(['namespace' => 'admin'], function () {
 
 
 //Room atau Classroom
-Route::prefix('classroom')->group(function () {
-});
+Route::get('/room', [RoomController::class, 'index']);
+Route::post('/room', [RoomController::class, 'store']);
+Route::post('/room-create-data', [RoomController::class, 'store']);
+Route::post('room/{id}/edit', [RoomController::class, 'update']);
+Route::delete('/room/{id}/hapus', [RoomController::class, 'hapus'])->name('room.hapus');
+
+
 
 //Schedule
 Route::prefix('schedule')->group(function () {
