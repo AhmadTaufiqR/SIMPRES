@@ -335,7 +335,7 @@
                         <div class="card" id="invoiceList">
                             <div class="card-header border-0">
                                 <div class="d-flex align-items-center">
-                                    <h5 class="card-title mb-0 flex-grow-1">Guru</h5>
+                                    <h5 class="card-title mb-0 flex-grow-1">DAFTAR GURU</h5>
                                     <div class="flex-shrink-0">
                                         <div class="d-flex gap-2 flex-wrap">
                                             <button class="btn btn-primary" id="remove-actions"
@@ -492,13 +492,13 @@
                                                     <thead class="text-muted">
                                                         <tr>
                                                             <th class="sort text-uppercase" data-sort="NIP">NIP</th>
-                                                            <th class="sort text-uppercase" data-sort="email">name
+                                                            <th class="sort text-uppercase" data-sort="email">NAMA
                                                             </th>
                                                             <th class="sort text-uppercase" data-sort="country">email
                                                             </th>
-                                                            <th class="sort text-uppercase" data-sort="date">address
+                                                            <th class="sort text-uppercase" data-sort="date">ALAMAT
                                                             </th>
-                                                            <th class="sort text-uppercase" data-sort="status">gender
+                                                            <th class="sort text-uppercase" data-sort="status">JENIS-KELAMIN
                                                             </th>
                                                             <th class="sort text-uppercase" data-sort="action">phone
                                                             </th>
@@ -617,12 +617,12 @@
                                                                                         @enderror
                                                                                     </div>
                                                                                     <div class="mb-3">
-                                                                                        <label for="name"
+                                                                                        <label for="phone"
                                                                                             class="form-label">Phone</label>
                                                                                         <input type="text"
                                                                                             name="phone"
                                                                                             class="form-control"
-                                                                                            value="{{ $teachers->phone }}"
+                                                                                            value="{{ $teachers->name_class }}" 
                                                                                             id="phone"
                                                                                             placeholder="Enter your phone">
                                                                                         @error('phone')
@@ -633,8 +633,7 @@
                                                                                     <div class="text-end">
                                                                                         <button type="submit"
                                                                                             class="btn btn-primary">Simpan</button>
-                                                                                        <button type="reset"
-                                                                                            class="btn btn-warning">HAPUS</button>
+                                                                                       
 
                                                                                     </div>
                                                                                 </form>
@@ -699,6 +698,7 @@
 
                                                     </tbody>
                                                 </table>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -726,6 +726,7 @@
                                 </a>
                             </div>
                         </div>
+                        
 
                     </div>
 

@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GenerationController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HeadmasterController;
 use App\Models\Generation;
+use App\Http\Controllers\RoomController;
+use App\Models\Room;
 
 Route::group(['namespace' => 'headmaster'], function () {
     Route::get('/headmaster', [HeadmasterController::class, 'index']);
@@ -44,8 +47,13 @@ Route::group(['namespace' => 'generation'], function () {
 });
 
 //Room atau Classroom
-Route::prefix('classroom')->group(function () {
-});
+Route::get('/room', [RoomController::class, 'index']);
+Route::post('/room', [RoomController::class, 'store']);
+Route::post('/room-create-data', [RoomController::class, 'store']);
+Route::post('room/{id}/edit', [RoomController::class, 'update']);
+Route::delete('/room/{id}/hapus', [RoomController::class, 'hapus'])->name('room.hapus');
+
+
 
 //Schedule
 Route::prefix('schedule')->group(function () {
@@ -69,4 +77,13 @@ Route::group(['namespace' => 'login'], function () {
     Route::post('/reset-password-act', [UserController::class, 'showResetForm_act']);
     Route::get('/register', [UserController::class, 'index_register'])->name('register');
     Route::post('/register', [UserController::class, 'store'])->name('register.store');
+
 });
+
+Route::group(['namespace' => 'courses'], function () {
+    Route::get('/courses', [CourseController::class, 'index_course']);
+    Route::post('/courses_create', [CourseController::class, 'store']);
+    Route::post('courses/{id}/edit', [CourseController::class, 'update']);
+    Route::delete('courses/{id}/delete', [CourseController::class, 'delete'])->name('delete.course');
+});
+
