@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -63,4 +64,13 @@ Route::group(['namespace' => 'login'], function () {
     Route::post('/reset-password-act', [UserController::class, 'showResetForm_act']);
     Route::get('/register', [UserController::class, 'index_register'])->name('register');
     Route::post('/register', [UserController::class, 'store'])->name('register.store');
+
 });
+
+Route::group(['namespace' => 'courses'], function () {
+    Route::get('/courses', [CourseController::class, 'index_course']);
+    Route::post('/courses_create', [CourseController::class, 'store']);
+    Route::post('courses/{id}/edit', [CourseController::class, 'update']);
+    Route::delete('courses/{id}/delete', [CourseController::class, 'delete'])->name('delete.course');
+});
+
