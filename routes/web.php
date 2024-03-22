@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GenerationController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HeadmasterController;
+use App\Models\Generation;
 use App\Http\Controllers\RoomController;
 use App\Models\Room;
 
@@ -37,7 +39,12 @@ Route::group(['namespace' => 'admin'], function () {
     Route::get('admin/{id}/edit', [AdminController::class, 'update']);
     Route::delete('admin/{id}/hapus', [AdminController::class, 'hapus'])->name('admin.hapus');
 });
-
+Route::group(['namespace' => 'generation'], function () {
+    Route::get('/generation', [GenerationController::class, 'show']);
+    Route::post('/generation-create-data', [GenerationController::class, 'store']);
+    Route::get('generation/{id}/edit', [GenerationController::class, 'update']);
+    Route::delete('generation/{id}', [GenerationController::class, 'hapus'])->name('generation.hapus');
+});
 
 //Room atau Classroom
 Route::get('/room', [RoomController::class, 'index']);
