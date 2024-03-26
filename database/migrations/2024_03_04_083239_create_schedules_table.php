@@ -16,10 +16,8 @@ return new class extends Migration
             $table->foreignId('teachers_id')->constrained();
             $table->foreignId('courses_id')->constrained();
             $table->foreignId('rooms_id')->constrained();
-            $table->string('entry_time');
-            $table->string('clock_out');
+            $table->foreignId('generations_id')->constrained();
             $table->string('day');
-            $table->string('hour_to');
             $table->softDeletes();
             $table->timestamps();
         });
