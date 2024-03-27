@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\detail_presences;
+use App\Models\DetailPresences;
 use Illuminate\Http\Request;
 
 class DetailPresencesController extends Controller
@@ -26,7 +26,7 @@ class DetailPresencesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(detail_presences $detail_presences)
+    public function show(DetailPresences $detail_presences)
     {
         //
     }
@@ -34,7 +34,7 @@ class DetailPresencesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, detail_presences $detail_presences)
+    public function update(Request $request, DetailPresences $detail_presences)
     {
         //
     }
@@ -42,7 +42,7 @@ class DetailPresencesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(detail_presences $detail_presences)
+    public function destroy(DetailPresences $detail_presences)
     {
         //
     }

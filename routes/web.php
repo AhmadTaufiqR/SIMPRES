@@ -1,13 +1,17 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GenerationController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HeadmasterController;
 use App\Http\Controllers\RoomController;
-use App\Models\Room;
 
+
+
+//Headmaster
 Route::group(['namespace' => 'headmaster'], function () {
     Route::get('/headmaster', [HeadmasterController::class, 'index']);
     Route::get('/headmaster-create', [HeadmasterController::class, 'setting']);
@@ -25,8 +29,13 @@ Route::group(['namespace' => 'teacher'], function () {
 });
 
 
-//Course
-Route::prefix('course')->group(function () {
+//Rooms
+Route::group(['namespace' => 'room'], function () {
+    Route::get('/room', [RoomController::class, 'index']);
+    Route::post('/room', [RoomController::class, 'store']);
+    Route::post('/room-create-data', [RoomController::class, 'store']);
+    Route::post('room/{id}/edit', [RoomController::class, 'update']);
+    Route::delete('/room/{id}/hapus', [RoomController::class, 'hapus'])->name('room.hapus');
 });
 
 //Admin
@@ -37,29 +46,31 @@ Route::group(['namespace' => 'admin'], function () {
     Route::delete('admin/{id}/hapus', [AdminController::class, 'hapus'])->name('admin.hapus');
 });
 
-
-//Room atau Classroom
-Route::get('/room', [RoomController::class, 'index']);
-Route::post('/room', [RoomController::class, 'store']);
-Route::post('/room-create-data', [RoomController::class, 'store']);
-Route::post('room/{id}/edit', [RoomController::class, 'update']);
-Route::delete('/room/{id}/hapus', [RoomController::class, 'hapus'])->name('room.hapus');
-
+//Generations
+Route::group(['namespace' => 'generation'], function () {
+    Route::get('/generation', [GenerationController::class, 'show']);
+    Route::post('/generation-create-data', [GenerationController::class, 'store']);
+    Route::get('generation/{id}/edit', [GenerationController::class, 'update']);
+    Route::delete('generation/{id}', [GenerationController::class, 'hapus'])->name('generation.hapus');
+});
 
 
 //Schedule
-Route::prefix('schedule')->group(function () {
+Route::group(['namespace' => 'schedule'],function () {
+
 });
 
 //Presence
-Route::prefix('presence')->group(function () {
+Route::group(['namespace' => 'presence'], function () {
+    
 });
 
 //Details Presence
-Route::prefix('detail-presence')->group(function () {
+Route::group(['namespace' => 'details_presence'], function () {
+    
 });
 
-
+//Login
 Route::group(['namespace' => 'login'], function () {
     Route::get('/', [UserController::class, 'index_login'])->name('login');
     Route::post('/log', [UserController::class, 'login'])->name('login.store');
@@ -69,4 +80,12 @@ Route::group(['namespace' => 'login'], function () {
     Route::post('/reset-password-act', [UserController::class, 'showResetForm_act']);
     Route::get('/register', [UserController::class, 'index_register'])->name('register');
     Route::post('/register', [UserController::class, 'store'])->name('register.store');
+});
+
+//Courses
+Route::group(['namespace' => 'courses'], function () {
+    Route::get('/courses', [CourseController::class, 'index_course']);
+    Route::post('/courses_create', [CourseController::class, 'store']);
+    Route::post('courses/{id}/edit', [CourseController::class, 'update']);
+    Route::delete('courses/{id}/delete', [CourseController::class, 'delete'])->name('delete.course');
 });

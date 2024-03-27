@@ -14,10 +14,6 @@ class RoomController extends Controller
     }
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'name_class' => 'required|max:2|min:2'|,
-
-        // ]);
         $room = Room::Create([
             'name_class' => $request->name_class,
 

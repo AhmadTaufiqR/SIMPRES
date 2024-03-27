@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('detail_presences', function (Blueprint $table) {
             $table->id();
             $table->foreignId('presences_id')->constrained();
-            $table->foreignId('teachers_id')->constrained();
             $table->string('documentation');
-            $table->string('letter');
             $table->string('attendance');
             $table->softDeletes();
             $table->timestamps();

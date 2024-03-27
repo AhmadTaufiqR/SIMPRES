@@ -10,8 +10,7 @@ class TeacherController extends Controller
 {
     public function index()
     {
-        $teacher = Teacher::paginate(7);
-        // return $teacher;
+        $teacher = Teacher::all();
         return view('templates.Rayhans.Guru', compact('teacher'));
     }
 
