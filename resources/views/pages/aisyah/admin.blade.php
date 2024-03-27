@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Invoice List | Velzon - Admin & Dashboard Template</title>
+    <title>Data Admin | SCode</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -263,8 +263,26 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="/teacher">
-                                <i class="las la-graduation-cap"></i> <span data-key="t-headmasters">Tenaga
-                                    Pengajar</span>
+                                <i class="las la-graduation-cap"></i>
+                                <span data-key="t-headmasters">Tenaga Pengajar</span>
+                            </a>
+                        </li>
+                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Akademik</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="/room">
+                                <i class="las la-school"></i> <span data-key="t-headmasters">Kelas</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="/courses">
+                                <i class="las la-book"></i> <span data-key="t-headmasters">Mata Pelajran</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="/generation">
+                                <i class="las la-calendar-alt"></i> <span data-key="t-headmasters">Tahun
+                                    Akademik</span>
                             </a>
                         </li>
                     </ul>
@@ -331,8 +349,8 @@
                                                             <form action="/admin-create-data" method="POST">
                                                                 @csrf
                                                                 <div class="mb-3">
-                                                                    <label for="name" class="form-label">Name
-                                                                    </label>
+                                                                    <label for="name"
+                                                                        class="form-label">Name</label>
                                                                     <input type="name" name="name"
                                                                         class="form-control"
                                                                         value="{{ old('name') }}" id="name"

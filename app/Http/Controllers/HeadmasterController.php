@@ -62,14 +62,6 @@ class HeadmasterController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(headmaster $headmaster)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request)
@@ -92,11 +84,4 @@ class HeadmasterController extends Controller
         return redirect('headmaster')->with('Success', 'Password Berhasil Diubah');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(headmaster $headmaster)
-    {
-        //
-    }
 }

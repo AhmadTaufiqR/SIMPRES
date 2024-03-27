@@ -11,7 +11,6 @@ class TeacherController extends Controller
     public function index()
     {
         $teacher = Teacher::all();
-        // return $teacher;
         return view('templates.Rayhans.Guru', compact('teacher'));
     }
 

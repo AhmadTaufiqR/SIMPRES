@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Data Guru | SCode</title>
+    <title>Kelas | SCode</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -180,7 +180,7 @@
                                         src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
                                         <span
-                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">fsdfssf</span>
+                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">adadas</span>
                                         <span
                                             class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
                                     </span>
@@ -188,7 +188,7 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <h6 class="dropdown-header">Welcome tyjty</h6>
+                                <h6 class="dropdown-header">Welcome hrthrt</h6>
                                 <a class="dropdown-item" href="pages-profile.html"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Profile</span></a>
@@ -208,35 +208,6 @@
                 </div>
             </div>
         </header>
-
-        <!-- removeNotificationModal -->
-        <div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                            id="NotificationModalbtn-close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mt-2 text-center">
-                            <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
-                                colors="primary:#f7b84b,secondary:#f06548"
-                                style="width:100px;height:100px"></lord-icon>
-                            <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                                <h4>Are you sure ?</h4>
-                                <p class="text-muted mx-4 mb-0">Are you sure you want to remove this Notification ?</p>
-                            </div>
-                        </div>
-                        <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
-                            <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn w-sm btn-danger" id="delete-notification">Yes, Delete
-                                It!</button>
-                        </div>
-                    </div>
-
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
         <!-- ========== App Menu ========== -->
         <div class="app-menu navbar-menu">
             <!-- LOGO -->
@@ -269,6 +240,8 @@
                 <div class="container-fluid">
 
                     <div id="two-column-menu">
+                    </div>
+                    <ul class="navbar-nav" id="navbar-nav">
                         <ul class="navbar-nav" id="navbar-nav">
                             <!-- end Dashboard Menu -->
 
@@ -291,7 +264,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link menu-link active" href="/teacher">
+                                <a class="nav-link menu-link" href="/teacher">
                                     <i class="las la-graduation-cap"></i>
                                     <span data-key="t-headmasters">Tenaga Pengajar</span>
                                 </a>
@@ -300,7 +273,7 @@
                                     data-key="t-pages">Akademik</span>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="/room">
+                                <a class="nav-link menu-link active" href="/room">
                                     <i class="las la-school"></i> <span data-key="t-headmasters">Kelas</span>
                                 </a>
                             </li>
@@ -316,15 +289,23 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                    </ul>
                 </div>
+                </li>
+                </ul>
             </div>
+            </li>
             <!-- end Dashboard Menu -->
+
+            </ul>
         </div>
         <!-- Sidebar -->
     </div>
 
+
+
     <div class="sidebar-background"></div>
+    </div>
     <!-- Left Sidebar End -->
     <!-- Vertical Overlay-->
     <div class="vertical-overlay"></div>
@@ -349,112 +330,39 @@
                         <div class="card" id="invoiceList">
                             <div class="card-header border-0">
                                 <div class="d-flex align-items-center">
-                                    <h5 class="card-title mb-0 flex-grow-1">DAFTAR GURU</h5>
+                                    <h5 class="card-title mb-0 flex-grow-1 text-decoration-underline">DAFTAR KELAS</h5>
                                     <div class="flex-shrink-0">
                                         <div class="d-flex gap-2 flex-wrap">
                                             <button class="btn btn-primary" id="remove-actions"
                                                 onClick="deleteMultiple()"><i
                                                     class="ri-delete-bin-2-line"></i></button>
+                                            {{-- button modal --}}
                                             <button href="" class="btn btn-danger" data-bs-toggle="modal"
                                                 data-bs-target="#signupModals"><i
-                                                    class="ri-add-line align-bottom me-1"></i>Tambah Data Guru</button>
+                                                    class="ri-add-line align-bottom me-1"></i> Tambah Kelas</button>
+
 
                                             <div id="signupModals" class="modal fade" tabindex="-1"
                                                 aria-hidden="true" style="display: none;">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content border-0 overflow-hidden">
                                                         <div class="modal-header p-3">
-                                                            <h4 class="card-title mb-0">TAMBAH DATA GURU</h4>
+                                                            <h4 class="card-title mb-0">Tambah Kelas</h4>
                                                             <button type="button" class="btn-close"
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
 
                                                         <div class="modal-body">
-                                                            <form action='/teacher-create-data' method="POST">
+                                                            <form action="/room-create-data" method="POST">
                                                                 @csrf
-
                                                                 <div class="mb-3">
-                                                                    <label for="username"
-                                                                        class="form-label">NIP</label>
-                                                                    <input type="text" name="nip"
-                                                                        class="form-control" required
-                                                                        value="{{ old('nip') }}" id="nip"
-                                                                        placeholder="Enter your nip">
-                                                                    <span class="text-danger">*nip hanya bisa diisi
-                                                                        satu kali</span>
-                                                                    @error('nip')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="name"
-                                                                        class="form-label">Name</label>
-                                                                    <input type="text" name="name"
-                                                                        class="form-control" required
-                                                                        value="{{ old('name') }}" id="nama"
-                                                                        placeholder="Enter your name">
+                                                                    <label for="name" class="form-label">Nama
+                                                                    </label>
+                                                                    <input type="name" name="name_class"
+                                                                        class="form-control" value=""
+                                                                        id="name"
+                                                                        placeholder="Masukkan nama Kelas">
                                                                     @error('name')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="name" class="form-label">JENIS
-                                                                        KELAMIN</label>
-                                                                    <select class="form-control" name="gender"
-                                                                        id="choices-single-no-search" data-choices
-                                                                        data-choices-search-false required
-                                                                        data-choices-removeItem>
-                                                                        <option value="">Select gender</option>
-                                                                        <option value="Laki-Laki">Laki-Laki</option>
-                                                                        <option value="Perempuan">Perempuan</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="name"
-                                                                        class="form-label">Email</label>
-                                                                    <input type="email" name="email"
-                                                                        class="form-control" required
-                                                                        value="{{ old('email') }}" id="email"
-                                                                        placeholder="Enter your email">
-                                                                    @error('email')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="exampleInputPassword1"
-                                                                        class="form-label">Password</label>
-                                                                    <input type="password" name="password"
-                                                                        class="form-control" required
-                                                                        value="{{ old('password') }}"
-                                                                        id="exampleInputPassword1"
-                                                                        placeholder="Enter your password">
-                                                                    @error('password')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="address"
-                                                                        class="form-label">Address</label>
-                                                                    <input type="text" name="address"
-                                                                        class="form-control" required
-                                                                        value="{{ old('address') }}" id="address"
-                                                                        placeholder="Enter your address">
-                                                                </div>
-                                                                @error('address')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                                <div class="mb-3">
-                                                                    <label for="name"
-                                                                        class="form-label">Phone</label>
-                                                                    <input type="text" name="phone"
-                                                                        class="form-control" required
-                                                                        value="{{ old('phone') }}" id="phone"
-                                                                        placeholder="Enter your phone">
-                                                                    @error('phone')
                                                                         <span
                                                                             class="text-danger">{{ $message }}</span>
                                                                     @enderror
@@ -462,266 +370,12 @@
                                                                 <div class="text-end">
                                                                     <button type="submit" name="submit"
                                                                         class="btn btn-primary">Simpan</button>
-                                                                    <button type="reset"
-                                                                        class="btn btn-warning">Reset</button>
                                                                 </div>
-
+                                                            </form>
                                                         </div>
-                                                        </form>
-                                                    </div>
-                                                </div><!-- /.modal-content -->
-                                            </div><!-- /.modal-dialog -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body bg-soft-light border border-dashed border-start-0 border-end-0">
-                                <form>
-                                    <div class="row g-3">
-                                        <div class="col-xxl-5 col-sm-12">
-                                            <div class="search-box">
-                                                <input type="text"
-                                                    class="form-control search bg-light border-light"
-                                                    placeholder="Cari nama..">
-                                                <i class="ri-search-line search-icon"></i>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-
-                                        <!--end col-->
-                                    </div>
-                                    <!--end row-->
-                                </form>
-                            </div>
-                            <div class="card-body">
-                                <div>
-                                    <div class="card-body">
-                                        <div>
-                                            <div class="table-responsive table-card">
-
-                                                <table class="table align-middle table-nowrap" id="invoiceTable">
-                                                    <thead class="text-muted">
-                                                        <tr>
-                                                            <th class="text-uppercase">#
-                                                            </th>
-                                                            <th class="sort text-uppercase" data-sort="NIP">NIP
-                                                            </th>
-                                                            <th class="sort text-uppercase" data-sort="name">NAMA
-                                                            </th>
-                                                            <th class="sort text-uppercase" data-sort="email">
-                                                                email
-                                                            </th>
-                                                            <th class="sort text-uppercase" data-sort="address">
-                                                                ALAMAT
-                                                            </th>
-                                                            <th class="text-uppercase">
-                                                                JENIS KELAMIN
-                                                            </th>
-                                                            <th class="sort text-uppercase" data-sort="phone">
-                                                                phone
-                                                            </th>
-                                                            <th class="text-uppercase">
-                                                                action
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody class="list form-check-all">
-                                                        @foreach ($teacher as $teachers)
-                                                            <tr>
-                                                                <td>{{ $loop->iteration }}</td>
-                                                                <td>{{ $teachers->nip }}</td>
-                                                                <td>{{ $teachers->name }}</td>
-                                                                <td>{{ $teachers->email }}</td>
-                                                                <td style="text-indent: 20px">
-                                                                    {{ $teachers->address }}</td>
-                                                                <td>{{ $teachers->gender }}</td>
-                                                                <td>{{ $teachers->phone }}</td>
-                                                                <td>
-                                                                    <button
-                                                                        class="btn btn-success btn-sm mx-2 edit-item-btn"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#editModals-{{ $teachers->id }}">Edit</button>
-                                                                    <button
-                                                                        class="btn btn-danger btn-sm remove-item-btn"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#deleteRecordModal-{{ $teachers->id }}">Hapus</button>
-
-                                                                </td>
-
-                                                                <div id="editModals-{{ $teachers->id }}"
-                                                                    class="modal fade" tabindex="-1"
-                                                                    aria-hidden="true" style="display: none;">
-                                                                    <div class="modal-dialog modal-dialog-centered">
-                                                                        <div
-                                                                            class="modal-content border-0 overflow-hidden">
-                                                                            <div class="modal-header p-3">
-                                                                                <h4 class="card-title mb-0">EDIT
-                                                                                    DATA
-                                                                                    GURU</h4>
-                                                                                <button type="button"
-                                                                                    class="btn-close"
-                                                                                    data-bs-dismiss="modal"
-                                                                                    aria-label="Close"></button>
-                                                                            </div>
-                                                                            <div class="modal-body">
-                                                                                <form
-                                                                                    action='{{ url('teacher/' . $teachers->id . '/edit') }}'
-                                                                                    method="POST">
-                                                                                    @csrf
-                                                                                    <div class="mb-3">
-                                                                                        <label for="nip"
-                                                                                            class="form-label">Nip</label>
-                                                                                        <input type="text"
-                                                                                            name="nip"
-                                                                                            class="form-control"
-                                                                                            value="{{ $teachers->nip }}"
-                                                                                            id="nip"
-                                                                                            placeholder="Enter your nip">
-                                                                                        @error('nip')
-                                                                                            <span
-                                                                                                class="text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                    <div class="mb-3">
-                                                                                        <label for="name"
-                                                                                            class="form-label">Name</label>
-                                                                                        <input type="name"
-                                                                                            name="name"
-                                                                                            class="form-control"
-                                                                                            value="{{ $teachers->name }}"
-                                                                                            id="nama"
-                                                                                            placeholder="Enter your name">
-                                                                                        @error('name')
-                                                                                            <span
-                                                                                                class="text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                    <div class="mb-3">
-                                                                                        <label for="name"
-                                                                                            class="form-label">Email</label>
-                                                                                        <input type="email"
-                                                                                            name="email"
-                                                                                            class="form-control"
-                                                                                            value="{{ $teachers->email }}"
-                                                                                            id="email"
-                                                                                            placeholder="Enter your email">
-                                                                                        @error('email')
-                                                                                            <span
-                                                                                                class="text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                    <div class="mb-3">
-                                                                                        <label
-                                                                                            for="exampleInputPassword1"
-                                                                                            class="form-label">Password</label>
-                                                                                        <input type="password"
-                                                                                            name="password"
-                                                                                            class="form-control"
-                                                                                            id="exampleInputPassword1"
-                                                                                            placeholder="Enter new password">
-                                                                                        @error('password')
-                                                                                            <span
-                                                                                                class="text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                    <div class="mb-3">
-                                                                                        <label for="address"
-                                                                                            class="form-label">Address</label>
-                                                                                        <input type="text"
-                                                                                            name="address"
-                                                                                            class="form-control"
-                                                                                            value="{{ $teachers->address }}"
-                                                                                            id="address"
-                                                                                            placeholder="Enter your address">
-                                                                                        @error('address')
-                                                                                            <span
-                                                                                                class="text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                    <div class="mb-3">
-                                                                                        <label for="phone"
-                                                                                            class="form-label">Phone</label>
-                                                                                        <input type="text"
-                                                                                            name="phone"
-                                                                                            class="form-control"
-                                                                                            value="{{ $teachers->name_class }}"
-                                                                                            id="phone"
-                                                                                            placeholder="Enter your phone">
-                                                                                        @error('phone')
-                                                                                            <span
-                                                                                                class="text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                    <div class="text-end">
-                                                                                        <button type="submit"
-                                                                                            class="btn btn-primary">Simpan</button>
-
-
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div><!-- /.modal-content -->
-                                                                    </div><!-- /.modal-dialog -->
-                                                                </div><!-- /.modal -->
-
-                                                                <!-- Modal -->
-                                                                <div class="modal fade zoomIn"
-                                                                    id="deleteRecordModal-{{ $teachers->id }}"
-                                                                    tabindex="-1" aria-hidden="true">
-                                                                    <div class="modal-dialog modal-dialog-centered">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <button type="button"
-                                                                                    class="btn-close"
-                                                                                    data-bs-dismiss="modal"
-                                                                                    aria-label="Close"
-                                                                                    id="btn-close"></button>
-                                                                            </div>
-                                                                            <div class="modal-body">
-                                                                                <div class="mt-2 text-center">
-                                                                                    <lord-icon
-                                                                                        src="https://cdn.lordicon.com/gsqxdxog.json"
-                                                                                        trigger="loop"
-                                                                                        colors="primary:#f7b84b,secondary:#f06548"
-                                                                                        style="width:100px;height:100px"></lord-icon>
-                                                                                    <div
-                                                                                        class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                                                                                        <h4>Are you Sure ?</h4>
-                                                                                        <p
-                                                                                            class="text-muted mx-4 mb-0">
-                                                                                            Are you Sure You want to
-                                                                                            Remove this Record ?</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div
-                                                                                    class="d-flex gap-2 justify-content-center mt-4 mb-2">
-                                                                                    <button type="button"
-                                                                                        class="btn w-sm btn-light"
-                                                                                        data-bs-dismiss="modal">Close</button>
-                                                                                    <form method="POST"
-                                                                                        action="{{ route('teacher.hapus', $teachers->id) }}"
-                                                                                        class="d-inline">
-                                                                                        @csrf
-                                                                                        @method('DELETE')
-                                                                                        <button type="submit"
-                                                                                            class="btn w-sm btn-danger ">Yes,
-                                                                                            Delete
-                                                                                            It!</button>
-                                                                                    </form>
-
-
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--end modal -->
-                                                        @endforeach
-
-                                                    </tbody>
-                                                </table>
-
-                                            </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
                                         </div>
                                     </div>
                                 </div>
@@ -732,27 +386,12 @@
                                         colors="primary:#121331,secondary:#08a88a"
                                         style="width:75px;height:75px"></lord-icon>
                                     <h5 class="mt-2">Sorry! No Result Found</h5>
-                                    <p class="text-muted mb-0">We've searched more than 150+ invoices We did not
-                                        find
+                                    <p class="text-muted mb-0">We've searched more than 150+ invoices We did not find
                                         any invoices for you search.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-end mt-3">
-                            <div class="pagination-wrap hstack gap-2">
-                                <a class="page-item pagination-prev disabled" href="#">
-                                    Previous
-                                </a>
-                                <ul class="pagination listjs-pagination mb-0"></ul>
-                                <a class="page-item pagination-next" href="#">
-                                    Next
-                                </a>
-                            </div>
-                        </div>
-
-
                     </div>
-
                     <!-- Modal -->
                     <div class="modal fade flip" id="deleteOrder" tabindex="-1" aria-labelledby="deleteOrderLabel"
                         aria-hidden="true">
@@ -764,8 +403,7 @@
                                         style="width:90px;height:90px"></lord-icon>
                                     <div class="mt-4 text-center">
                                         <h4>You are about to delete a order ?</h4>
-                                        <p class="text-muted fs-15 mb-4">Deleting your order will remove all of
-                                            your
+                                        <p class="text-muted fs-15 mb-4">Deleting your order will remove all of your
                                             information from our database.</p>
                                         <div class="hstack gap-2 justify-content-center remove">
                                             <button class="btn btn-link link-success fw-medium text-decoration-none"
@@ -781,10 +419,140 @@
                     </div>
                     <!--end modal -->
                 </div>
-            </div>
+                <div class="row align-items-start">
+                    @foreach ($rooms as $rooms)
+                        <div class="col-sm-4">
+                            {{-- <p>{{ $rooms->name }}</p> --}}
+                            <div class="card border card-border-primary">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="card-title mb-0"><span
+                                            class="badge bg-warning align-middle fs-20">{{ $rooms->name_class }}</span>
+                                    </h6>
+                                    <button type="button"
+                                        class="btn btn-outline-danger btn-icon waves-effect waves-light"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#deleteRecordModal-{{ $rooms->id }}"><i
+                                            class="ri-delete-bin-5-line"></i></button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <a class="btn btn-success" data-bs-toggle="modal"
+                                            data-bs-target="#editModals{{ $rooms->id }}">Edit</a>
+                                    </div>
+                                    <div id="editModals{{ $rooms->id }}" class="modal fade" tabindex="-1"
+                                        aria-hidden="true" style="display: none;">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content border-0 overflow-hidden">
+                                                <div class="modal-header p-3">
+                                                    <h4 class="card-title mb-0">Ubah Kelas</h4>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
 
+                                                <div class="modal-body">
+                                                    <form action="{{ url('room/' . $rooms->id . '/edit') }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <div class="mb-3">
+                                                            <label for="name" class="form-label">Nama Kelas
+                                                            </label>
+                                                            <input type="name" name="name_class"
+                                                                class="form-control" value="{{ $rooms->name_class }}"
+                                                                id="name" placeholder="Masukkan Nama Kelas">
+                                                            @error('name')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="text-end">
+                                                            <button type="submit" name="submit"
+                                                                class="btn btn-primary">Simpan</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal fade zoomIn" id="deleteRecordModal-{{ $rooms->id }}"
+                                        tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close" id="btn-close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="mt-2 text-center">
+                                                        <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json"
+                                                            trigger="loop" colors="primary:#f7b84b,secondary:#f06548"
+                                                            style="width:100px;height:100px"></lord-icon>
+                                                        <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
+                                                            <h4>Apakah anda yakin ?</h4>
+                                                            <p class="text-muted mx-4 mb-0">
+                                                                Apakah kamu yakin menghapus data ini?</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                                                        <button type="button" class="btn w-sm btn-light"
+                                                            data-bs-dismiss="modal">Batal</button>
+
+                                                        <form method="POST"
+                                                            action="{{ route('room.hapus', $rooms->id) }}"
+                                                            class="d-inline">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn w-sm btn-danger ">Iya,
+                                                                Hapus!</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    @endforeach
+                </div>
+
+            </div>
         </div>
-        <!--end col-->
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Modal -->
+                <div class="modal fade flip" id="deleteOrder" tabindex="-1" aria-labelledby="deleteOrderLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body p-5 text-center">
+                                <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
+                                    colors="primary:#405189,secondary:#f06548"
+                                    style="width:90px;height:90px"></lord-icon>
+                                <div class="mt-4 text-center">
+                                    <h4>You are about to delete a order ?</h4>
+                                    <p class="text-muted fs-15 mb-4">Deleting your order will remove all of your
+                                        information from our database.</p>
+                                    <div class="hstack gap-2 justify-content-center remove">
+                                        <button class="btn btn-link link-success fw-medium text-decoration-none"
+                                            id="deleteRecord-close" data-bs-dismiss="modal"><i
+                                                class="ri-close-line me-1 align-middle"></i> Close</button>
+                                        <button class="btn btn-danger" id="delete-record">Yes, Delete
+                                            It</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end modal -->
+            </div>
+        </div>
+
+    </div>
+    <!--end col-->
     </div>
     <!--end row-->
 
@@ -813,15 +581,6 @@
 
     </div>
     <!-- END layout-wrapper -->
-
-    <!--preloader-->
-    <div id="preloader">
-        <div id="status">
-            <div class="spinner-border text-primary avatar-sm" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
-    </div>
 
     <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-settings-offcanvas">
         <div class="d-flex align-items-center bg-primary bg-gradient p-3 offcanvas-header">
@@ -1040,6 +799,20 @@
         </div>
     </div>
 
+    <!--start back-to-top-->
+    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+    <!--end back-to-top-->
+
+    <!--preloader-->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner-border text-primary avatar-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
 
 
     <!-- JAVASCRIPT -->
@@ -1066,11 +839,11 @@
     @if (Session::has('Success'))
         <script>
             Swal.fire({
-                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Well done !</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
+                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Selamat!</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
                 showCancelButton: true,
                 showConfirmButton: false,
                 cancelButtonClass: "btn btn-primary w-xs mb-1",
-                cancelButtonText: "Back",
+                cancelButtonText: "Kembali",
                 buttonsStyling: false,
                 showCloseButton: true,
             });
