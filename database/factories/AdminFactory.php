@@ -22,7 +22,8 @@ class AdminFactory extends Factory
         return [
             'name' => fake()->name(),
             'username' => fake()->userName(),
-            'password' => Hash::make(fake()->password())
+            'password' => Hash::make(fake()->password()),
+            'phone' => fake()->phoneNumber(),
         ];
     }
 }

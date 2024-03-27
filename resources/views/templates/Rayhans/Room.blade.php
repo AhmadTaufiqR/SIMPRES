@@ -5,9 +5,9 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Data Mata Pelajaran | SCode</title>
+    <title>Kelas | SCode</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Data Mata Pelajaran" name="description" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -273,12 +273,12 @@
                                     data-key="t-pages">Akademik</span>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="/room">
+                                <a class="nav-link menu-link active" href="/room">
                                     <i class="las la-school"></i> <span data-key="t-headmasters">Kelas</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link menu-link active" href="/courses">
+                                <a class="nav-link menu-link" href="/courses">
                                     <i class="las la-book"></i> <span data-key="t-headmasters">Mata Pelajran</span>
                                 </a>
                             </li>
@@ -330,8 +330,7 @@
                         <div class="card" id="invoiceList">
                             <div class="card-header border-0">
                                 <div class="d-flex align-items-center">
-                                    <h5 class="card-title mb-0 flex-grow-1 text-decoration-underline">Jadwal Pelajaran
-                                    </h5>
+                                    <h5 class="card-title mb-0 flex-grow-1 text-decoration-underline">DAFTAR KELAS</h5>
                                     <div class="flex-shrink-0">
                                         <div class="d-flex gap-2 flex-wrap">
                                             <button class="btn btn-primary" id="remove-actions"
@@ -340,8 +339,7 @@
                                             {{-- button modal --}}
                                             <button href="" class="btn btn-danger" data-bs-toggle="modal"
                                                 data-bs-target="#signupModals"><i
-                                                    class="ri-add-line align-bottom me-1"></i> Tambah
-                                                Pelajaran</button>
+                                                    class="ri-add-line align-bottom me-1"></i> Tambah Kelas</button>
 
 
                                             <div id="signupModals" class="modal fade" tabindex="-1"
@@ -349,21 +347,21 @@
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content border-0 overflow-hidden">
                                                         <div class="modal-header p-3">
-                                                            <h4 class="card-title mb-0">Tambah pelajaran</h4>
+                                                            <h4 class="card-title mb-0">Tambah Kelas</h4>
                                                             <button type="button" class="btn-close"
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
 
                                                         <div class="modal-body">
-                                                            <form action="/courses_create" method="POST">
+                                                            <form action="/room-create-data" method="POST">
                                                                 @csrf
                                                                 <div class="mb-3">
                                                                     <label for="name" class="form-label">Nama
                                                                     </label>
-                                                                    <input type="name" name="name"
-                                                                        class="form-control"
-                                                                        value="{{ old('name') }}" id="name"
-                                                                        placeholder="Masukkan nama pelajaran">
+                                                                    <input type="name" name="name_class"
+                                                                        class="form-control" value=""
+                                                                        id="name"
+                                                                        placeholder="Masukkan nama Kelas">
                                                                     @error('name')
                                                                         <span
                                                                             class="text-danger">{{ $message }}</span>
@@ -375,7 +373,6 @@
                                                                 </div>
                                                             </form>
                                                         </div>
-
                                                     </div><!-- /.modal-content -->
                                                 </div><!-- /.modal-dialog -->
                                             </div><!-- /.modal -->
@@ -383,8 +380,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="noresult" style="display: none">
                                 <div class="text-center">
                                     <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
@@ -396,9 +391,7 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                     <!-- Modal -->
                     <div class="modal fade flip" id="deleteOrder" tabindex="-1" aria-labelledby="deleteOrderLabel"
                         aria-hidden="true">
@@ -425,52 +418,47 @@
                         </div>
                     </div>
                     <!--end modal -->
-
                 </div>
-
-
-
-
-
                 <div class="row align-items-start">
-                    @foreach ($courses as $courses)
+                    @foreach ($rooms as $rooms)
                         <div class="col-sm-4">
-                            {{-- <p>{{ $courses->name }}</p> --}}
+                            {{-- <p>{{ $rooms->name }}</p> --}}
                             <div class="card border card-border-primary">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="card-title mb-0">{{ $courses->name }}</h6>
+                                    <h6 class="card-title mb-0"><span
+                                            class="badge bg-warning align-middle fs-20">{{ $rooms->name_class }}</span>
+                                    </h6>
                                     <button type="button"
                                         class="btn btn-outline-danger btn-icon waves-effect waves-light"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#deleteRecordModal-{{ $courses->id }}"><i
+                                        data-bs-target="#deleteRecordModal-{{ $rooms->id }}"><i
                                             class="ri-delete-bin-5-line"></i></button>
                                 </div>
                                 <div class="card-body">
                                     <div class="text-center">
                                         <a class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#editModals{{ $courses->id }}">Edit</a>
-                                        {{-- <button type="button" class="btn btn-outline-success mb-2 btn-block" data-bs-toggle="modal" data-bs-target="#editModals{{ $courses->id }}">Edit</button> --}}
+                                            data-bs-target="#editModals{{ $rooms->id }}">Edit</a>
                                     </div>
-                                    <div id="editModals{{ $courses->id }}" class="modal fade" tabindex="-1"
+                                    <div id="editModals{{ $rooms->id }}" class="modal fade" tabindex="-1"
                                         aria-hidden="true" style="display: none;">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content border-0 overflow-hidden">
                                                 <div class="modal-header p-3">
-                                                    <h4 class="card-title mb-0">Ubah pelajaran</h4>
+                                                    <h4 class="card-title mb-0">Ubah Kelas</h4>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
 
                                                 <div class="modal-body">
-                                                    <form action="{{ url('courses/' . $courses->id . '/edit') }}"
+                                                    <form action="{{ url('room/' . $rooms->id . '/edit') }}"
                                                         method="POST">
                                                         @csrf
                                                         <div class="mb-3">
-                                                            <label for="name" class="form-label">Nama Pelajaran
+                                                            <label for="name" class="form-label">Nama Kelas
                                                             </label>
-                                                            <input type="name" name="name" class="form-control"
-                                                                value="{{ $courses->name }}" id="name"
-                                                                placeholder="Masukkan Nama Pelajaran">
+                                                            <input type="name" name="name_class"
+                                                                class="form-control" value="{{ $rooms->name_class }}"
+                                                                id="name" placeholder="Masukkan Nama Kelas">
                                                             @error('name')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
@@ -485,7 +473,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="modal fade zoomIn" id="deleteRecordModal-{{ $courses->id }}"
+                                    <div class="modal fade zoomIn" id="deleteRecordModal-{{ $rooms->id }}"
                                         tabindex="-1" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
@@ -509,7 +497,7 @@
                                                             data-bs-dismiss="modal">Batal</button>
 
                                                         <form method="POST"
-                                                            action="{{ route('delete.course', $courses->id) }}"
+                                                            action="{{ route('room.hapus', $rooms->id) }}"
                                                             class="d-inline">
                                                             @csrf
                                                             @method('DELETE')
@@ -525,7 +513,6 @@
                             </div>
 
                         </div>
-                        {{-- {{ url('courses/' . $courses->id . '/edit') }} --}}
                     @endforeach
                 </div>
 
