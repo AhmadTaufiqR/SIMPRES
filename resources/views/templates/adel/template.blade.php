@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>SIMPRES</title>
+    <title>Setting Profile | SCode</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -164,8 +164,7 @@
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Profile</span></a>
                                 <a class="dropdown-item" href="pages-profile-settings.html">
-                                    <i
-                                        class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span
+                                    <i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Settings</span></a>
                                 <a class="dropdown-item" href="auth-lockscreen-basic.html"><i
                                         class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span
@@ -214,12 +213,13 @@
                     <div id="two-column-menu">
                     </div>
                     <ul class="navbar-nav" id="navbar-nav">
+                        <!-- end Dashboard Menu -->
 
                         <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Profile</span>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link active" href="/headmaster">
+                            <a class="nav-link menu-link" href="/headmaster">
                                 <i class="las la-user" wi></i> <span data-key="t-headmasters">Kepala
                                     Sekolah</span>
                             </a>
@@ -234,11 +234,28 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="/teacher">
-                                <i class="las la-graduation-cap"></i> <span data-key="t-headmasters">Tenaga
-                                    Pengajar</span>
+                                <i class="las la-graduation-cap"></i>
+                                <span data-key="t-headmasters">Tenaga Pengajar</span>
                             </a>
                         </li>
-
+                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Akademik</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="/room">
+                                <i class="las la-school"></i> <span data-key="t-headmasters">Kelas</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link active" href="/courses">
+                                <i class="las la-book"></i> <span data-key="t-headmasters">Mata Pelajran</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="/generation">
+                                <i class="las la-calendar-alt"></i> <span data-key="t-headmasters">Tahun
+                                    Akademik</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- Sidebar -->
@@ -551,7 +568,7 @@
                                                         <div class="col-lg-6">
                                                             <div class="mb-3">
                                                                 <label>Password</label>
-                                                                <input type="text" class="form-control"
+                                                                <input type="password" class="form-control"
                                                                     name="password" placeholder="Enter your password">
                                                                 @error('password')
                                                                     <span class="text-danger">{{ $message }}</span>

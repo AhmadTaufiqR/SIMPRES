@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Invoice List | Velzon - Admin & Dashboard Template</title>
+    <title>Data Guru | SCode</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -269,48 +269,62 @@
                 <div class="container-fluid">
 
                     <div id="two-column-menu">
+                        <ul class="navbar-nav" id="navbar-nav">
+                            <!-- end Dashboard Menu -->
+
+                            <li class="menu-title"><i class="ri-more-fill"></i> <span
+                                    data-key="t-pages">Profile</span>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="/headmaster">
+                                    <i class="las la-user" wi></i> <span data-key="t-headmasters">Kepala
+                                        Sekolah</span>
+                                </a>
+                            </li>
+                            <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Data
+                                    Tabel</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="/admin">
+                                    <i class="ri-account-circle-line"></i> <span data-key="t-headmasters">Admin</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link active" href="/teacher">
+                                    <i class="las la-graduation-cap"></i>
+                                    <span data-key="t-headmasters">Tenaga Pengajar</span>
+                                </a>
+                            </li>
+                            <li class="menu-title"><i class="ri-more-fill"></i> <span
+                                    data-key="t-pages">Akademik</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="/room">
+                                    <i class="las la-school"></i> <span data-key="t-headmasters">Kelas</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="/courses">
+                                    <i class="las la-book"></i> <span data-key="t-headmasters">Mata Pelajran</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="/generation">
+                                    <i class="las la-calendar-alt"></i> <span data-key="t-headmasters">Tahun
+                                        Akademik</span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                    <ul class="navbar-nav" id="navbar-nav">
-                        <!-- end Dashboard Menu -->
-
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Profile</span>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="/headmaster">
-                                <i class="las la-user" wi></i> <span data-key="t-headmasters">Kepala
-                                    Sekolah</span>
-                            </a>
-                        </li>
-                        <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Data
-                                Tabel</span>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="/admin">
-                                <i class="ri-account-circle-line"></i> <span data-key="t-headmasters">Admin</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link active" href="/teacher">
-                                <i class="las la-graduation-cap"></i> <span data-key="t-headmasters">Tenaga
-                                    Pengajar</span>
-                            </a>
-                        </li>
-                    </ul>
                 </div>
-                </li>
-                </ul>
             </div>
-            </li>
             <!-- end Dashboard Menu -->
-
-            </ul>
         </div>
         <!-- Sidebar -->
     </div>
 
     <div class="sidebar-background"></div>
-    </div>
     <!-- Left Sidebar End -->
     <!-- Vertical Overlay-->
     <div class="vertical-overlay"></div>
@@ -345,14 +359,11 @@
                                                 data-bs-target="#signupModals"><i
                                                     class="ri-add-line align-bottom me-1"></i>Tambah Data Guru</button>
 
-
-
                                             <div id="signupModals" class="modal fade" tabindex="-1"
                                                 aria-hidden="true" style="display: none;">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content border-0 overflow-hidden">
                                                         <div class="modal-header p-3">
-
                                                             <h4 class="card-title mb-0">TAMBAH DATA GURU</h4>
                                                             <button type="button" class="btn-close"
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
@@ -491,28 +502,38 @@
                                                 <table class="table align-middle table-nowrap" id="invoiceTable">
                                                     <thead class="text-muted">
                                                         <tr>
-                                                            <th class="sort text-uppercase" data-sort="NIP">NIP</th>
-                                                            <th class="sort text-uppercase" data-sort="email">NAMA
+                                                            <th class="text-uppercase">#
                                                             </th>
-                                                            <th class="sort text-uppercase" data-sort="country">email
+                                                            <th class="sort text-uppercase" data-sort="NIP">NIP
                                                             </th>
-                                                            <th class="sort text-uppercase" data-sort="date">ALAMAT
+                                                            <th class="sort text-uppercase" data-sort="name">NAMA
                                                             </th>
-                                                            <th class="sort text-uppercase" data-sort="status">JENIS-KELAMIN
+                                                            <th class="sort text-uppercase" data-sort="email">
+                                                                email
                                                             </th>
-                                                            <th class="sort text-uppercase" data-sort="action">phone
+                                                            <th class="sort text-uppercase" data-sort="address">
+                                                                ALAMAT
                                                             </th>
-                                                            <th class="sort text-uppercase" data-sort="action">action
+                                                            <th class="text-uppercase">
+                                                                JENIS KELAMIN
+                                                            </th>
+                                                            <th class="sort text-uppercase" data-sort="phone">
+                                                                phone
+                                                            </th>
+                                                            <th class="text-uppercase">
+                                                                action
                                                             </th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="list form-check-all">
                                                         @foreach ($teacher as $teachers)
                                                             <tr>
+                                                                <td>{{ $loop->iteration }}</td>
                                                                 <td>{{ $teachers->nip }}</td>
                                                                 <td>{{ $teachers->name }}</td>
                                                                 <td>{{ $teachers->email }}</td>
-                                                                <td>{{ $teachers->address }}</td>
+                                                                <td style="text-indent: 20px">
+                                                                    {{ $teachers->address }}</td>
                                                                 <td>{{ $teachers->gender }}</td>
                                                                 <td>{{ $teachers->phone }}</td>
                                                                 <td>
@@ -534,7 +555,8 @@
                                                                         <div
                                                                             class="modal-content border-0 overflow-hidden">
                                                                             <div class="modal-header p-3">
-                                                                                <h4 class="card-title mb-0">EDIT DATA
+                                                                                <h4 class="card-title mb-0">EDIT
+                                                                                    DATA
                                                                                     GURU</h4>
                                                                                 <button type="button"
                                                                                     class="btn-close"
@@ -622,7 +644,7 @@
                                                                                         <input type="text"
                                                                                             name="phone"
                                                                                             class="form-control"
-                                                                                            value="{{ $teachers->name_class }}" 
+                                                                                            value="{{ $teachers->name_class }}"
                                                                                             id="phone"
                                                                                             placeholder="Enter your phone">
                                                                                         @error('phone')
@@ -633,7 +655,7 @@
                                                                                     <div class="text-end">
                                                                                         <button type="submit"
                                                                                             class="btn btn-primary">Simpan</button>
-                                                                                       
+
 
                                                                                     </div>
                                                                                 </form>
@@ -698,7 +720,7 @@
 
                                                     </tbody>
                                                 </table>
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -710,7 +732,8 @@
                                         colors="primary:#121331,secondary:#08a88a"
                                         style="width:75px;height:75px"></lord-icon>
                                     <h5 class="mt-2">Sorry! No Result Found</h5>
-                                    <p class="text-muted mb-0">We've searched more than 150+ invoices We did not find
+                                    <p class="text-muted mb-0">We've searched more than 150+ invoices We did not
+                                        find
                                         any invoices for you search.</p>
                                 </div>
                             </div>
@@ -726,7 +749,7 @@
                                 </a>
                             </div>
                         </div>
-                        
+
 
                     </div>
 
@@ -741,7 +764,8 @@
                                         style="width:90px;height:90px"></lord-icon>
                                     <div class="mt-4 text-center">
                                         <h4>You are about to delete a order ?</h4>
-                                        <p class="text-muted fs-15 mb-4">Deleting your order will remove all of your
+                                        <p class="text-muted fs-15 mb-4">Deleting your order will remove all of
+                                            your
                                             information from our database.</p>
                                         <div class="hstack gap-2 justify-content-center remove">
                                             <button class="btn btn-link link-success fw-medium text-decoration-none"
