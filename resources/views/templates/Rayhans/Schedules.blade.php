@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Data Guru | SCode</title>
+    <title>Jadwal | SCode</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -223,7 +223,7 @@
                                 colors="primary:#f7b84b,secondary:#f06548"
                                 style="width:100px;height:100px"></lord-icon>
                             <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                                <h4>Apakah Anda Yakin ?</h4>
+                                <h4>Apakah Anda Yakin?</h4>
                                 <p class="text-muted mx-4 mb-0">Apakah Anda Yakin Ingin Menghapus Data Ini?</p>
                             </div>
                         </div>
@@ -354,116 +354,109 @@
                         <div class="card" id="invoiceList">
                             <div class="card-header border-0">
                                 <div class="d-flex align-items-center">
-                                    <h5 class="card-title mb-0 flex-grow-1">DAFTAR GURU</h5>
+                                    <h5 class="card-title mb-0 flex-grow-1">DAFTAR JADWAL</h5>
                                     <div class="flex-shrink-0">
                                         <div class="d-flex gap-2 flex-wrap">
                                             <button class="btn btn-primary" id="remove-actions"
                                                 onClick="deleteMultiple()"><i
                                                     class="ri-delete-bin-2-line"></i></button>
-                                            <button href="" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#signupModals"><i
-                                                    class="ri-add-line align-bottom me-1"></i>Tambah Data Guru</button>
+                                            <a href="{{ url("schedules-create-data") }}" class="btn btn-danger"><i
+                                                    class="ri-add-line align-bottom me-1"></i>TAMBAH JADWAL</a>
 
                                             <div id="signupModals" class="modal fade" tabindex="-1"
                                                 aria-hidden="true" style="display: none;">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content border-0 overflow-hidden">
                                                         <div class="modal-header p-3">
-                                                            <h4 class="card-title mb-0">TAMBAH DATA GURU</h4>
+                                                            <h4 class="card-title mb-0">TAMBAH JADWAL</h4>
                                                             <button type="button" class="btn-close"
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
+
                                                         </div>
 
                                                         <div class="modal-body">
-                                                            <form action='/teacher-create-data' method="POST">
+                                                            <form action='/schedules-create-data' method="POST">
                                                                 @csrf
 
                                                                 <div class="mb-3">
                                                                     <label for="username"
-                                                                        class="form-label">NIP</label>
-                                                                    <input type="text" name="nip"
+                                                                        class="form-label">NAMA</label>
+                                                                    <input type="text" name="teachers_id"
                                                                         class="form-control" required
-                                                                        value="{{ old('nip') }}" id="nip"
-                                                                        placeholder="Enter your nip">
-                                                                    <span class="text-danger">*nip hanya bisa diisi
-                                                                        satu kali</span>
-                                                                    @error('nip')
+                                                                        value="{{ old('teachers_id') }}" id="teachers_id"
+                                                                        placeholder="Masukkan Nama">
+                                                                    
+                                                                    @error('teachers_id')
                                                                         <span
                                                                             class="text-danger">{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
                                                                 <div class="mb-3">
                                                                     <label for="name"
-                                                                        class="form-label">Name</label>
-                                                                    <input type="text" name="name"
+                                                                        class="form-label">MATA PELAJARAN</label>
+                                                                    <input type="text" name="courses_id"
                                                                         class="form-control" required
-                                                                        value="{{ old('name') }}" id="nama"
-                                                                        placeholder="Enter your name">
-                                                                    @error('name')
+                                                                        value="{{ old('courses_id') }}" id="courses_id"
+                                                                        placeholder="Masukkan Mata Pelajaran">
+                                                                    @error('courses_id')
                                                                         <span
                                                                             class="text-danger">{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="name" class="form-label">JENIS
-                                                                        KELAMIN</label>
-                                                                    <select class="form-control" name="gender"
+                                                                    <label for="name" class="form-label">KELAS</label>
+                                                                    <select class="form-control" name="rooms_id"
                                                                         id="choices-single-no-search" data-choices
                                                                         data-choices-search-false required
                                                                         data-choices-removeItem>
-                                                                        <option value="">Select gender</option>
-                                                                        <option value="Laki-Laki">Laki-Laki</option>
-                                                                        <option value="Perempuan">Perempuan</option>
+                                                                        <option value="7A">7A</option>
+                                                                        <option value="7B">7B</option>
+                                                                        <option value="7C">7C</option>
+                                                                        <option value="8A">8A</option>
+                                                                        <option value="8B">8B</option>
+                                                                        <option value="8C">8C</option>
+                                                                        <option value="9A">9A</option>
+                                                                        <option value="9B">9B</option>
+                                                                        <option value="9C">9C</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="mb-3">
                                                                     <label for="name"
-                                                                        class="form-label">Email</label>
-                                                                    <input type="email" name="email"
+                                                                        class="form-label">HARI</label>
+                                                                    <input type="text" name="day"
                                                                         class="form-control" required
-                                                                        value="{{ old('email') }}" id="email"
-                                                                        placeholder="Enter your email">
-                                                                    @error('email')
+                                                                        value="{{ old('day') }}" id="day"
+                                                                        placeholder="Masukkan Hari">
+                                                                    @error('day')
                                                                         <span
                                                                             class="text-danger">{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
                                                                 <div class="mb-3">
                                                                     <label for="exampleInputPassword1"
-                                                                        class="form-label">Password</label>
-                                                                    <input type="password" name="password"
+                                                                        class="form-label">TAHUN AKADEMIK</label>
+                                                                    <input type="text" name="generations_id"
                                                                         class="form-control" required
-                                                                        value="{{ old('password') }}"
-                                                                        id="exampleInputPassword1"
-                                                                        placeholder="Enter your password">
-                                                                    @error('password')
+                                                                        value="{{ old('generations_id') }}"
+                                                                        id="generations_id"
+                                                                        placeholder="Masukkan Tahun Akademik">
+                                                                    @error('generations_id')
                                                                         <span
                                                                             class="text-danger">{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
                                                                 <div class="mb-3">
                                                                     <label for="address"
-                                                                        class="form-label">Address</label>
-                                                                    <input type="text" name="address"
+                                                                        class="form-label">SEMESTER</label>
+                                                                    <input type="text" name="generations_id"
                                                                         class="form-control" required
-                                                                        value="{{ old('address') }}" id="address"
-                                                                        placeholder="Enter your address">
+                                                                        value="{{ old('generations_id') }}" id="generations_id"
+                                                                        placeholder="Masukkan Semester">
                                                                 </div>
                                                                 @error('address')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
-                                                                <div class="mb-3">
-                                                                    <label for="name"
-                                                                        class="form-label">Phone</label>
-                                                                    <input type="text" name="phone"
-                                                                        class="form-control" required
-                                                                        value="{{ old('phone') }}" id="phone"
-                                                                        placeholder="Enter your phone">
-                                                                    @error('phone')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
+                                                                
                                                                 <div class="text-end">
                                                                     <button type="submit" name="submit"
                                                                         class="btn btn-primary">Simpan</button>
@@ -483,14 +476,7 @@
                             <div class="card-body bg-soft-light border border-dashed border-start-0 border-end-0">
                                 <form>
                                     <div class="row g-3">
-                                        <div class="col-xxl-5 col-sm-12">
-                                            <div class="search-box">
-                                                <input type="text"
-                                                    class="form-control search bg-light border-light"
-                                                    placeholder="Cari nama..">
-                                                <i class="ri-search-line search-icon"></i>
-                                            </div>
-                                        </div>
+                                        
                                         <!--end col-->
 
                                         <!--end col-->
@@ -507,53 +493,50 @@
                                                 <table class="table align-middle table-nowrap" id="invoiceTable">
                                                     <thead class="text-muted">
                                                         <tr>
-                                                            <th class="text-uppercase">#
+                                                            <th class=" sort text-uppercase" data-sort="no">NO
                                                             </th>
-                                                            <th class="sort text-uppercase" data-sort="NIP">NIP
+                                                            <th class="sort text-uppercase" data-sort="NIP">NAMA
                                                             </th>
-                                                            <th class="sort text-uppercase" data-sort="name">NAMA
+                                                            <th class="sort text-uppercase" data-sort="name">MATA PELAJARAN
                                                             </th>
                                                             <th class="sort text-uppercase" data-sort="email">
-                                                                email
+                                                                KELAS
                                                             </th>
                                                             <th class="sort text-uppercase" data-sort="address">
-                                                                ALAMAT
+                                                                HARI
                                                             </th>
-                                                            <th class="text-uppercase">
-                                                                JENIS KELAMIN
+                                                            <th class="sort text-uppercase" data-sort="tahun">
+                                                                TAHUN AKADEMIK
                                                             </th>
                                                             <th class="sort text-uppercase" data-sort="phone">
-                                                                phone
+                                                                SEMESTER
                                                             </th>
-                                                            <th class="text-uppercase">
-                                                                action
-                                                            </th>
+                                                            <th class=" sort text-uppercase">
+                                                                action</th> 
                                                         </tr>
                                                     </thead>
                                                     <tbody class="list form-check-all">
-                                                        @foreach ($teacher as $teachers)
-                                                            <tr>
-                                                                <td>{{ $loop->iteration }}</td>
-                                                                <td>{{ $teachers->nip }}</td>
-                                                                <td>{{ $teachers->name }}</td>
-                                                                <td>{{ $teachers->email }}</td>
-                                                                <td style="text-indent: 20px">
-                                                                    {{ $teachers->address }}</td>
-                                                                <td>{{ $teachers->gender }}</td>
-                                                                <td>{{ $teachers->phone }}</td>
-                                                                <td>
-                                                                    <button
+                                                        @foreach ($Schedules as $schedule)
+                                                                <tr>
+                                                                    <td>{{ $loop->iteration }}</td>
+                                                                    <td>{{ $schedule->teacher->name }}</td>
+                                                                    <td>{{ $schedule->course->name }}</td>
+                                                                    <td>{{ $schedule->room->name_class }}</td>
+                                                                    <td>{{ $schedule->day }}</td>
+                                                                    <td>{{ $schedule->generation->academic_years }}</td>
+                                                                    <td>{{ $schedule->generation->semester }}</td>
+                                                                    <td>
+                                                                    <a
                                                                         class="btn btn-success btn-sm mx-2 edit-item-btn"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#editModals-{{ $teachers->id }}">Edit</button>
+                                                                        href="{{ url("schedules-edit-data", $schedule->id) }}">Ubah</a>
                                                                     <button
                                                                         class="btn btn-danger btn-sm remove-item-btn"
                                                                         data-bs-toggle="modal"
-                                                                        data-bs-target="#deleteRecordModal-{{ $teachers->id }}">Hapus</button>
+                                                                        data-bs-target="#deleteRecordModal-{{ $schedule->id }}">Hapus</button>
 
                                                                 </td>
 
-                                                                <div id="editModals-{{ $teachers->id }}"
+                                                                <div id="editModals-{{ $schedule->id }}"
                                                                     class="modal fade" tabindex="-1"
                                                                     aria-hidden="true" style="display: none;">
                                                                     <div class="modal-dialog modal-dialog-centered">
@@ -562,7 +545,7 @@
                                                                             <div class="modal-header p-3">
                                                                                 <h4 class="card-title mb-0">EDIT
                                                                                     DATA
-                                                                                    GURU</h4>
+                                                                                    JADWAL</h4>
                                                                                 <button type="button"
                                                                                     class="btn-close"
                                                                                     data-bs-dismiss="modal"
@@ -570,89 +553,76 @@
                                                                             </div>
                                                                             <div class="modal-body">
                                                                                 <form
-                                                                                    action='{{ url('teacher/' . $teachers->id . '/edit') }}'
+                                                                                    action='{{ url('schedules/' . $schedule->id . '/edit') }}'
                                                                                     method="POST">
                                                                                     @csrf
+                                                                                    @method("patch")
                                                                                     <div class="mb-3">
                                                                                         <label for="nip"
-                                                                                            class="form-label">Nip</label>
+                                                                                            class="form-label">Nama Guru</label>
                                                                                         <input type="text"
-                                                                                            name="nip"
+                                                                                            name="guru"
                                                                                             class="form-control"
-                                                                                            value="{{ $teachers->nip }}"
-                                                                                            id="nip"
-                                                                                            placeholder="Enter your nip">
-                                                                                        @error('nip')
+                                                                                            value="{{ $schedule->teachers_id }}"
+                                                                                            id="guru"
+                                                                                            placeholder="Masukkan Nama">
+                                                                                        @error('teachers_id')
                                                                                             <span
                                                                                                 class="text-danger">{{ $message }}</span>
                                                                                         @enderror
                                                                                     </div>
                                                                                     <div class="mb-3">
                                                                                         <label for="name"
-                                                                                            class="form-label">Name</label>
-                                                                                        <input type="name"
-                                                                                            name="name"
+                                                                                            class="form-label">Mata Pelajaran</label>
+                                                                                        <input type="text"
+                                                                                            name="matapelajaran"
                                                                                             class="form-control"
-                                                                                            value="{{ $teachers->name }}"
+                                                                                            value="{{ $schedule->courses_id }}"
                                                                                             id="nama"
-                                                                                            placeholder="Enter your name">
-                                                                                        @error('name')
+                                                                                            placeholder="Masukkan Mata Pelajaran">
+                                                                                        @error('courses_id')
                                                                                             <span
                                                                                                 class="text-danger">{{ $message }}</span>
                                                                                         @enderror
                                                                                     </div>
                                                                                     <div class="mb-3">
                                                                                         <label for="name"
-                                                                                            class="form-label">Email</label>
-                                                                                        <input type="email"
-                                                                                            name="email"
+                                                                                            class="form-label">Kelas</label>
+                                                                                        <input type="room"
+                                                                                            name="room"
                                                                                             class="form-control"
-                                                                                            value="{{ $teachers->email }}"
-                                                                                            id="email"
-                                                                                            placeholder="Enter your email">
-                                                                                        @error('email')
+                                                                                            value="{{ $schedule->rooms_id }}"
+                                                                                            id="room"
+                                                                                            placeholder="Masukkan Kelas">
+                                                                                        @error('rooms_id')
                                                                                             <span
                                                                                                 class="text-danger">{{ $message }}</span>
                                                                                         @enderror
                                                                                     </div>
                                                                                     <div class="mb-3">
-                                                                                        <label
-                                                                                            for="exampleInputPassword1"
-                                                                                            class="form-label">Password</label>
-                                                                                        <input type="password"
-                                                                                            name="password"
-                                                                                            class="form-control"
-                                                                                            id="exampleInputPassword1"
-                                                                                            placeholder="Enter new password">
-                                                                                        @error('password')
-                                                                                            <span
-                                                                                                class="text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                    <div class="mb-3">
-                                                                                        <label for="address"
-                                                                                            class="form-label">Address</label>
+                                                                                        <label for="day"
+                                                                                            class="form-label">Hari</label>
                                                                                         <input type="text"
-                                                                                            name="address"
+                                                                                            name="day"
                                                                                             class="form-control"
-                                                                                            value="{{ $teachers->address }}"
-                                                                                            id="address"
-                                                                                            placeholder="Enter your address">
-                                                                                        @error('address')
+                                                                                            value="{{ $schedule->day }}"
+                                                                                            id="day"
+                                                                                            placeholder="Masukkan Hari">
+                                                                                        @error('day')
                                                                                             <span
                                                                                                 class="text-danger">{{ $message }}</span>
                                                                                         @enderror
                                                                                     </div>
                                                                                     <div class="mb-3">
                                                                                         <label for="phone"
-                                                                                            class="form-label">Phone</label>
+                                                                                            class="form-label">Tahun Akademik</label>
                                                                                         <input type="text"
                                                                                             name="phone"
                                                                                             class="form-control"
-                                                                                            value="{{ $teachers->name_class }}"
-                                                                                            id="phone"
-                                                                                            placeholder="Enter your phone">
-                                                                                        @error('phone')
+                                                                                            value="{{ $schedule->generations_id }}"
+                                                                                            id="generations_id"
+                                                                                            placeholder="Masukkan Semester">
+                                                                                        @error('generations_id')
                                                                                             <span
                                                                                                 class="text-danger">{{ $message }}</span>
                                                                                         @enderror
@@ -671,7 +641,7 @@
 
                                                                 <!-- Modal -->
                                                                 <div class="modal fade zoomIn"
-                                                                    id="deleteRecordModal-{{ $teachers->id }}"
+                                                                    id="deleteRecordModal-{{ $schedule->id }}"
                                                                     tabindex="-1" aria-hidden="true">
                                                                     <div class="modal-dialog modal-dialog-centered">
                                                                         <div class="modal-content">
@@ -691,8 +661,7 @@
                                                                                         style="width:100px;height:100px"></lord-icon>
                                                                                     <div
                                                                                         class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                                                                                        <h4>Apakah Anda Yakin Ingin Menghapus?</h4>
-                                                                                        
+                                                                                        <h4>Apakah Anda Yakin Ingin Menghapus ?</h4>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div
@@ -701,14 +670,14 @@
                                                                                         class="btn w-sm btn-light"
                                                                                         data-bs-dismiss="modal">TUTUP</button>
                                                                                     <form method="POST"
-                                                                                        action="{{ route('teacher.hapus', $teachers->id) }}"
+                                                                                        action="{{ route('schedules.hapus', $schedule->id) }}"
                                                                                         class="d-inline">
                                                                                         @csrf
                                                                                         @method('DELETE')
                                                                                         <button type="submit"
                                                                                             class="btn w-sm btn-danger ">YA,
                                                                                             HAPUS
-                                                                                            It!</button>
+                                                                                            !</button>
                                                                                     </form>
 
 

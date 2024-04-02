@@ -8,8 +8,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HeadmasterController;
 use App\Http\Controllers\RoomController;
-
-
+use App\Http\Controllers\ScheduleController;
 
 //Headmaster
 Route::group(['namespace' => 'headmaster'], function () {
@@ -56,18 +55,21 @@ Route::group(['namespace' => 'generation'], function () {
 
 
 //Schedule
-Route::group(['namespace' => 'schedule'],function () {
-
+Route::group(['namespace' => 'schedule'], function () {
+    Route::get('/schedules', [ScheduleController::class, 'index']);
+    Route::get('/schedules-create-data', [ScheduleController::class, 'add']);
+    Route::get('/schedules-edit-data/{schedule}', [ScheduleController::class, 'edit']);
+    Route::post('/schedules-create-data', [ScheduleController::class, 'store']);
+    Route::patch('/schedules-edit-data/{schedule}', [ScheduleController::class, 'update']);
+    Route::delete('/schedules/{id}/hapus', [ScheduleController::class, 'destroy'])->name('schedules.hapus');
 });
 
 //Presence
 Route::group(['namespace' => 'presence'], function () {
-    
 });
 
 //Details Presence
 Route::group(['namespace' => 'details_presence'], function () {
-    
 });
 
 //Login
