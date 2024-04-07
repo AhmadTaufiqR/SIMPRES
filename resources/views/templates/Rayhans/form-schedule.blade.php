@@ -5,26 +5,30 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Kelas | SCode</title>
+    <title>Jadwal | SCode</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="{{ asset("assets/images/favicon.ico") }}">
 
     <!-- Sweet Alert css-->
-    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("assets/libs/sweetalert2/sweetalert2.min.css") }}" rel="stylesheet" type="text/css" />
 
     <!-- Layout config Js -->
-    <script src="assets/js/layout.js"></script>
+    <script src="{{ asset("assets/js/layout.js") }}"></script>
     <!-- Bootstrap Css -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("assets/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("assets/css/icons.min.css") }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("assets/css/app.min.css") }}" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
-    <link href="assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("assets/css/custom.min.css") }}" rel="stylesheet" type="text/css" />
+    <head>
+    <!-- Tuliskan ini di dalam bagian head -->
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    </head> --}}
 
 </head>
 
@@ -32,7 +36,6 @@
 
     <!-- Begin page -->
     <div id="layout-wrapper">
-
         <header id="page-topbar">
             <div class="layout-width">
                 <div class="navbar-header">
@@ -41,19 +44,18 @@
                         <div class="navbar-brand-box horizontal-logo">
                             <a href="index.html" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="assets/images/logo-sm.png" alt="" height="22">
+                                    <img src="{{ asset("assets/images/logo-sm.png") }}" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-dark.png" alt="" height="17">
+                                    <img src="{{ asset("assets/images/logo-dark.png") }}" alt="" height="17">
                                 </span>
                             </a>
-
                             <a href="index.html" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="assets/images/logo-sm.png" alt="" height="22">
+                                    <img src="{{ asset("assets/images/logo-sm.png") }}" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-light.png" alt="" height="17">
+                                    <img src="{{ asset("assets/images/logo-light.png") }}" alt="" height="17">
                                 </span>
                             </a>
                         </div>
@@ -122,7 +124,7 @@
                                         <!-- item -->
                                         <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                             <div class="d-flex">
-                                                <img src="assets/images/users/avatar-2.jpg"
+                                                <img src="{{ asset("assets/images/users/avatar-2.jpg") }}"
                                                     class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                 <div class="flex-1">
                                                     <h6 class="m-0">Angela Bernier</h6>
@@ -133,7 +135,7 @@
                                         <!-- item -->
                                         <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                             <div class="d-flex">
-                                                <img src="assets/images/users/avatar-3.jpg"
+                                                <img src="{{ asset("assets/images/users/avatar-3.jpg") }}"
                                                     class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                 <div class="flex-1">
                                                     <h6 class="m-0">David Grasso</h6>
@@ -144,7 +146,7 @@
                                         <!-- item -->
                                         <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                             <div class="d-flex">
-                                                <img src="assets/images/users/avatar-5.jpg"
+                                                <img src="{{ asset("assets/images/users/avatar-5.jpg") }}"
                                                     class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                 <div class="flex-1">
                                                     <h6 class="m-0">Mike Bunch</h6>
@@ -154,7 +156,6 @@
                                         </a>
                                     </div>
                                 </div>
-
                                 <div class="text-center pt-3 pb-1">
                                     <a href="pages-search-results.html" class="btn btn-primary btn-sm">View All
                                         Results <i class="ri-arrow-right-line ms-1"></i></a>
@@ -164,7 +165,6 @@
                     </div>
 
                     <div class="d-flex align-items-center">
-
                         <div class="ms-1 header-item d-none d-sm-flex">
                             <button type="button"
                                 class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle light-dark-mode">
@@ -177,10 +177,10 @@
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="d-flex align-items-center">
                                     <img class="rounded-circle header-profile-user"
-                                        src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
+                                        src="{{ asset("assets/images/users/avatar-1.jpg") }}" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
                                         <span
-                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">adadas</span>
+                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">fsdfssf</span>
                                         <span
                                             class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
                                     </span>
@@ -188,7 +188,7 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <h6 class="dropdown-header">Welcome hrthrt</h6>
+                                <h6 class="dropdown-header">Welcome tyjty</h6>
                                 <a class="dropdown-item" href="pages-profile.html"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Profile</span></a>
@@ -208,6 +208,35 @@
                 </div>
             </div>
         </header>
+
+        <!-- removeNotificationModal -->
+        <div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            id="NotificationModalbtn-close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mt-2 text-center">
+                            <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
+                                colors="primary:#f7b84b,secondary:#f06548"
+                                style="width:100px;height:100px"></lord-icon>
+                            <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
+                                <h4>Apakah Anda Yakin?</h4>
+                                <p class="text-muted mx-4 mb-0">Apakah Anda Yakin Ingin Menghapus Data Ini?</p>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                            <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">TUTUP</button>
+                            <button type="button" class="btn w-sm btn-danger" id="delete-notification">YA, HAPUS
+                                It!</button>
+                        </div>
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
         <!-- ========== App Menu ========== -->
         <div class="app-menu navbar-menu">
             <!-- LOGO -->
@@ -215,19 +244,19 @@
                 <!-- Dark Logo-->
                 <a href="index.html" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="assets/images/logo-sm.png" alt="" height="22">
+                        <img src="{{ asset("assets/images/logo-sm.png") }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-dark.png" alt="" height="17">
+                        <img src="{{ asset("assets/images/logo-dark.png") }}" alt="" height="17">
                     </span>
                 </a>
                 <!-- Light Logo-->
                 <a href="index.html" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="assets/images/logo-sm.png" alt="" height="22">
+                        <img src="{{ asset("assets/images/logo-sm.png") }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-light.png" alt="" height="17">
+                        <img src="{{ asset("assets/images/logo-light.png") }}" alt="" height="17">
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
@@ -240,8 +269,6 @@
                 <div class="container-fluid">
 
                     <div id="two-column-menu">
-                    </div>
-                    <ul class="navbar-nav" id="navbar-nav">
                         <ul class="navbar-nav" id="navbar-nav">
                             <!-- end Dashboard Menu -->
 
@@ -264,7 +291,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="/teacher">
+                                <a class="nav-link menu-link active" href="/teacher">
                                     <i class="las la-graduation-cap"></i>
                                     <span data-key="t-headmasters">Tenaga Pengajar</span>
                                 </a>
@@ -273,13 +300,13 @@
                                     data-key="t-pages">Akademik</span>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link menu-link active" href="/room">
+                                <a class="nav-link menu-link" href="/room">
                                     <i class="las la-school"></i> <span data-key="t-headmasters">Kelas</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="/courses">
-                                    <i class="las la-book"></i> <span data-key="t-headmasters">Mata Pelajaaran</span>
+                                    <i class="las la-book"></i> <span data-key="t-headmasters">Mata Pelajran</span>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -288,29 +315,16 @@
                                         Akademik</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link menu-link" href="/schedules">
-                                    <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal Pelajaran</span>
-                                </a>
-                            </li>
                         </ul>
-                    </ul>
+                    </div>
                 </div>
-                </li>
-                </ul>
             </div>
-            </li>
             <!-- end Dashboard Menu -->
-
-            </ul>
         </div>
         <!-- Sidebar -->
     </div>
 
-
-
     <div class="sidebar-background"></div>
-    </div>
     <!-- Left Sidebar End -->
     <!-- Vertical Overlay-->
     <div class="vertical-overlay"></div>
@@ -323,241 +337,86 @@
         <div class="page-content">
             <div class="container-fluid">
 
-                <div class="row">
-                    <div class="col-xl-3 col-md-6">
-
-                    </div><!-- end col -->
-
-                </div> <!-- end row-->
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card" id="invoiceList">
-                            <div class="card-header border-0">
-                                <div class="d-flex align-items-center">
-                                    <h5 class="card-title mb-0 flex-grow-1 text-decoration-underline">DAFTAR KELAS</h5>
-                                    <div class="flex-shrink-0">
-                                        <div class="d-flex gap-2 flex-wrap">
-                                            <button class="btn btn-primary" id="remove-actions"
-                                                onClick="deleteMultiple()"><i
-                                                    class="ri-delete-bin-2-line"></i></button>
-                                            {{-- button modal --}}
-                                            <button href="" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#signupModals"><i
-                                                    class="ri-add-line align-bottom me-1"></i> Tambah Kelas</button>
-
-
-                                            <div id="signupModals" class="modal fade" tabindex="-1"
-                                                aria-hidden="true" style="display: none;">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content border-0 overflow-hidden">
-                                                        <div class="modal-header p-3">
-                                                            <h4 class="card-title mb-0">Tambah Kelas</h4>
-                                                            <button type="button" class="btn-close"
-                                                                data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-
-                                                        <div class="modal-body">
-                                                            <form action="/room-create-data" method="POST">
-                                                                @csrf
-                                                                <div class="mb-3">
-                                                                    <label for="name" class="form-label">Nama
-                                                                    </label>
-                                                                    <input type="name" name="name_class"
-                                                                        class="form-control" value=""
-                                                                        id="name"
-                                                                        placeholder="Masukkan nama Kelas">
-                                                                    @error('name')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                                <div class="text-end">
-                                                                    <button type="submit" name="submit"
-                                                                        class="btn btn-primary">Simpan</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div><!-- /.modal-content -->
-                                                </div><!-- /.modal-dialog -->
-                                            </div><!-- /.modal -->
-                                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                @isset($currentData)
+                                    <form action="{{ url("schedules-edit-data", $currentData->id) }}" method="post">
+                                    @method("PATCH")
+                                    @else
+                                    <form action="{{ url("schedules-create-data")}}" method="post">
+                                @endisset
+                                @csrf
+                                    <div class="form-group mb-3">
+                                        <label for="teacher">Guru</label>
+                                        <select name="teacher" class="form-control" id="teacher">
+                                            <option value="" selected disabled>Pilih</option>
+                                            @foreach ($teachers as $teacher)
+                                                <option value="{{ $teacher->id }}" {{ isset($currentData) && $teacher->id == $currentData->teachers_id ? "selected" : "" }}>{{ $teacher->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error("teacher")
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                </div>
-                            </div>
-                            <div class="noresult" style="display: none">
-                                <div class="text-center">
-                                    <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
-                                        colors="primary:#121331,secondary:#08a88a"
-                                        style="width:75px;height:75px"></lord-icon>
-                                    <h5 class="mt-2">Sorry! No Result Found</h5>
-                                    <p class="text-muted mb-0">We've searched more than 150+ invoices We did not find
-                                        any invoices for you search.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Modal -->
-                    <div class="modal fade flip" id="deleteOrder" tabindex="-1" aria-labelledby="deleteOrderLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-body p-5 text-center">
-                                    <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
-                                        colors="primary:#405189,secondary:#f06548"
-                                        style="width:90px;height:90px"></lord-icon>
-                                    <div class="mt-4 text-center">
-                                        <h4>You are about to delete a order ?</h4>
-                                        <p class="text-muted fs-15 mb-4">Deleting your order will remove all of your
-                                            information from our database.</p>
-                                        <div class="hstack gap-2 justify-content-center remove">
-                                            <button class="btn btn-link link-success fw-medium text-decoration-none"
-                                                id="deleteRecord-close" data-bs-dismiss="modal"><i
-                                                    class="ri-close-line me-1 align-middle"></i> Close</button>
-                                            <button class="btn btn-danger" id="delete-record">Yes, Delete
-                                                It</button>
-                                        </div>
+                                    <div class="form-group mb-3">
+                                        <label for="course">Mata Pelajaran</label>
+                                        <select name="course" class="form-control" id="course">
+                                            <option value="" selected disabled>Pilih</option>
+                                            @foreach ($courses as $course)
+                                                <option value="{{ $course->id }}" {{ isset($currentData) && $course->id == $currentData->courses_id ? "selected" : "" }}>{{ $course->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error("course")
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                </div>
+                                    <div class="form-group mb-3">
+                                        <label for="room">Kelas</label>
+                                        <select name="room" class="form-control" id="room">
+                                            <option value="" selected disabled>Pilih</option>
+                                            @foreach ($rooms as $room)
+                                                <option value="{{ $room->id }}" {{ isset($currentData) && $room->id == $currentData->rooms_id ? "selected" : "" }}>{{ $room->name_class }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error("room")
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="generation">Tahun Ajar</label>
+                                        <select name="generation" class="form-control" id="generation">
+                                            <option value="" selected disabled>Pilih</option>
+                                            @foreach ($generations as $generation)
+                                                <option value="{{ $generation->id }}" {{ isset($currentData) && $generation->id == $currentData->generations_id ? "selected" : "" }}>{{ $generation->academic_years }} | {{ $generation->semester }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error("generation")
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="day">Hari</label>
+                                           <select class="form-control" name="day" id="day">
+                                               <option value="Senin" {{ isset($currentData) && $currentData->day == "Senin" ? "selected" : "" }}>Senin</option>
+                                               <option value="Selasa" {{ isset($currentData) && $currentData->day == "Selasa" ? "selected" : "" }}>Selasa</option>
+                                               <option value="Rabu" {{ isset($currentData) && $currentData->day == "Rabu" ? "selected" : "" }}>Rabu</option>
+                                               <option value="Kamis" {{ isset($currentData) && $currentData->day == "Kamis" ? "selected" : "" }}>Kamis</option>
+                                               <option value="Jumat" {{ isset($currentData) && $currentData->day == "Jumat" ? "selected" : "" }}>Jumat</option>
+                                               <option value="Sabtu" {{ isset($currentData) && $currentData->day == "Sabtu" ? "selected" : "" }}>Sabtu</option>
+                                           </select>
+                                           @error("day")
+                                           <div class="text-danger">{{ $message }}</div>
+                                           @enderror
+                                   </div>
+                                    <button class="btn btn-primary"><i class="fas fa-paper-plane"></i>Simpan</button>
+                                    <button type="reset"class="btn btn-danger">Reset</button>
+                                    <a href="{{ url('/schedules') }}" class="btn btn-warning">Kembali</a>
+                                </form>
                             </div>
                         </div>
-                    </div>
-                    <!--end modal -->
-                </div>
-                <div class="row align-items-start">
-                    @foreach ($rooms as $rooms)
-                        <div class="col-sm-4">
-                            {{-- <p>{{ $rooms->name }}</p> --}}
-                            <div class="card border card-border-primary">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="card-title mb-0"><span
-                                            class="badge bg-warning align-middle fs-20">{{ $rooms->name_class }}</span>
-                                    </h6>
-                                    <button type="button"
-                                        class="btn btn-outline-danger btn-icon waves-effect waves-light"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#deleteRecordModal-{{ $rooms->id }}"><i
-                                            class="ri-delete-bin-5-line"></i></button>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <a class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#editModals{{ $rooms->id }}">Edit</a>
-                                    </div>
-                                    <div id="editModals{{ $rooms->id }}" class="modal fade" tabindex="-1"
-                                        aria-hidden="true" style="display: none;">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content border-0 overflow-hidden">
-                                                <div class="modal-header p-3">
-                                                    <h4 class="card-title mb-0">Ubah Kelas</h4>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-
-                                                <div class="modal-body">
-                                                    <form action="{{ url('room/' . $rooms->id . '/edit') }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        <div class="mb-3">
-                                                            <label for="name" class="form-label">Nama Kelas
-                                                            </label>
-                                                            <input type="name" name="name_class"
-                                                                class="form-control" value="{{ $rooms->name_class }}"
-                                                                id="name" placeholder="Masukkan Nama Kelas">
-                                                            @error('name')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                        <div class="text-end">
-                                                            <button type="submit" name="submit"
-                                                                class="btn btn-primary">Simpan</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal fade zoomIn" id="deleteRecordModal-{{ $rooms->id }}"
-                                        tabindex="-1" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close" id="btn-close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="mt-2 text-center">
-                                                        <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json"
-                                                            trigger="loop" colors="primary:#f7b84b,secondary:#f06548"
-                                                            style="width:100px;height:100px"></lord-icon>
-                                                        <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                                                            <h4>Apakah Anda Yakin ?</h4>
-                                                            <p class="text-muted mx-4 mb-0">
-                                                                Untuk Menghapus Data Ini?</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
-                                                        <button type="button" class="btn w-sm btn-light"
-                                                            data-bs-dismiss="modal">Batal</button>
-
-                                                        <form method="POST"
-                                                            action="{{ route('room.hapus', $rooms->id) }}"
-                                                            class="d-inline">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn w-sm btn-danger ">Iya,
-                                                                Hapus!</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    @endforeach
-                </div>
-
             </div>
         </div>
-
-
-        <div class="row">
-            <div class="col-lg-12">
-                <!-- Modal -->
-                <div class="modal fade flip" id="deleteOrder" tabindex="-1" aria-labelledby="deleteOrderLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-body p-5 text-center">
-                                <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
-                                    colors="primary:#405189,secondary:#f06548"
-                                    style="width:90px;height:90px"></lord-icon>
-                                <div class="mt-4 text-center">
-                                    <h4>You are about to delete a order ?</h4>
-                                    <p class="text-muted fs-15 mb-4">Deleting your order will remove all of your
-                                        information from our database.</p>
-                                    <div class="hstack gap-2 justify-content-center remove">
-                                        <button class="btn btn-link link-success fw-medium text-decoration-none"
-                                            id="deleteRecord-close" data-bs-dismiss="modal"><i
-                                                class="ri-close-line me-1 align-middle"></i> Close</button>
-                                        <button class="btn btn-danger" id="delete-record">Yes, Delete
-                                            It</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end modal -->
-            </div>
-        </div>
-
-    </div>
-    <!--end col-->
+        <!--end col-->
     </div>
     <!--end row-->
 
@@ -587,6 +446,14 @@
     </div>
     <!-- END layout-wrapper -->
 
+    <!--preloader-->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner-border text-primary avatar-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
     <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-settings-offcanvas">
         <div class="d-flex align-items-center bg-primary bg-gradient p-3 offcanvas-header">
             <h5 class="m-0 me-2 text-white">Theme Customizer</h5>
@@ -660,15 +527,11 @@
                     <div id="sidebar-visibility">
                         <h6 class="mt-4 mb-0 fw-semibold text-uppercase">Sidebar Visibility</h6>
                         <p class="text-muted">Choose show or Hidden sidebar.</p>
-
-
                     </div>
 
                     <div id="layout-width">
                         <h6 class="mt-4 mb-0 fw-semibold text-uppercase">Layout Width</h6>
                         <p class="text-muted">Choose Fluid or Boxed layout.</p>
-
-
                     </div>
 
                     <div id="layout-position">
@@ -688,38 +551,25 @@
                     <h6 class="mt-4 mb-0 fw-semibold text-uppercase">Topbar Color</h6>
                     <p class="text-muted">Choose Light or Dark Topbar Color.</p>
 
-
-
                     <div id="sidebar-size">
                         <h6 class="mt-4 mb-0 fw-semibold text-uppercase">Sidebar Size</h6>
                         <p class="text-muted">Choose a size of Sidebar.</p>
-
-
                     </div>
 
                     <div id="sidebar-view">
                         <h6 class="mt-4 mb-0 fw-semibold text-uppercase">Sidebar View</h6>
                         <p class="text-muted">Choose Default or Detached Sidebar view.</p>
-
-
                     </div>
                     <div id="sidebar-color">
                         <h6 class="mt-4 mb-0 fw-semibold text-uppercase">Sidebar Color</h6>
                         <p class="text-muted">Choose a color of Sidebar.</p>
-
-
                         <!-- end row -->
-
                         <div class="collapse" id="collapseBgGradient">
-
                         </div>
                     </div>
-
                     <div id="sidebar-img">
                         <h6 class="mt-4 mb-0 fw-semibold text-uppercase">Sidebar Images</h6>
                         <p class="text-muted">Choose a image of Sidebar.</p>
-
-
                     </div>
 
                     <div id="preloader-menu">
@@ -804,51 +654,35 @@
         </div>
     </div>
 
-    <!--start back-to-top-->
-    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
-        <i class="ri-arrow-up-line"></i>
-    </button>
-    <!--end back-to-top-->
-
-    <!--preloader-->
-    <div id="preloader">
-        <div id="status">
-            <div class="spinner-border text-primary avatar-sm" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
-    </div>
-
-
     <!-- JAVASCRIPT -->
-    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="assets/libs/node-waves/waves.min.js"></script>
-    <script src="assets/libs/feather-icons/feather.min.js"></script>
-    <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
-    <script src="assets/js/plugins.js"></script>
+    <script src="{{ asset("assets/libs/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
+    <script src="{{ asset("assets/libs/simplebar/simplebar.min.js") }}"></script>
+    <script src="{{ asset("assets/libs/node-waves/waves.min.js") }}"></script>
+    <script src="{{ asset("assets/libs/feather-icons/feather.min.js") }}"></script>
+    <script src="{{ asset("assets/js/pages/plugins/lord-icon-2.1.0.js") }}"></script>
+    <script src="{{ asset("assets/js/plugins.js") }}"></script>
     <!-- prismjs plugin -->
-    <script src="assets/libs/prismjs/prism.js"></script>
-    <script src="assets/libs/list.js/list.min.js"></script>
-    <script src="assets/libs/list.pagination.js/list.pagination.min.js"></script>
+    <script src="{{ asset("assets/libs/prismjs/prism.js") }}"></script>
+    <script src="{{ asset("assets/libs/list.js/list.min.js") }}"></script>
+    <script src="{{ asset("assets/libs/list.pagination.js/list.pagination.min.js") }}"></script>
 
     <!-- listjs init -->
-    <script src="assets/js/pages/listjs.init.js"></script>
+    <script src="{{ asset("assets/js/pages/listjs.init.js") }}"></script>
 
     <!-- Sweet Alerts js -->
-    <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <script src="{{ asset("assets/libs/sweetalert2/sweetalert2.min.js") }}"></script>
 
     <!-- App js -->
-    <script src="assets/js/app.js"></script>
+    <script src="{{ asset("assets/js/app.js") }}"></script>
 
     @if (Session::has('Success'))
         <script>
             Swal.fire({
-                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Selamat!</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
+                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Well done !</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
                 showCancelButton: true,
                 showConfirmButton: false,
                 cancelButtonClass: "btn btn-primary w-xs mb-1",
-                cancelButtonText: "Kembali",
+                cancelButtonText: "Back",
                 buttonsStyling: false,
                 showCloseButton: true,
             });

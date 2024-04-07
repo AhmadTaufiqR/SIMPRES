@@ -289,7 +289,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="/courses">
-                                <i class="las la-book"></i> <span data-key="t-headmasters">Mata Pelajran</span>
+                                <i class="las la-book"></i> <span data-key="t-headmasters">Mata Pelajaran</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -298,6 +298,11 @@
                                     Akademik</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                                <a class="nav-link menu-link" href="/schedules">
+                                    <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal Pelajaran</span>
+                                </a>
+                         </li>
                     </ul>
                 </div>
                 <!-- Sidebar -->

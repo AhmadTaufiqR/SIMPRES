@@ -13,4 +13,9 @@ class Teacher extends Model
     use SoftDeletes;
 
     protected $fillable = ['nip', 'name', 'email', 'password', 'address', 'gender', 'phone'];
+
+    public function schedule()
+    {
+        return $this->hasMany(schedule::class);
+    }
 }
