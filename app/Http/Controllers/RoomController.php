@@ -30,7 +30,7 @@ class RoomController extends Controller
         $room = Room::findOrFail($id)->update([
             'name_class' => $request->name_class,
 
-        ]);
+        ]);    
         if ($room) {
             return redirect()->back()->with('Success', 'Yeeayy!! Data kelas berhasil diubah');
         } else {

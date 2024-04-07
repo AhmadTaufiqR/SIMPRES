@@ -12,4 +12,8 @@ class Generation extends Model
     use SoftDeletes;
 
     protected $fillable = ['academic_years', 'semester'];
+    public function schedule()
+    {
+        return $this->hasMany(schedule::class);
+    }
 }
