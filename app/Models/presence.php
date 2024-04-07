@@ -14,4 +14,11 @@ class Presence extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $fillable= ['schedules_id', 'start_attendance', 'end_attendance'];
+    
+   public function schedule(): BelongsTo
+   {
+    return $this->belongsTo(Schedule::class, 'schedules_id');
+   }
 }

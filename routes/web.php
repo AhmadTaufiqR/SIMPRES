@@ -93,3 +93,10 @@ Route::group(['namespace' => 'courses'], function () {
     Route::post('courses/{id}/edit', [CourseController::class, 'update']);
     Route::delete('courses/{id}/delete', [CourseController::class, 'delete'])->name('delete.course');
 });
+
+Route::group(['namespace' => 'presences'], function () {
+    Route::get('/presences', [PresenceController::class, 'index']);
+    Route::get('/presences/add-presence-data', [PresenceController::class, 'getSchedule']);
+    Route::post('/presences/add-presence-data/{id}', [PresenceController::class, 'store']);
+});
+
