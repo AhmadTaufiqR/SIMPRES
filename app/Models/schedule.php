@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 use App\Models\Teacher;
 use App\Models\Course;
 use App\Models\Room;
 use App\Models\Generation;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Schedule extends Model
 {
+
     use HasFactory, SoftDeletes;
 
     protected $table = "schedules";
@@ -39,3 +42,5 @@ class Schedule extends Model
         return $this->belongsTo(Generation::class, 'generations_id');
     }
 }
+
+

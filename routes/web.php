@@ -3,10 +3,13 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GenerationController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DetailPresencesController;
+use App\Http\Controllers\PresencesController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HeadmasterController;
+use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\ScheduleController;
 
@@ -64,12 +67,13 @@ Route::group(['namespace' => 'schedule'], function () {
     Route::delete('/schedules/{id}/hapus', [ScheduleController::class, 'destroy'])->name('schedules.hapus');
 });
 
-//Presence
-Route::group(['namespace' => 'presence'], function () {
+Route::group(['namespace' => 'presences'], function () {
 });
+
 
 //Details Presence
 Route::group(['namespace' => 'details_presence'], function () {
+    Route::get('/detail_presences', [DetailPresencesController::class, 'show']);
 });
 
 //Login
@@ -91,3 +95,10 @@ Route::group(['namespace' => 'courses'], function () {
     Route::post('courses/{id}/edit', [CourseController::class, 'update']);
     Route::delete('courses/{id}/delete', [CourseController::class, 'delete'])->name('delete.course');
 });
+
+Route::group(['namespace' => 'presences'], function () {
+    Route::get('/presences', [PresenceController::class, 'index']);
+    Route::get('/presences/add-presence-data', [PresenceController::class, 'getSchedule']);
+    Route::post('/presences/add-presence-data/{id}', [PresenceController::class, 'store']);
+});
+

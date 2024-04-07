@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 class Teacher extends Model
 {
     use HasFactory;
@@ -17,5 +16,11 @@ class Teacher extends Model
     public function schedule()
     {
         return $this->hasMany(schedule::class);
+
+    // Definisikan relasi detail presensi
+    public function detailPresensi()
+    {
+        return $this->hasMany(DetailPresences::class);
+
     }
 }
