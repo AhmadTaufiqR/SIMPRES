@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\presence;
+use App\Models\Presence;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 
 class PresenceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+       
     }
 
+
+  
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+       
     }
 
     /**
