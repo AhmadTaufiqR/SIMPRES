@@ -22,6 +22,8 @@ class PresenceController extends Controller
         $schedules = Schedule::whereNotIn('id', $presenceSchedulesIds)->get();
         return view('templates.amel.form-presence', compact('schedules'));
     }
+       
+
     /**
      * Store a newly created resource in storage.
      */
@@ -43,6 +45,7 @@ class PresenceController extends Controller
         } else {
             return redirect('/presences')->with('error', 'Gagal menambahkan data kehadiran');
         }
+       
     }
 
     /**
