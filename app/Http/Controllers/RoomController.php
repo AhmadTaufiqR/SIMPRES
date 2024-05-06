@@ -10,7 +10,7 @@ class RoomController extends Controller
     public function index()
     {
         $rooms = Room::all();
-        return view('templates.Rayhans.room', compact('rooms'));
+        return view('templates.Rayhans.Room', compact('rooms'));
     }
     public function store(Request $request)
     {

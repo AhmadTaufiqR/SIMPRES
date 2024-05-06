@@ -290,7 +290,14 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="/schedules">
-                                    <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal Pelajaran</span>
+                                    <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal
+                                        Pelajaran</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="/presences">
+                                    <i class="mdi mdi-format-list-checks"></i> <span
+                                        data-key="presences">Presensi</span>
                                 </a>
                             </li>
                         </ul>

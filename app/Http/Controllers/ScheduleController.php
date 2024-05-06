@@ -15,8 +15,8 @@ class ScheduleController extends Controller
 
     public function index()
     {
-        $schedule = Schedule::withTrashed()
-        ->whereHas('room')
+        $schedule = Schedule::
+        whereHas('room')
         ->whereHas('course')
         ->whereHas('generation')
         ->whereHas('teacher')
@@ -51,37 +51,35 @@ class ScheduleController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi input
-        $validatedData = $request->validate([
-            'teacher' => 'required',
-            'course' => 'required',
-            'room' => 'required',
-            'generation' => 'required',
-            'day' => 'required',
-        ]);
+        try {
+            // Validasi input
+            $validatedData = $request->validate([
+                'teacher' => 'required',
+                'course' => 'required',
+                'room' => 'required',
+                'generation' => 'required',
+                'day' => 'required',
+                'start-time' => 'required',
+                'end-time' => 'required',
+            ]);
 
-        // Cek keunikan data
-        $isUnique = Schedule::where('teachers_id', $validatedData['teacher'])
-            ->where('courses_id', $validatedData['course'])
-            ->where('rooms_id', $validatedData['room'])
-            ->where('generations_id', $validatedData['generation'])
-            ->where('day', $validatedData['day'])
-            ->doesntExist();
+            // Simpan data
+            Schedule::create([
+                "teachers_id" => $validatedData["teacher"],
+                "courses_id" => $validatedData["course"],
+                "rooms_id" => $validatedData["room"],
+                "generations_id" => $validatedData["generation"],
+                "day" => $validatedData["day"],
+                "start_attendance" => $validatedData["start-time"],
+                "end_attendance" => $validatedData["end-time"],
+            ]);
 
-        if (!$isUnique) {
-            return redirect()->back()->with('error', 'Jadwal sudah ada.');
+            return redirect("schedules")->with('success', 'Jadwal berhasil disimpan.');
+
+        } catch (\Throwable $th) {
+            //jika tidak berhasil maka akan muncul error ini
+            return redirect("schedules")->withErrors('Jadwal gagal disimpan.');
         }
-
-        // Simpan data
-        Schedule::create([
-            "teachers_id" => $validatedData["teacher"],
-            "courses_id" => $validatedData["course"],
-            "rooms_id" => $validatedData["room"],
-            "generations_id" => $validatedData["generation"],
-            "day" => $validatedData["day"],
-        ]);
-
-        return redirect("schedules")->with('success', 'Jadwal berhasil disimpan.');
     }
 
     public function update(Request $request, Schedule $schedule)
@@ -93,6 +91,8 @@ class ScheduleController extends Controller
             'room' => 'required',
             'generation' => 'required',
             'day' => 'required',
+            'start-time' => 'required',
+            'end-time' => 'required',
         ]);
 
         $schedule->update([
@@ -101,10 +101,12 @@ class ScheduleController extends Controller
             "rooms_id" => $validatedData["room"],
             "generations_id" => $validatedData["generation"],
             "day" => $validatedData["day"],
+            "start_attendance" => $validatedData["start-time"],
+            "end_attendance" => $validatedData["end-time"],
         ]);
 
         if ($schedule) {
-            return redirect()->back()->with('Success', 'Yeeayy!! Data Jadwal berhasil diubah');
+            return redirect('/schedules')->with('Success', 'Yeeayy!! Data Jadwal berhasil diubah');
         } else {
             return redirect('/schedules')->withErrors('Data Jadwal gagal diubah');
         }

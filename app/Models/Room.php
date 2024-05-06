@@ -12,9 +12,5 @@ class Room extends Model
     use SoftDeletes;
     protected $fillable = ['name_class'];
 
-    public function schedule()
-    {
-        return $this->hasMany(schedule::class);
-    }
 }
 

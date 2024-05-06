@@ -219,7 +219,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="/headmaster">
+                            <a class="nav-link menu-link active" href="/headmaster">
                                 <i class="las la-user" wi></i> <span data-key="t-headmasters">Kepala
                                     Sekolah</span>
                             </a>
@@ -246,7 +246,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link active" href="/courses">
+                            <a class="nav-link menu-link" href="/courses">
                                 <i class="las la-book"></i> <span data-key="t-headmasters">Mata Pelajran</span>
                             </a>
                         </li>
@@ -257,10 +257,16 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                                <a class="nav-link menu-link" href="/schedules">
-                                    <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal Pelajaran</span>
-                                </a>
-                         </li>
+                            <a class="nav-link menu-link" href="/schedules">
+                                <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal
+                                    Pelajaran</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="/presences">
+                                <i class="mdi mdi-format-list-checks"></i> <span data-key="presences">Presensi</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- Sidebar -->
@@ -387,13 +393,15 @@
                                 </div>
                                 <div class="card-body p-4">
                                     @if (isset($headmaster) && $headmaster->name != '')
-                                        <!-- TODO: edit data kepala sekolah masih belum, dan notifikasi -->
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="personalDetails" role="tabpanel">
                                                 <form action="headmaster/edit" method="POST">
                                                     @csrf
                                                     <div class="row">
                                                         <div class="col-lg-6">
+                                                            <input type="text" class="form-control"
+                                                                    name="id" placeholder="Enter your id"
+                                                                    value="{{ $headmaster->id }}" hidden>
                                                             <div class="mb-3">
                                                                 <label>Nip</label>
                                                                 <input type="text" class="form-control"

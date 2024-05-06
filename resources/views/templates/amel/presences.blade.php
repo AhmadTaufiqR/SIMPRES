@@ -243,10 +243,58 @@ data-sidebar-image="none" data-preloader="active">
                                 </div>
                                 <ul class="navbar-nav" id="navbar-nav">
                                     <!-- end Dashboard Menu -->
-                                    
+                                    <li class="menu-title"><i class="ri-more-fill"></i> <span
+                                    data-key="t-pages">Profile</span>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="/headmaster">
+                                    <i class="las la-user" wi></i> <span data-key="t-headmasters">Kepala
+                                        Sekolah</span>
+                                </a>
+                            </li>
+                            <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Data
+                                    Tabel</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="/admin">
+                                    <i class="ri-account-circle-line"></i> <span data-key="t-headmasters">Admin</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="/teacher">
+                                    <i class="las la-graduation-cap"></i>
+                                    <span data-key="t-headmasters">Tenaga Pengajar</span>
+                                </a>
+                            </li>
+                            <li class="menu-title"><i class="ri-more-fill"></i> <span
+                                    data-key="t-pages">Akademik</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="/room">
+                                    <i class="las la-school"></i> <span data-key="t-headmasters">Kelas</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="/courses">
+                                    <i class="las la-book"></i> <span data-key="t-headmasters">Mata Pelajaran</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="/generation">
+                                    <i class="las la-calendar-alt"></i> <span data-key="t-headmasters">Tahun
+                                        Akademik</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="/schedules">
+                                    <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal
+                                        Pelajaran</span>
+                                </a>
+                            </li>
                                     <li class="nav-item">
-                                        <a class="nav-link menu-link" href="/generation">
-                                            <i class="las la-calendar-alt"></i> <span data-key="t-headmasters">Presensi</span>
+                                        <a class="nav-link menu-link active" href="/presences">
+                                            <i class="mdi mdi-format-list-checks"></i> <span data-key="presences">Presensi</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -294,13 +342,10 @@ data-sidebar-image="none" data-preloader="active">
                                         <button class="btn btn-primary" id="remove-actions"
                                         onClick="deleteMultiple()"><i
                                         class="ri-delete-bin-2-line"></i></button>
-                                        <a href="{{ url("presences/add-presence-data") }}" class="btn btn-danger"><i
-                                            class="ri-add-line align-bottom me-1"></i> Tambah Jadwal</a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body bg-soft-light border border-dashed border-start-0 border-end-0">
+                            <div class="card-body mt-5 bg-soft-light border-start-0 border-end-0">
                                 <form>
                                     <div class="row g-3">
                                         <div class="col-xxl-5 col-sm-12">

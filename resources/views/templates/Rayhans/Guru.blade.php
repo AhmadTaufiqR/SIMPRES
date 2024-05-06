@@ -317,7 +317,14 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="/schedules">
-                                    <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal Pelajaran</span>
+                                    <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal
+                                        Pelajaran</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="/presences">
+                                    <i class="mdi mdi-format-list-checks"></i> <span
+                                        data-key="presences">Presensi</span>
                                 </a>
                             </li>
                         </ul>
@@ -363,7 +370,6 @@
                                             <button href="" class="btn btn-danger" data-bs-toggle="modal"
                                                 data-bs-target="#signupModals"><i
                                                     class="ri-add-line align-bottom me-1"></i>Tambah Data Guru</button>
-
                                             <div id="signupModals" class="modal fade" tabindex="-1"
                                                 aria-hidden="true" style="display: none;">
                                                 <div class="modal-dialog modal-dialog-centered">
@@ -373,106 +379,148 @@
                                                             <button type="button" class="btn-close"
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
-
                                                         <div class="modal-body">
                                                             <form action='/teacher-create-data' method="POST">
                                                                 @csrf
-
-                                                                <div class="mb-3">
-                                                                    <label for="username"
-                                                                        class="form-label">NIP</label>
-                                                                    <input type="text" name="nip"
-                                                                        class="form-control" required
-                                                                        value="{{ old('nip') }}" id="nip"
-                                                                        placeholder="Enter your nip">
-                                                                    <span class="text-danger">*nip hanya bisa diisi
-                                                                        satu kali</span>
-                                                                    @error('nip')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="name"
-                                                                        class="form-label">Name</label>
-                                                                    <input type="text" name="name"
-                                                                        class="form-control" required
-                                                                        value="{{ old('name') }}" id="nama"
-                                                                        placeholder="Enter your name">
-                                                                    @error('name')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="name" class="form-label">JENIS
-                                                                        KELAMIN</label>
-                                                                    <select class="form-control" name="gender"
-                                                                        id="choices-single-no-search" data-choices
-                                                                        data-choices-search-false required
-                                                                        data-choices-removeItem>
-                                                                        <option value="">Select gender</option>
-                                                                        <option value="Laki-Laki">Laki-Laki</option>
-                                                                        <option value="Perempuan">Perempuan</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="name"
-                                                                        class="form-label">Email</label>
-                                                                    <input type="email" name="email"
-                                                                        class="form-control" required
-                                                                        value="{{ old('email') }}" id="email"
-                                                                        placeholder="Enter your email">
-                                                                    @error('email')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="exampleInputPassword1"
-                                                                        class="form-label">Password</label>
-                                                                    <input type="password" name="password"
-                                                                        class="form-control" required
-                                                                        value="{{ old('password') }}"
-                                                                        id="exampleInputPassword1"
-                                                                        placeholder="Enter your password">
-                                                                    @error('password')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="address"
-                                                                        class="form-label">Address</label>
-                                                                    <input type="text" name="address"
-                                                                        class="form-control" required
-                                                                        value="{{ old('address') }}" id="address"
-                                                                        placeholder="Enter your address">
-                                                                </div>
-                                                                @error('address')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                                <div class="mb-3">
-                                                                    <label for="name"
-                                                                        class="form-label">Phone</label>
-                                                                    <input type="text" name="phone"
-                                                                        class="form-control" required
-                                                                        value="{{ old('phone') }}" id="phone"
-                                                                        placeholder="Enter your phone">
-                                                                    @error('phone')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                                <div class="text-end">
-                                                                    <button type="submit" name="submit"
-                                                                        class="btn btn-primary">Simpan</button>
-                                                                    <button type="reset"
-                                                                        class="btn btn-warning">Reset</button>
-                                                                </div>
-
+                                                                <div class="row">
+                                                                    <div class="col-6">
+                                                                        <div class="mb-3">
+                                                                            <label for="username"
+                                                                                class="form-label">NIP</label>
+                                                                            <input type="text" name="nip"
+                                                                                class="form-control" required
+                                                                                value="{{ old('nip') }}"
+                                                                                id="nip"
+                                                                                placeholder="Enter your NIP">
+                                                                            @error('nip')
+                                                                                <span
+                                                                                    class="text-danger">{{ $message }}</span>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div><!--end col-->
+                                                                    <div class="col-6">
+                                                                        <div class="mb-3">
+                                                                            <label for="name"
+                                                                                class="form-label">Name</label>
+                                                                            <input type="text" name="name"
+                                                                                class="form-control" required
+                                                                                value="{{ old('name') }}"
+                                                                                id="nama"
+                                                                                placeholder="Enter your name">
+                                                                            @error('name')
+                                                                                <span
+                                                                                    class="text-danger">{{ $message }}</span>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div><!--end col-->
+                                                                    <div class="col-12">
+                                                                        <div class="mb-3">
+                                                                            <label for="email"
+                                                                                class="form-label">Email</label>
+                                                                            <input type="email" name="email"
+                                                                                class="form-control" required
+                                                                                value="{{ old('email') }}"
+                                                                                id="email"
+                                                                                placeholder="Enter your email">
+                                                                            @error('email')
+                                                                                <span
+                                                                                    class="text-danger">{{ $message }}</span>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div><!--end col-->
+                                                                    <div class="col-6">
+                                                                        <div class="mb-3">
+                                                                            <label for="name"
+                                                                                class="form-label">Gender</label>
+                                                                            <select class="form-control"
+                                                                                name="gender"
+                                                                                id="choices-single-no-search"
+                                                                                data-choices data-choices-search-false
+                                                                                required data-choices-removeItem>
+                                                                                <option value="">Select gender
+                                                                                </option>
+                                                                                <option value="Laki-Laki">Laki-Laki
+                                                                                </option>
+                                                                                <option value="Perempuan">Perempuan
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div><!--end col-->
+                                                                    <div class="col-6">
+                                                                        <div class="mb-3">
+                                                                            <label for="name"
+                                                                                class="form-label">Phone</label>
+                                                                            <input type="text" name="phone"
+                                                                                class="form-control" required
+                                                                                value="{{ old('phone') }}"
+                                                                                id="phone"
+                                                                                placeholder="Enter your phone">
+                                                                            @error('phone')
+                                                                                <span
+                                                                                    class="text-danger">{{ $message }}</span>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div><!--end col-->
+                                                                    <div class="col-12">
+                                                                        <div class="mb-3">
+                                                                            <label for="address"
+                                                                                class="form-label">Address</label>
+                                                                            <input type="text" name="address"
+                                                                                class="form-control" required
+                                                                                value="{{ old('address') }}"
+                                                                                id="address"
+                                                                                placeholder="Enter your address">
+                                                                        </div>
+                                                                    </div><!--end col-->
+                                                                    <div class="col-12">
+                                                                        <div class="mb-3">
+                                                                            <label for="exampleInputPassword1"
+                                                                                class="form-label">Password</label>
+                                                                            <input type="password" id="password-input"
+                                                                                name="password"
+                                                                                class="form-control @error('password') is-invalid @enderror pe-5 password-input"
+                                                                                onpaste="return false"
+                                                                                placeholder="Enter password"
+                                                                                aria-describedby="passwordInput"
+                                                                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                                                                            @error('password')
+                                                                                <span
+                                                                                    class="text-danger">{{ $message }}</span>
+                                                                            @enderror
+                                                                        </div>
+                                                                        <div id="password-contain"
+                                                                            class="p-3 bg-light mb-2 rounded">
+                                                                            <h5 class="fs-13">Password must contain:
+                                                                            </h5>
+                                                                            <p id="pass-length"
+                                                                                class="invalid fs-12 mb-2">
+                                                                                Minimum <b>8 characters</b>
+                                                                            </p>
+                                                                            <p id="pass-lower"
+                                                                                class="invalid fs-12 mb-2">
+                                                                                At <b>lowercase</b> letter (a-z)
+                                                                            </p>
+                                                                            <p id="pass-upper"
+                                                                                class="invalid fs-12 mb-2">
+                                                                                At
+                                                                                least <b>uppercase</b>
+                                                                                letter (A-Z)</p>
+                                                                            <p id="pass-number"
+                                                                                class="invalid fs-12 mb-0">
+                                                                                A
+                                                                                least <b>number</b> (0-9)
+                                                                            </p>
+                                                                        </div>
+                                                                    </div><!--end col-->
+                                                                    <div class="col-lg-12">
+                                                                        <div class="text-end">
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary">Submit</button>
+                                                                        </div>
+                                                                    </div><!--end col-->
+                                                                </div><!--end row-->
+                                                            </form>
                                                         </div>
-                                                        </form>
                                                     </div>
                                                 </div><!-- /.modal-content -->
                                             </div><!-- /.modal-dialog -->
@@ -507,27 +555,18 @@
                                                 <table class="table align-middle table-nowrap" id="invoiceTable">
                                                     <thead class="text-muted">
                                                         <tr>
-                                                            <th class="text-uppercase">#
-                                                            </th>
-                                                            <th class="sort text-uppercase" data-sort="NIP">NIP
-                                                            </th>
-                                                            <th class="sort text-uppercase" data-sort="name">NAMA
-                                                            </th>
-                                                            <th class="sort text-uppercase" data-sort="email">
-                                                                email
+                                                            <th class="text-uppercase">#</th>
+                                                            <th class="sort text-uppercase" data-sort="NIP">NIP</th>
+                                                            <th class="sort text-uppercase" data-sort="name">NAMA</th>
+                                                            <th class="sort text-uppercase" data-sort="email">email
                                                             </th>
                                                             <th class="sort text-uppercase" data-sort="address">
-                                                                ALAMAT
+                                                                address
                                                             </th>
-                                                            <th class="text-uppercase">
-                                                                JENIS KELAMIN
+                                                            <th class="text-uppercase">Gender</th>
+                                                            <th class="sort text-uppercase" data-sort="phone">phone
                                                             </th>
-                                                            <th class="sort text-uppercase" data-sort="phone">
-                                                                phone
-                                                            </th>
-                                                            <th class="text-uppercase">
-                                                                action
-                                                            </th>
+                                                            <th class="text-uppercase">action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="list form-check-all">
@@ -573,96 +612,174 @@
                                                                                     action='{{ url('teacher/' . $teachers->id . '/edit') }}'
                                                                                     method="POST">
                                                                                     @csrf
-                                                                                    <div class="mb-3">
-                                                                                        <label for="nip"
-                                                                                            class="form-label">Nip</label>
-                                                                                        <input type="text"
-                                                                                            name="nip"
-                                                                                            class="form-control"
-                                                                                            value="{{ $teachers->nip }}"
-                                                                                            id="nip"
-                                                                                            placeholder="Enter your nip">
-                                                                                        @error('nip')
-                                                                                            <span
-                                                                                                class="text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                    <div class="mb-3">
-                                                                                        <label for="name"
-                                                                                            class="form-label">Name</label>
-                                                                                        <input type="name"
-                                                                                            name="name"
-                                                                                            class="form-control"
-                                                                                            value="{{ $teachers->name }}"
-                                                                                            id="nama"
-                                                                                            placeholder="Enter your name">
-                                                                                        @error('name')
-                                                                                            <span
-                                                                                                class="text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                    <div class="mb-3">
-                                                                                        <label for="name"
-                                                                                            class="form-label">Email</label>
-                                                                                        <input type="email"
-                                                                                            name="email"
-                                                                                            class="form-control"
-                                                                                            value="{{ $teachers->email }}"
-                                                                                            id="email"
-                                                                                            placeholder="Enter your email">
-                                                                                        @error('email')
-                                                                                            <span
-                                                                                                class="text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                    <div class="mb-3">
-                                                                                        <label
-                                                                                            for="exampleInputPassword1"
-                                                                                            class="form-label">Password</label>
-                                                                                        <input type="password"
-                                                                                            name="password"
-                                                                                            class="form-control"
-                                                                                            id="exampleInputPassword1"
-                                                                                            placeholder="Enter new password">
-                                                                                        @error('password')
-                                                                                            <span
-                                                                                                class="text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                    <div class="mb-3">
-                                                                                        <label for="address"
-                                                                                            class="form-label">Address</label>
-                                                                                        <input type="text"
-                                                                                            name="address"
-                                                                                            class="form-control"
-                                                                                            value="{{ $teachers->address }}"
-                                                                                            id="address"
-                                                                                            placeholder="Enter your address">
-                                                                                        @error('address')
-                                                                                            <span
-                                                                                                class="text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                    <div class="mb-3">
-                                                                                        <label for="phone"
-                                                                                            class="form-label">Phone</label>
-                                                                                        <input type="text"
-                                                                                            name="phone"
-                                                                                            class="form-control"
-                                                                                            value="{{ $teachers->name_class }}"
-                                                                                            id="phone"
-                                                                                            placeholder="Enter your phone">
-                                                                                        @error('phone')
-                                                                                            <span
-                                                                                                class="text-danger">{{ $message }}</span>
-                                                                                        @enderror
-                                                                                    </div>
-                                                                                    <div class="text-end">
-                                                                                        <button type="submit"
-                                                                                            class="btn btn-primary">Simpan</button>
-
-
-                                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="col-6">
+                                                                                            <div class="mb-3">
+                                                                                                <label for="username"
+                                                                                                    class="form-label">NIP</label>
+                                                                                                <input type="text"
+                                                                                                    name="nip"
+                                                                                                    class="form-control"
+                                                                                                    required
+                                                                                                    value="{{ $teachers->nip }}"
+                                                                                                    id="nip"
+                                                                                                    placeholder="Enter your NIP">
+                                                                                                @error('nip')
+                                                                                                    <span
+                                                                                                        class="text-danger">{{ $message }}</span>
+                                                                                                @enderror
+                                                                                            </div>
+                                                                                        </div><!--end col-->
+                                                                                        <div class="col-6">
+                                                                                            <div class="mb-3">
+                                                                                                <label for="name"
+                                                                                                    class="form-label">Name</label>
+                                                                                                <input type="text"
+                                                                                                    name="name"
+                                                                                                    class="form-control"
+                                                                                                    required
+                                                                                                    value="{{ $teachers->name }}"
+                                                                                                    id="nama"
+                                                                                                    placeholder="Enter your name">
+                                                                                                @error('name')
+                                                                                                    <span
+                                                                                                        class="text-danger">{{ $message }}</span>
+                                                                                                @enderror
+                                                                                            </div>
+                                                                                        </div><!--end col-->
+                                                                                        <div class="col-12">
+                                                                                            <div class="mb-3">
+                                                                                                <label for="email"
+                                                                                                    class="form-label">Email</label>
+                                                                                                <input type="email"
+                                                                                                    name="email"
+                                                                                                    class="form-control"
+                                                                                                    required
+                                                                                                    value="{{ $teachers->email }}"
+                                                                                                    id="email"
+                                                                                                    placeholder="Enter your email">
+                                                                                                @error('email')
+                                                                                                    <span
+                                                                                                        class="text-danger">{{ $message }}</span>
+                                                                                                @enderror
+                                                                                            </div>
+                                                                                        </div><!--end col-->
+                                                                                        <div class="col-6">
+                                                                                            <div class="mb-3">
+                                                                                                <label for="name"
+                                                                                                    class="form-label">Jenis
+                                                                                                    kelamin</label>
+                                                                                                <select
+                                                                                                    class="form-control"
+                                                                                                    name="gender"
+                                                                                                    id="choices-single-no-search"
+                                                                                                    data-choices
+                                                                                                    data-choices-search-false
+                                                                                                    required
+                                                                                                    data-choices-removeItem>
+                                                                                                    <option
+                                                                                                        {{ $teachers->gender == '' ? 'selected' : '' }}>
+                                                                                                        Silahkan Pilih
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                        value="Laki-Laki"
+                                                                                                        {{ $teachers->gender == 'Laki-Laki' ? 'selected' : '' }}>
+                                                                                                        Laki-Laki
+                                                                                                    </option>
+                                                                                                    <option
+                                                                                                        value="Perempuan"
+                                                                                                        {{ $teachers->gender == 'Perempuan' ? 'selected' : '' }}>
+                                                                                                        Perempuan
+                                                                                                    </option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div><!--end col-->
+                                                                                        <div class="col-6">
+                                                                                            <div class="mb-3">
+                                                                                                <label for="name"
+                                                                                                    class="form-label">Phone</label>
+                                                                                                <input type="text"
+                                                                                                    name="phone"
+                                                                                                    class="form-control"
+                                                                                                    required
+                                                                                                    value="{{ $teachers->phone }}"
+                                                                                                    id="phone"
+                                                                                                    placeholder="Enter your phone">
+                                                                                                @error('phone')
+                                                                                                    <span
+                                                                                                        class="text-danger">{{ $message }}</span>
+                                                                                                @enderror
+                                                                                            </div>
+                                                                                        </div><!--end col-->
+                                                                                        <div class="col-12">
+                                                                                            <div class="mb-3">
+                                                                                                <label for="address"
+                                                                                                    class="form-label">Address</label>
+                                                                                                <input type="text"
+                                                                                                    name="address"
+                                                                                                    class="form-control"
+                                                                                                    required
+                                                                                                    value="{{ $teachers->address }}"
+                                                                                                    id="address"
+                                                                                                    placeholder="Enter your address">
+                                                                                            </div>
+                                                                                        </div><!--end col-->
+                                                                                        <div class="col-12">
+                                                                                            <div class="mb-3">
+                                                                                                <label
+                                                                                                    for="exampleInputPassword1"
+                                                                                                    class="form-label">Password</label>
+                                                                                                <input type="password"
+                                                                                                    id="password-input"
+                                                                                                    name="password"
+                                                                                                    class="form-control @error('password') is-invalid @enderror pe-5 password-input"
+                                                                                                    onpaste="return false"
+                                                                                                    placeholder="Enter password"
+                                                                                                    aria-describedby="passwordInput"
+                                                                                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                                                                                                @error('password')
+                                                                                                    <span
+                                                                                                        class="text-danger">{{ $message }}</span>
+                                                                                                @enderror
+                                                                                            </div>
+                                                                                            <div id="password-contain"
+                                                                                                class="p-3 bg-light mb-2 rounded">
+                                                                                                <h5 class="fs-13">
+                                                                                                    Password must
+                                                                                                    contain:
+                                                                                                </h5>
+                                                                                                <p id="pass-length"
+                                                                                                    class="invalid fs-12 mb-2">
+                                                                                                    Minimum <b>8
+                                                                                                        characters</b>
+                                                                                                </p>
+                                                                                                <p id="pass-lower"
+                                                                                                    class="invalid fs-12 mb-2">
+                                                                                                    At <b>lowercase</b>
+                                                                                                    letter (a-z)
+                                                                                                </p>
+                                                                                                <p id="pass-upper"
+                                                                                                    class="invalid fs-12 mb-2">
+                                                                                                    At
+                                                                                                    least
+                                                                                                    <b>uppercase</b>
+                                                                                                    letter (A-Z)
+                                                                                                </p>
+                                                                                                <p id="pass-number"
+                                                                                                    class="invalid fs-12 mb-0">
+                                                                                                    A
+                                                                                                    least <b>number</b>
+                                                                                                    (0-9)
+                                                                                                </p>
+                                                                                            </div>
+                                                                                        </div><!--end col-->
+                                                                                        <div class="col-lg-12">
+                                                                                            <div class="text-end">
+                                                                                                <button type="submit"
+                                                                                                    class="btn btn-primary">Submit</button>
+                                                                                            </div>
+                                                                                        </div><!--end col-->
+                                                                                    </div><!--end row-->
                                                                                 </form>
                                                                             </div>
                                                                         </div><!-- /.modal-content -->
@@ -691,8 +808,9 @@
                                                                                         style="width:100px;height:100px"></lord-icon>
                                                                                     <div
                                                                                         class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                                                                                        <h4>Apakah Anda Yakin Ingin Menghapus?</h4>
-                                                                                        
+                                                                                        <h4>Apakah Anda Yakin Ingin
+                                                                                            Menghapus?</h4>
+
                                                                                     </div>
                                                                                 </div>
                                                                                 <div
@@ -1055,6 +1173,11 @@
     <script src="assets/libs/prismjs/prism.js"></script>
     <script src="assets/libs/list.js/list.min.js"></script>
     <script src="assets/libs/list.pagination.js/list.pagination.min.js"></script>
+
+    <!-- validation init -->
+    <script src="assets/js/pages/form-validation.init.js"></script>
+    <!-- password create init -->
+    <script src="assets/js/pages/passowrd-create.init.js"></script>
 
     <!-- listjs init -->
     <script src="assets/js/pages/listjs.init.js"></script>

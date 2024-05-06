@@ -53,6 +53,7 @@
                                 <span class="logo-lg">
                                     <img src="assets/images/logo-light.png" alt="" height="17">
                                 </span>
+
                             </a>
                         </div>
 
@@ -289,7 +290,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link menu-link active" href="/teacher">
+                                <a class="nav-link menu-link" href="/teacher">
                                     <i class="las la-graduation-cap"></i>
                                     <span data-key="t-headmasters">Tenaga Pengajar</span>
                                 </a>
@@ -314,8 +315,15 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="/schedules">
-                                    <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal Pelajaran</span>
+                                <a class="nav-link menu-link active" href="/schedules">
+                                    <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal
+                                        Pelajaran</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="/presences">
+                                    <i class="mdi mdi-format-list-checks"></i> <span
+                                        data-key="presences">Presensi</span>
                                 </a>
                             </li>
                         </ul>
@@ -358,7 +366,7 @@
                                             <button class="btn btn-primary" id="remove-actions"
                                                 onClick="deleteMultiple()"><i
                                                     class="ri-delete-bin-2-line"></i></button>
-                                            <a href="{{ url("schedules-create-data") }}" class="btn btn-danger"><i
+                                            <a href="{{ url('schedules-create-data') }}" class="btn btn-danger"><i
                                                     class="ri-add-line align-bottom me-1"></i>TAMBAH JADWAL</a>
 
                                             <div id="signupModals" class="modal fade" tabindex="-1"
@@ -398,28 +406,59 @@
                                                         <tr>
                                                             <th class=" sort text-uppercase" data-sort="no">NO</th>
                                                             <th class="sort text-uppercase" data-sort="NIP">NAMA</th>
-                                                            <th class="sort text-uppercase" data-sort="name">MATA PELAJARAN</th>
-                                                            <th class="sort text-uppercase" data-sort="email">KELAS</th>
-                                                            <th class="sort text-uppercase" data-sort="address">HARI</th>
-                                                            <th class="sort text-uppercase" data-sort="tahun">TAHUN AKADEMIK</th>
-                                                            <th class="sort text-uppercase" data-sort="phone">SEMESTER</th>
-                                                            <th class=" sort text-uppercase">action</th> 
+                                                            <th class="sort text-uppercase" data-sort="name">MATA
+                                                                PELAJARAN</th>
+                                                            <th class="sort text-uppercase" data-sort="email">KELAS
+                                                            </th>
+                                                            <th class="sort text-uppercase" data-sort="address">HARI
+                                                            </th>
+                                                            <th class="sort text-uppercase" data-sort="tahun">TAHUN
+                                                                AKADEMIK</th>
+                                                            <th class="sort text-uppercase" data-sort="phone">SEMESTER
+                                                            </th>
+                                                            <th class="sort text-uppercase" data-sort="phone">Start
+                                                                Time
+                                                            </th>
+                                                            <th class="sort text-uppercase" data-sort="phone">End Time
+                                                            </th>
+                                                            <th class=" sort text-uppercase">action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="list form-check-all">
                                                         @foreach ($Schedules as $schedule)
-                                                                <tr>
-                                                                    <td>{{ $loop->iteration }}</td>
-                                                                    <td>{{ $schedule->teacher->name }}</td>
-                                                                    <td>{{ $schedule->course->name }}</td>
-                                                                    <td>{{ $schedule->room->name_class }}</td>
-                                                                    <td>{{ $schedule->day }}</td>
-                                                                    <td>{{ $schedule->generation->academic_years }}</td>
-                                                                    <td>{{ $schedule->generation->semester }}</td>
-                                                                    <td>
-                                                                    <a
-                                                                        class="btn btn-success btn-sm mx-2 edit-item-btn"
-                                                                        href="{{ url("schedules-edit-data", $schedule->id) }}">EDIT</a>
+                                                            <tr>
+                                                                <td>{{ $loop->iteration }}</td>
+                                                                <td>{{ $schedule->teacher->name }}</td>
+                                                                <td>{{ $schedule->course->name }}</td>
+                                                                <td>{{ $schedule->room->name_class }}</td>
+                                                                @switch($schedule->day)
+                                                                    @case('Monday')
+                                                                        <td>Senin</td>
+                                                                    @break
+                                                                    @case('Tuesday')
+                                                                        <td>Selasa</td>
+                                                                    @break
+                                                                    @case('Wednesday')
+                                                                        <td>Rabu</td>
+                                                                    @break
+                                                                    @case('Thursday')
+                                                                        <td>Kamis</td>
+                                                                    @break
+                                                                    @case('Friday')
+                                                                        <td>Jumat</td>
+                                                                    @break
+                                                                    @case('Saturday')
+                                                                        <td>Sabtu</td>
+                                                                    @break
+                                                                    @default
+                                                                @endswitch
+                                                                <td>{{ $schedule->generation->academic_years }}</td>
+                                                                <td>{{ $schedule->generation->semester }}</td>
+                                                                <td>{{ $schedule->start_attendance }}</td>
+                                                                <td>{{ $schedule->end_attendance }}</td>
+                                                                <td>
+                                                                    <a class="btn btn-success btn-sm mx-2 edit-item-btn"
+                                                                        href="{{ url('schedules-edit-data', $schedule->id) }}">EDIT</a>
                                                                     <button
                                                                         class="btn btn-danger btn-sm remove-item-btn"
                                                                         data-bs-toggle="modal"
@@ -445,10 +484,11 @@
                                                                                     action='{{ url('schedules/' . $schedule->id . '/edit') }}'
                                                                                     method="POST">
                                                                                     @csrf
-                                                                                    @method("patch")
+                                                                                    @method('patch')
                                                                                     <div class="mb-3">
                                                                                         <label for="nip"
-                                                                                            class="form-label">Nama Guru</label>
+                                                                                            class="form-label">Nama
+                                                                                            Guru</label>
                                                                                         <input type="text"
                                                                                             name="guru"
                                                                                             class="form-control"
@@ -462,7 +502,8 @@
                                                                                     </div>
                                                                                     <div class="mb-3">
                                                                                         <label for="name"
-                                                                                            class="form-label">Mata Pelajaran</label>
+                                                                                            class="form-label">Mata
+                                                                                            Pelajaran</label>
                                                                                         <input type="text"
                                                                                             name="matapelajaran"
                                                                                             class="form-control"
@@ -504,7 +545,8 @@
                                                                                     </div>
                                                                                     <div class="mb-3">
                                                                                         <label for="phone"
-                                                                                            class="form-label">Tahun Akademik</label>
+                                                                                            class="form-label">Tahun
+                                                                                            Akademik</label>
                                                                                         <input type="text"
                                                                                             name="phone"
                                                                                             class="form-control"
@@ -517,7 +559,8 @@
                                                                                         @enderror
                                                                                     </div>
                                                                                     <div class="text-end">
-                                                                                        <button type="submit"class="btn btn-primary">Simpan</button>
+                                                                                        <button
+                                                                                            type="submit"class="btn btn-primary">Simpan</button>
                                                                                     </div>
                                                                                 </form>
                                                                             </div>
@@ -547,7 +590,8 @@
                                                                                         style="width:100px;height:100px"></lord-icon>
                                                                                     <div
                                                                                         class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                                                                                        <h4>Apakah Anda Yakin Ingin Menghapus ?</h4>
+                                                                                        <h4>Apakah Anda Yakin Ingin
+                                                                                            Menghapus ?</h4>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div

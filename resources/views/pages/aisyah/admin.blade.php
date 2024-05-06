@@ -29,7 +29,6 @@
 </head>
 
 <body>
-
     <!-- Begin page -->
     <div id="layout-wrapper">
 
@@ -286,9 +285,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                                <a class="nav-link menu-link" href="/schedules">
-                                    <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal Pelajaran</span>
-                                </a>
+                            <a class="nav-link menu-link" href="/schedules">
+                                <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal
+                                    Pelajaran</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="/presences">
+                                <i class="mdi mdi-format-list-checks"></i> <span data-key="presences">Presensi</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -358,9 +363,21 @@
                                                                         class="form-label">Name</label>
                                                                     <input type="name" name="name"
                                                                         class="form-control"
-                                                                        value="{{ old('name') }}" id="name"
-                                                                        placeholder="Enter your name">
+                                                                        value="{{ Session::get('name') }}"
+                                                                        id="name" placeholder="Enter your name">
                                                                     @error('name')
+                                                                        <span
+                                                                            class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="email"
+                                                                        class="form-label">Email</label>
+                                                                    <input type="email" name="email"
+                                                                        class="form-control"
+                                                                        value="{{ Session::get('email') }}"
+                                                                        id="email" placeholder="Enter your email">
+                                                                    @error('email')
                                                                         <span
                                                                             class="text-danger">{{ $message }}</span>
                                                                     @enderror
@@ -370,8 +387,8 @@
                                                                     </label>
                                                                     <input type="number" name="phone"
                                                                         class="form-control"
-                                                                        value="{{ old('phone') }}" id="phone"
-                                                                        placeholder="Enter your phone">
+                                                                        value="{{ Session::get('phone') }}"
+                                                                        id="phone" placeholder="Enter your phone">
                                                                     @error('phone')
                                                                         <span
                                                                             class="text-danger">{{ $message }}</span>
@@ -382,8 +399,9 @@
                                                                         class="form-label">Username</label>
                                                                     <input type="text" name="username"
                                                                         class="form-control"
-                                                                        value="{{ old('username') }}" id="username"
-                                                                        placeholder="Enter your username">
+                                                                        value="{{ Session::get('username') }}"
+                                                                        id="username"
+                                                                        placeholder="Enter your username" required>
                                                                     @error('username')
                                                                         <span
                                                                             class="text-danger">{{ $message }}</span>
@@ -392,15 +410,31 @@
                                                                 <div class="mb-3">
                                                                     <label for="exampleInputPassword1"
                                                                         class="form-label">Password</label>
-                                                                    <input type="password" name="password"
-                                                                        class="form-control"
-                                                                        value="{{ old('password') }}"
-                                                                        id="exampleInputPassword1"
-                                                                        placeholder="Enter your password">
-                                                                    @error('passowrd')
+                                                                    <input type="password" id="password-input"
+                                                                        name="password"
+                                                                        class="form-control @error('password') is-invalid @enderror pe-5 password-input"
+                                                                        onpaste="return false"
+                                                                        placeholder="Enter password"
+                                                                        aria-describedby="passwordInput"
+                                                                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                                                        required>
+                                                                    @error('password')
                                                                         <span
                                                                             class="text-danger">{{ $message }}</span>
                                                                     @enderror
+                                                                </div>
+                                                                <div id="password-contain"
+                                                                    class="p-3 bg-light mb-2 rounded">
+                                                                    <h5 class="fs-13">Password must contain:</h5>
+                                                                    <p id="pass-length" class="invalid fs-12 mb-2">
+                                                                        Minimum <b>8 characters</b></p>
+                                                                    <p id="pass-lower" class="invalid fs-12 mb-2">At
+                                                                        <b>lowercase</b> letter (a-z)
+                                                                    </p>
+                                                                    <p id="pass-upper" class="invalid fs-12 mb-2">At
+                                                                        least <b>uppercase</b> letter (A-Z)</p>
+                                                                    <p id="pass-number" class="invalid fs-12 mb-0">A
+                                                                        least <b>number</b> (0-9)</p>
                                                                 </div>
                                                                 <div class="text-end">
                                                                     <button type="submit" name="submit"
@@ -443,6 +477,8 @@
                                                         <tr>
                                                             <th scope="col">ID</th>
                                                             <th class="sort text-uppercase" data-sort="name">Nama</th>
+                                                            <th class="sort text-uppercase" data-sort="name">email
+                                                            </th>
                                                             <th class="sort text-uppercase" data-sort="name">No Telp
                                                             </th>
                                                             <th class="sort text-uppercase" data-sort="username">
@@ -456,6 +492,7 @@
                                                             <tr>
                                                                 <td>{{ $loop->iteration }}</td>
                                                                 <td>{{ $admins->name }}</td>
+                                                                <td>{{ $admins->email }}</td>
                                                                 <td>{{ $admins->phone }}</td>
                                                                 <td>{{ $admins->username }}</td>
                                                                 <td>
@@ -481,7 +518,7 @@
                                                                                     <div class="alert alert-succes">
                                                                                         {{ session('status') }}</div>
                                                                                 @endif
-                                                                                <h4 class="card-title mb-0">Tambah
+                                                                                <h4 class="card-title mb-0">Edit
                                                                                     Admin</h4>
                                                                                 <button type="button"
                                                                                     class="btn-close"
@@ -506,6 +543,20 @@
                                                                                             id="name"
                                                                                             placeholder="Enter your name">
                                                                                         @error('name')
+                                                                                            <span
+                                                                                                class="text-danger">{{ $message }}</span>
+                                                                                        @enderror
+                                                                                    </div>
+                                                                                    <div class="mb-3">
+                                                                                        <label for="email"
+                                                                                            class="form-label">Email</label>
+                                                                                        <input type="email"
+                                                                                            name="email"
+                                                                                            class="form-control"
+                                                                                            value="{{ Session::get('email') }}"
+                                                                                            id="email"
+                                                                                            placeholder="Enter your email">
+                                                                                        @error('email')
                                                                                             <span
                                                                                                 class="text-danger">{{ $message }}</span>
                                                                                         @enderror
@@ -544,15 +595,43 @@
                                                                                             for="exampleInputPassword1"
                                                                                             class="form-label">Password</label>
                                                                                         <input type="password"
+                                                                                            id="password-input"
                                                                                             name="password"
-                                                                                            class="form-control"
-                                                                                            value="{{ $admins->name }}"
-                                                                                            id="exampleInputPassword1"
-                                                                                            placeholder="Enter your password">
-                                                                                        @error('passowrd')
+                                                                                            class="form-control @error('password') is-invalid @enderror pe-5 password-input"
+                                                                                            onpaste="return false"
+                                                                                            placeholder="Enter password"
+                                                                                            aria-describedby="passwordInput"
+                                                                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                                                                            >
+                                                                                        @error('password')
                                                                                             <span
                                                                                                 class="text-danger">{{ $message }}</span>
                                                                                         @enderror
+                                                                                    </div>
+                                                                                    <div id="password-contain"
+                                                                                        class="p-3 bg-light mb-2 rounded">
+                                                                                        <h5 class="fs-13">Password
+                                                                                            must contain:</h5>
+                                                                                        <p id="pass-length"
+                                                                                            class="invalid fs-12 mb-2">
+                                                                                            Minimum <b>8 characters</b>
+                                                                                        </p>
+                                                                                        <p id="pass-lower"
+                                                                                            class="invalid fs-12 mb-2">
+                                                                                            At
+                                                                                            <b>lowercase</b> letter
+                                                                                            (a-z)
+                                                                                        </p>
+                                                                                        <p id="pass-upper"
+                                                                                            class="invalid fs-12 mb-2">
+                                                                                            At
+                                                                                            least <b>uppercase</b>
+                                                                                            letter (A-Z)</p>
+                                                                                        <p id="pass-number"
+                                                                                            class="invalid fs-12 mb-0">
+                                                                                            A
+                                                                                            least <b>number</b> (0-9)
+                                                                                        </p>
                                                                                     </div>
                                                                                     <div class="text-end">
                                                                                         <button type="submit"
@@ -955,6 +1034,11 @@
     <script src="assets/libs/list.js/list.min.js"></script>
     <script src="assets/libs/list.pagination.js/list.pagination.min.js"></script>
 
+    <!-- validation init -->
+    <script src="assets/js/pages/form-validation.init.js"></script>
+    <!-- password create init -->
+    <script src="assets/js/pages/passowrd-create.init.js"></script>
+
     <!-- listjs init -->
     <script src="assets/js/pages/listjs.init.js"></script>
 
@@ -964,6 +1048,19 @@
     <!-- App js -->
     <script src="assets/js/app.js"></script>
 
+    @if (Session::has('Success'))
+        <script>
+            Swal.fire({
+                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Well done !</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
+                showCancelButton: true,
+                showConfirmButton: false,
+                cancelButtonClass: "btn btn-primary w-xs mb-1",
+                cancelButtonText: "Back",
+                buttonsStyling: false,
+                showCloseButton: true,
+            });
+        </script>
+    @endif
     @if (Session::has('Success'))
         <script>
             Swal.fire({

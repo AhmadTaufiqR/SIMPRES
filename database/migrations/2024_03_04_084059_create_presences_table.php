@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('presences', function (Blueprint $table) {
             $table->id();
             $table->foreignId('schedules_id')->constrained();
-            $table->dateTime('start_attendance');
-            $table->dateTime('end_attendance');
+            $table->enum('start_attendance', ['hadir', 'izin', 'alpa'])->default('alpa');
+            $table->enum('end_attendance', ['hadir', 'izin', 'alpa'])->default('alpa');
+            $table->string('start_documentation')->nullable();
+            $table->string('end_documentation')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

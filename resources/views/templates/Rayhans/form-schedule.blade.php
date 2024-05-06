@@ -10,27 +10,28 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset("assets/images/favicon.ico") }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
     <!-- Sweet Alert css-->
-    <link href="{{ asset("assets/libs/sweetalert2/sweetalert2.min.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- Layout config Js -->
-    <script src="{{ asset("assets/js/layout.js") }}"></script>
+    <script src="{{ asset('assets/js/layout.js') }}"></script>
     <!-- Bootstrap Css -->
-    <link href="{{ asset("assets/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="{{ asset("assets/css/icons.min.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="{{ asset("assets/css/app.min.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
-    <link href="{{ asset("assets/css/custom.min.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
+
     <head>
-    <!-- Tuliskan ini di dalam bagian head -->
-    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <!-- Tuliskan ini di dalam bagian head -->
+        {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     </head> --}}
 
-</head>
+    </head>
 
 <body>
 
@@ -44,18 +45,19 @@
                         <div class="navbar-brand-box horizontal-logo">
                             <a href="index.html" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="{{ asset("assets/images/logo-sm.png") }}" alt="" height="22">
+                                    <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{ asset("assets/images/logo-dark.png") }}" alt="" height="17">
+                                    <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="17">
                                 </span>
                             </a>
                             <a href="index.html" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="{{ asset("assets/images/logo-sm.png") }}" alt="" height="22">
+                                    <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{ asset("assets/images/logo-light.png") }}" alt="" height="17">
+                                    <img src="{{ asset('assets/images/logo-light.png') }}" alt=""
+                                        height="17">
                                 </span>
                             </a>
                         </div>
@@ -124,7 +126,7 @@
                                         <!-- item -->
                                         <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                             <div class="d-flex">
-                                                <img src="{{ asset("assets/images/users/avatar-2.jpg") }}"
+                                                <img src="{{ asset('assets/images/users/avatar-2.jpg') }}"
                                                     class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                 <div class="flex-1">
                                                     <h6 class="m-0">Angela Bernier</h6>
@@ -135,7 +137,7 @@
                                         <!-- item -->
                                         <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                             <div class="d-flex">
-                                                <img src="{{ asset("assets/images/users/avatar-3.jpg") }}"
+                                                <img src="{{ asset('assets/images/users/avatar-3.jpg') }}"
                                                     class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                 <div class="flex-1">
                                                     <h6 class="m-0">David Grasso</h6>
@@ -146,7 +148,7 @@
                                         <!-- item -->
                                         <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                             <div class="d-flex">
-                                                <img src="{{ asset("assets/images/users/avatar-5.jpg") }}"
+                                                <img src="{{ asset('assets/images/users/avatar-5.jpg') }}"
                                                     class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                                 <div class="flex-1">
                                                     <h6 class="m-0">Mike Bunch</h6>
@@ -177,7 +179,7 @@
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="d-flex align-items-center">
                                     <img class="rounded-circle header-profile-user"
-                                        src="{{ asset("assets/images/users/avatar-1.jpg") }}" alt="Header Avatar">
+                                        src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
                                         <span
                                             class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">fsdfssf</span>
@@ -244,19 +246,19 @@
                 <!-- Dark Logo-->
                 <a href="index.html" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ asset("assets/images/logo-sm.png") }}" alt="" height="22">
+                        <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset("assets/images/logo-dark.png") }}" alt="" height="17">
+                        <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="17">
                     </span>
                 </a>
                 <!-- Light Logo-->
                 <a href="index.html" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset("assets/images/logo-sm.png") }}" alt="" height="22">
+                        <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset("assets/images/logo-light.png") }}" alt="" height="17">
+                        <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="17">
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
@@ -315,6 +317,12 @@
                                         Akademik</span>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link active" href="/presences">
+                                    <i class="mdi mdi-format-list-checks"></i> <span
+                                        data-key="presences">Presensi</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -337,83 +345,119 @@
         <div class="page-content">
             <div class="container-fluid">
 
-                        <div class="card">
-                            <div class="card-body">
-                                @isset($currentData)
-                                    <form action="{{ url("schedules-edit-data", $currentData->id) }}" method="post">
-                                    @method("PATCH")
-                                    @else
-                                    <form action="{{ url("schedules-create-data")}}" method="post">
+                <div class="card">
+                    <div class="card-body">
+                        @isset($currentData)
+                            <form action="{{ url('schedules-edit-data', $currentData->id) }}" method="post">
+                                @method('PATCH')
+                            @else
+                                <form action="{{ url('schedules-create-data') }}" method="post">
                                 @endisset
                                 @csrf
-                                    <div class="form-group mb-3">
-                                        <label for="teacher">Guru</label>
-                                        <select name="teacher" class="form-control" id="teacher">
-                                            <option value="" selected disabled>Pilih</option>
-                                            @foreach ($teachers as $teacher)
-                                                <option value="{{ $teacher->id }}" {{ isset($currentData) && $teacher->id == $currentData->teachers_id ? "selected" : "" }}>{{ $teacher->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error("teacher")
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="course">Mata Pelajaran</label>
-                                        <select name="course" class="form-control" id="course">
-                                            <option value="" selected disabled>Pilih</option>
-                                            @foreach ($courses as $course)
-                                                <option value="{{ $course->id }}" {{ isset($currentData) && $course->id == $currentData->courses_id ? "selected" : "" }}>{{ $course->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error("course")
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="room">Kelas</label>
-                                        <select name="room" class="form-control" id="room">
-                                            <option value="" selected disabled>Pilih</option>
-                                            @foreach ($rooms as $room)
-                                                <option value="{{ $room->id }}" {{ isset($currentData) && $room->id == $currentData->rooms_id ? "selected" : "" }}>{{ $room->name_class }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error("room")
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="generation">Tahun Ajar</label>
-                                        <select name="generation" class="form-control" id="generation">
-                                            <option value="" selected disabled>Pilih</option>
-                                            @foreach ($generations as $generation)
-                                                <option value="{{ $generation->id }}" {{ isset($currentData) && $generation->id == $currentData->generations_id ? "selected" : "" }}>{{ $generation->academic_years }} | {{ $generation->semester }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error("generation")
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="day">Hari</label>
-                                           <select class="form-control" name="day" id="day">
-                                               <option value="Senin" {{ isset($currentData) && $currentData->day == "Senin" ? "selected" : "" }}>Senin</option>
-                                               <option value="Selasa" {{ isset($currentData) && $currentData->day == "Selasa" ? "selected" : "" }}>Selasa</option>
-                                               <option value="Rabu" {{ isset($currentData) && $currentData->day == "Rabu" ? "selected" : "" }}>Rabu</option>
-                                               <option value="Kamis" {{ isset($currentData) && $currentData->day == "Kamis" ? "selected" : "" }}>Kamis</option>
-                                               <option value="Jumat" {{ isset($currentData) && $currentData->day == "Jumat" ? "selected" : "" }}>Jumat</option>
-                                               <option value="Sabtu" {{ isset($currentData) && $currentData->day == "Sabtu" ? "selected" : "" }}>Sabtu</option>
-                                           </select>
-                                           @error("day")
-                                           <div class="text-danger">{{ $message }}</div>
-                                           @enderror
-                                   </div>
-                                    <button class="btn btn-primary"><i class="fas fa-paper-plane"></i>Simpan</button>
-                                    <button type="reset"class="btn btn-danger">Reset</button>
-                                    <a href="{{ url('/schedules') }}" class="btn btn-warning">Kembali</a>
-                                </form>
-                            </div>
-                        </div>
+                                <div class="form-group mb-3">
+                                    <label for="teacher">Guru</label>
+                                    <select name="teacher" class="form-control" id="teacher">
+                                        <option value="" selected disabled>Pilih</option>
+                                        @foreach ($teachers as $teacher)
+                                            <option value="{{ $teacher->id }}"
+                                                {{ isset($currentData) && $teacher->id == $currentData->teachers_id ? 'selected' : '' }}>
+                                                {{ $teacher->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('teacher')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="course">Mata Pelajaran</label>
+                                    <select name="course" class="form-control" id="course">
+                                        <option value="" selected disabled>Pilih</option>
+                                        @foreach ($courses as $course)
+                                            <option value="{{ $course->id }}"
+                                                {{ isset($currentData) && $course->id == $currentData->courses_id ? 'selected' : '' }}>
+                                                {{ $course->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('course')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="room">Kelas</label>
+                                    <select name="room" class="form-control" id="room">
+                                        <option value="" selected disabled>Pilih</option>
+                                        @foreach ($rooms as $room)
+                                            <option value="{{ $room->id }}"
+                                                {{ isset($currentData) && $room->id == $currentData->rooms_id ? 'selected' : '' }}>
+                                                {{ $room->name_class }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('room')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="generation">Tahun Ajar</label>
+                                    <select name="generation" class="form-control" id="generation">
+                                        <option value="" selected disabled>Pilih</option>
+                                        @foreach ($generations as $generation)
+                                            <option value="{{ $generation->id }}"
+                                                {{ isset($currentData) && $generation->id == $currentData->generations_id ? 'selected' : '' }}>
+                                                {{ $generation->academic_years }} | {{ $generation->semester }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('generation')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="day">Hari</label>
+                                    <select class="form-control" name="day" id="day">
+                                        <option value="Monday"
+                                            {{ isset($currentData) && $currentData->day == 'Monday' ? 'selected' : '' }}>
+                                            Senin</option>
+                                        <option value="Tuesday"
+                                            {{ isset($currentData) && $currentData->day == 'Tuesday' ? 'selected' : '' }}>
+                                            Selasa</option>
+                                        <option value="Wednesday"
+                                            {{ isset($currentData) && $currentData->day == 'Wednesday' ? 'selected' : '' }}>
+                                            Rabu</option>
+                                        <option value="Thursday"
+                                            {{ isset($currentData) && $currentData->day == 'Thursday' ? 'selected' : '' }}>
+                                            Kamis</option>
+                                        <option value="Friday"
+                                            {{ isset($currentData) && $currentData->day == 'Friday' ? 'selected' : '' }}>
+                                            Jumat</option>
+                                        <option value="Saturday"
+                                            {{ isset($currentData) && $currentData->day == 'Saturday' ? 'selected' : '' }}>
+                                            Sabtu</option>
+                                    </select>
+                                    @error('day')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="start">Waktu mulai</label>
+                                    <input type="time" class="form-control" name="start-time"
+                                        value="{{ isset($currentData) && $currentData->start_attendance ? substr($currentData->start_attendance, 0, 5) : '' }}"
+                                        placeholder="Waktu mulai" data-provider="timepickr" data-time-hrs="true"
+                                        id="timepicker-24hrs">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="start">Waktu berakhir</label>
+                                    <input type="time" class="form-control" name="end-time"
+                                        value="{{ isset($currentData) && $currentData->end_attendance ? substr($currentData->end_attendance, 0, 5) : '' }}"
+                                        placeholder="Waktu Berakhir" data-provider="timepickr" data-time-hrs="true"
+                                        id="timepicker-24hrs">
+                                </div>
+                                <button class="btn btn-primary"><i class="fas fa-paper-plane"></i>Simpan</button>
+                                <button type="reset"class="btn btn-danger">Reset</button>
+                                <a href="{{ url('/schedules') }}" class="btn btn-warning">Kembali</a>
+                            </form>
+                    </div>
+                </div>
             </div>
         </div>
         <!--end col-->
@@ -655,25 +699,25 @@
     </div>
 
     <!-- JAVASCRIPT -->
-    <script src="{{ asset("assets/libs/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
-    <script src="{{ asset("assets/libs/simplebar/simplebar.min.js") }}"></script>
-    <script src="{{ asset("assets/libs/node-waves/waves.min.js") }}"></script>
-    <script src="{{ asset("assets/libs/feather-icons/feather.min.js") }}"></script>
-    <script src="{{ asset("assets/js/pages/plugins/lord-icon-2.1.0.js") }}"></script>
-    <script src="{{ asset("assets/js/plugins.js") }}"></script>
+    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins.js') }}"></script>
     <!-- prismjs plugin -->
-    <script src="{{ asset("assets/libs/prismjs/prism.js") }}"></script>
-    <script src="{{ asset("assets/libs/list.js/list.min.js") }}"></script>
-    <script src="{{ asset("assets/libs/list.pagination.js/list.pagination.min.js") }}"></script>
+    <script src="{{ asset('assets/libs/prismjs/prism.js') }}"></script>
+    <script src="{{ asset('assets/libs/list.js/list.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/list.pagination.js/list.pagination.min.js') }}"></script>
 
     <!-- listjs init -->
-    <script src="{{ asset("assets/js/pages/listjs.init.js") }}"></script>
+    <script src="{{ asset('assets/js/pages/listjs.init.js') }}"></script>
 
     <!-- Sweet Alerts js -->
-    <script src="{{ asset("assets/libs/sweetalert2/sweetalert2.min.js") }}"></script>
+    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 
     <!-- App js -->
-    <script src="{{ asset("assets/js/app.js") }}"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 
     @if (Session::has('Success'))
         <script>

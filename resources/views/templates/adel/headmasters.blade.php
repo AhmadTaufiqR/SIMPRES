@@ -299,10 +299,16 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                                <a class="nav-link menu-link" href="/schedules">
-                                    <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal Pelajaran</span>
-                                </a>
-                         </li>
+                            <a class="nav-link menu-link" href="/schedules">
+                                <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal
+                                    Pelajaran</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="/presences">
+                                <i class="mdi mdi-format-list-checks"></i> <span data-key="presences">Presensi</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- Sidebar -->
@@ -413,7 +419,7 @@
                                                                 <tbody>
                                                                     @if (isset($headmaster) && $headmaster->name != '')
                                                                         <tr>
-                                                                            <th class="ps-0" scope="row">Nip
+                                                                            <th class="ps-0" scope="row">NIP
                                                                                 :
                                                                             </th>
                                                                             <td class="text-muted">
@@ -490,61 +496,13 @@
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <h5 class="card-title mb-3">About</h5>
-                                                        <p>SMP Negeri 1 Maesan
-                                                            Jl. Sukowono, Krajan 2, Sumbersari, Maesan, Kabupaten
-                                                            Bondowoso, Jawa Timur 68262, Indonesia
-                                                            Kabupaten Jember, Jawa Timur, 68262</p>
+                                                        
                                                         <p>
-                                                            Berapakah nomor telepon untuk SMP Negeri 1 Maesan?
-                                                            Nomor telepon untuk SMP Negeri 1 Maesan adalah (0332)
-                                                            426490.
-                                                            Q2
-                                                            Di manakah lokasi SMP Negeri 1 Maesan?
-                                                            SMP Negeri 1 Maesan berlokasi di Jl. Sukowono, Krajan 2,
-                                                            Sumbersari, Maesan, Kabupaten Bondowoso, Jawa Timur
-                                                            68262,
-                                                            Indonesia, Kabupaten Jember.
-                                                            Q3
-                                                            Apakah ada kontak utama untuk SMP Negeri 1 Maesan?
+                                                            SMPN 1 Maesan adalah sekolah favorit di Kecamatan Maesan, dimana kami memiliki banyak ekstrakulikuler 
+                                                            dengan segudang prestasi. Banyak calon generasi bangsa lulusan dari SMPN 1 Maesan yang memiliki prestasi di tingkat kabupaten. Jika Anda ingin mengetahui lebih lanjut tentang kami,
                                                             Anda bisa menghubungi SMP Negeri 1 Maesan lewat telepon
                                                             menggunakan nomor (0332) 426490.</p>
-                                                        <div class="row">
-                                                            <div class="col-6 col-md-4">
-                                                                <div class="d-flex mt-4">
-                                                                    <div
-                                                                        class="flex-shrink-0 avatar-xs align-self-center me-3">
-                                                                        <div
-                                                                            class="avatar-title bg-light rounded-circle fs-16 text-primary">
-                                                                            <i class="ri-user-2-fill"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex-grow-1 overflow-hidden">
-                                                                        <p class="mb-1">Designation :</p>
-                                                                        <h6 class="text-truncate mb-0">Lead
-                                                                            Designer /
-                                                                            Developer</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!--end col-->
-                                                            <div class="col-6 col-md-4">
-                                                                <div class="d-flex mt-4">
-                                                                    <div
-                                                                        class="flex-shrink-0 avatar-xs align-self-center me-3">
-                                                                        <div
-                                                                            class="avatar-title bg-light rounded-circle fs-16 text-primary">
-                                                                            <i class="ri-global-line"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex-grow-1 overflow-hidden">
-                                                                        <p class="mb-1">Website :</p>
-                                                                        <a href="#"
-                                                                            class="fw-semibold">www.velzon.com</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!--end col-->
-                                                        </div>
+                                                        
                                                         <!--end row-->
                                                     </div>
                                                     <!--end card-body-->

@@ -267,6 +267,12 @@
                                 <span data-key="t-headmasters">Tenaga Pengajar</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="/teacher">
+                                <i class="las la-graduation-cap"></i>
+                                <span data-key="t-headmasters">Tenaga Pengajar</span>
+                            </a>
+                        </li>
                         <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Akademik</span>
                         </li>
                         <li class="nav-item">
@@ -285,11 +291,17 @@
                                     Akademik</span>
                             </a>
                         </li>
-                         <li class="nav-item">
-                                <a class="nav-link menu-link" href="/schedules">
-                                    <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal Pelajaran</span>
-                                </a>
-                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="/schedules">
+                                <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal
+                                    Pelajaran</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="/presences">
+                                <i class="mdi mdi-format-list-checks"></i> <span data-key="presences">Presensi</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 </li>

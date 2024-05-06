@@ -77,13 +77,13 @@
                                             </div>
                                         @endif
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">Email</label>
-                                            <input type="text" id="email" name="email"
-                                                class="form-control @error('email') is invalid
+                                            <label for="username" class="form-label">Username</label>
+                                            <input type="text" id="username" name="username"
+                                                class="form-control @error('username') is invalid
                                             @enderror form-control"
-                                                id="username" placeholder="Email">
+                                                id="username" placeholder="username">
                                         </div>
-                                        @error('email')
+                                        @error('username')
                                             <small class="btn btn-danger">{{ $message }}</small>
                                         @enderror
                                         <div class="mb-3">
@@ -93,7 +93,7 @@
                                             </div>
                                             <label class="form-label" for="password-input">Password</label>
                                             <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <input type="password" id="password" name="password"
+                                                <input type="password" name="password"
                                                     class="form-control @error('password') is invalid
                                                  @enderror pe-5 password-input"
                                                     placeholder="Enter password" id="password-input">

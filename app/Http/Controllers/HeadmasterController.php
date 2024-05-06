@@ -66,7 +66,7 @@ class HeadmasterController extends Controller
      */
     public function update(Request $request)
     {
-        $headmaster = Headmaster::where('nip', $request->input('nip'))->firstOrFail();
+        $headmaster = Headmaster::where('id', $request->input('id'))->firstOrFail();
         $headmaster->nip = $request->input('nip');
         $headmaster->name = $request->input('name');
         $headmaster->username = $request->input('username');
