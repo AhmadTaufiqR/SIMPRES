@@ -11,7 +11,7 @@ class AdminController extends Controller
 {
     public function show()
     {
-        $admin = Admin::all();
+        $admin = Admin::orderBy('id', 'desc')->paginate(5);
         return view('pages.aisyah.admin', ['admin' => $admin]);
     }
 
@@ -44,6 +44,7 @@ class AdminController extends Controller
             'password' => Hash::make($request->input('password')),
         ]);
         if ($admin) {
+            Session::flush();
             return redirect('admin')->with('Success', 'Data admin berhasil ditambahkan');
         } else {
             var_dump('kososng');
@@ -61,6 +62,7 @@ class AdminController extends Controller
         ]);
         return redirect()->back()->with('Success', 'Data admin berhasil diubah');
     }
+    
     public function hapus(int $id)
     {
         $admin = Admin::find($id);
@@ -69,5 +71,16 @@ class AdminController extends Controller
         }
         $admin->delete();
         return redirect()->back()->with('Success', 'Data admin berhasil dihapus');
+    }
+    public function searchAdmin(Request $request)
+    {
+        $search = $request->search;
+        $admin = Admin::where('name', 'like', '%' . $search . '%')->orderBy('id', 'desc')->paginate(5);
+
+        if ($admin->count() > 0) {
+            return view('pagination.pagination_admin', compact('admin'))->render();
+        } else {
+            return redirect()->back()->withErrors('Data tidak ditemukan');
+        }
     }
 }

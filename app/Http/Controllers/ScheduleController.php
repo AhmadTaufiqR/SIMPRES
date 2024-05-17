@@ -20,7 +20,7 @@ class ScheduleController extends Controller
         ->whereHas('course')
         ->whereHas('generation')
         ->whereHas('teacher')
-        ->get();
+        ->orderBy('id', 'desc')->paginate(5);
 
         return view('templates.Rayhans.Schedules', ['Schedules' => $schedule]);
     }
@@ -120,5 +120,28 @@ class ScheduleController extends Controller
         }
         $schedule->delete();
         return redirect()->back()->with('Success', 'Yeeayy!! Data jadwal berhasil dihapus');
+    }
+
+    public function search(Request $request)
+    {
+        // $generations = Generation::with('teacher', 'course', 'room', 'generation')->where('name', 'like', "%" . $years . "%")->paginate(5);
+        $search = $request->search;
+
+        $Schedules = Schedule::where(function ($query) use ($search) {
+            $query->whereHas('teacher', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })
+            ->orWhereHas('course', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            });
+        })
+        ->with(['teacher', 'course', 'room', 'generation'])
+        ->paginate(5);
+
+        if ($Schedules) {
+            return view('pagination.pagination_schedule', compact('Schedules'))->render();
+        } else {
+            return redirect()->json(['status' => 'not_found']);
+        }
     }
 }

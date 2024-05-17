@@ -26,8 +26,9 @@ Route::group(['namespace' => 'headmaster'], function () {
 Route::group(['namespace' => 'teacher'], function () {
     Route::get('/teacher', [TeacherController::class, 'index']);
     Route::post('/teacher-create-data', [TeacherController::class, 'store']);
-    Route::post('teacher/{id}/edit', [TeacherController::class, 'update']);
+    Route::post('teacher/{id}/edit', [TeacherController::class, 'update'])->name('teacher.edit');
     Route::delete('/teacher/{id}/hapus', [TeacherController::class, 'hapus'])->name('teacher.hapus');
+    Route::get('/teacher/search', [TeacherController::class, 'search'])->name('teacher.search');
 });
 
 
@@ -46,6 +47,7 @@ Route::group(['namespace' => 'admin'], function () {
     Route::post('/admin-create-data', [AdminController::class, 'store']);
     Route::get('admin/{id}/edit', [AdminController::class, 'update']);
     Route::delete('admin/{id}/hapus', [AdminController::class, 'hapus'])->name('admin.hapus');
+    Route::get('/admin/search', [AdminController::class, 'searchAdmin'])->name('admin.search');
 });
 
 //Generations
@@ -54,6 +56,7 @@ Route::group(['namespace' => 'generation'], function () {
     Route::post('/generation-create-data', [GenerationController::class, 'store']);
     Route::get('generation/{id}/edit', [GenerationController::class, 'update']);
     Route::delete('generation/{id}', [GenerationController::class, 'hapus'])->name('generation.hapus');
+    Route::get('/generation/search', [GenerationController::class, 'search'])->name('generation.search');
 });
 
 
@@ -65,6 +68,7 @@ Route::group(['namespace' => 'schedule'], function () {
     Route::post('/schedules-create-data', [ScheduleController::class, 'store']);
     Route::patch('/schedules-edit-data/{schedule}', [ScheduleController::class, 'update']);
     Route::delete('/schedules/{id}/hapus', [ScheduleController::class, 'destroy'])->name('schedules.hapus');
+    Route::get('/schedules/search', [ScheduleController::class, 'search'])->name('schedule.search');
 });
 
 Route::group(['namespace' => 'presences'], function () {

@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
     <!-- Sweet Alert css-->
-    <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <!-- Layout config Js -->
     <script src="{{ asset('assets/js/layout.js') }}"></script>
@@ -26,12 +26,11 @@
     <!-- custom Css-->
     <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
 
-    <head>
-        <!-- Tuliskan ini di dalam bagian head -->
-        {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Tuliskan ini di dalam bagian head -->
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     </head> --}}
 
-    </head>
+</head>
 
 <body>
 
@@ -74,13 +73,7 @@
 
                         <!-- App Search-->
                         <form class="app-search d-none d-md-block">
-                            <div class="position-relative">
-                                <input type="text" class="form-control" placeholder="Search..." autocomplete="off"
-                                    id="search-options" value="">
-                                <span class="mdi mdi-magnify search-widget-icon"></span>
-                                <span class="mdi mdi-close-circle search-widget-icon search-widget-icon-close d-none"
-                                    id="search-close-options"></span>
-                            </div>
+
                             <div class="dropdown-menu dropdown-menu-lg" id="search-dropdown">
                                 <div data-simplebar style="max-height: 320px;">
                                     <!-- item-->
@@ -191,16 +184,9 @@
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
                                 <h6 class="dropdown-header">Welcome tyjty</h6>
-                                <a class="dropdown-item" href="pages-profile.html"><i
+                                <a class="dropdown-item" href="/headmaster"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
-                                        class="align-middle">Profile</span></a>
-                                <a class="dropdown-item" href="pages-profile-settings.html"><span
-                                        class="badge bg-soft-success text-success mt-1 float-end">New</span><i
-                                        class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span
-                                        class="align-middle">Settings</span></a>
-                                <a class="dropdown-item" href="auth-lockscreen-basic.html"><i
-                                        class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span
-                                        class="align-middle">Lock screen</span></a>
+                                        class="align-middle">Profil Kepala Sekolah</span></a>
                                 <a class="dropdown-item" href="/"><i
                                         class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle" data-key="t-logout">Logout</span></a>
@@ -293,7 +279,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link menu-link active" href="/teacher">
+                                <a class="nav-link menu-link" href="/teacher">
                                     <i class="las la-graduation-cap"></i>
                                     <span data-key="t-headmasters">Tenaga Pengajar</span>
                                 </a>
@@ -318,7 +304,13 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link menu-link active" href="/presences">
+                                <a class="nav-link menu-link active" href="/schedules">
+                                    <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal
+                                        Pelajaran</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="/presences">
                                     <i class="mdi mdi-format-list-checks"></i> <span
                                         data-key="presences">Presensi</span>
                                 </a>
@@ -356,7 +348,8 @@
                                 @csrf
                                 <div class="form-group mb-3">
                                     <label for="teacher">Guru</label>
-                                    <select name="teacher" class="form-control" id="teacher">
+                                    <select name="teacher" class="form-control" id="choices-single-no-search"
+                                        data-choices data-choices-search required>
                                         <option value="" selected disabled>Pilih</option>
                                         @foreach ($teachers as $teacher)
                                             <option value="{{ $teacher->id }}"
@@ -370,7 +363,8 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="course">Mata Pelajaran</label>
-                                    <select name="course" class="form-control" id="course">
+                                    <select name="course" class="form-control" id="choices-single-no-search"
+                                        data-choices data-choices-search required>
                                         <option value="" selected disabled>Pilih</option>
                                         @foreach ($courses as $course)
                                             <option value="{{ $course->id }}"
@@ -384,7 +378,8 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="room">Kelas</label>
-                                    <select name="room" class="form-control" id="room">
+                                    <select name="room" class="form-control" id="choices-single-no-search"
+                                        data-choices data-choices-search required>
                                         <option value="" selected disabled>Pilih</option>
                                         @foreach ($rooms as $room)
                                             <option value="{{ $room->id }}"
@@ -398,7 +393,8 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="generation">Tahun Ajar</label>
-                                    <select name="generation" class="form-control" id="generation">
+                                    <select name="generation" class="form-control" id="choices-single-no-search"
+                                        data-choices data-choices-search required>
                                         <option value="" selected disabled>Pilih</option>
                                         @foreach ($generations as $generation)
                                             <option value="{{ $generation->id }}"
@@ -413,7 +409,9 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="day">Hari</label>
-                                    <select class="form-control" name="day" id="day">
+                                    <select class="form-control" name="day" id="choices-single-no-search"
+                                        data-choices data-choices-search required>
+                                        <option value="" selected disabled>Pilih</option>
                                         <option value="Monday"
                                             {{ isset($currentData) && $currentData->day == 'Monday' ? 'selected' : '' }}>
                                             Senin</option>
@@ -453,7 +451,6 @@
                                         id="timepicker-24hrs">
                                 </div>
                                 <button class="btn btn-primary"><i class="fas fa-paper-plane"></i>Simpan</button>
-                                <button type="reset"class="btn btn-danger">Reset</button>
                                 <a href="{{ url('/schedules') }}" class="btn btn-warning">Kembali</a>
                             </form>
                     </div>
@@ -732,6 +729,7 @@
             });
         </script>
     @endif
+
 
 </body>
 

@@ -12,32 +12,25 @@ class GenerationController extends Controller
     public function show()
     {
         // Mengambil semua data generasi dari model Generation
-        $generations = Generation::all(); 
-
+        $generations = Generation::orderBy('id', 'desc')->paginate(5);
         return view('templates.adel.generation', ['generations' => $generations]); // Menampilkan view dengan data tahun
-
     }
 
     public function store(Request $request)
     {
-
         $tahun_awal = $request->input('tahun_awal');
         $tahun_akhir = $request->input('tahun_akhir');
         $result = $tahun_awal . '/' . $tahun_akhir;
-
         $generation = Generation::create([
-
             'academic_years' => $result,
             'semester' => $request->input('semester'),
         ]);
-
         if ($generation) {
             return redirect('generation')->with('Success', 'Data Tahun Angkatan berhasil ditambahkan');
         } else {
             return redirect()->back()->with('error', 'Gagal menambahkan data Tahun Angkatan');
         }
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -64,8 +57,6 @@ class GenerationController extends Controller
         return redirect()->back()->with('Success', 'Data angkatan berhasil diubah');
     }
 
-
-
     /**
      * Remove the specified resource from storage.
      */
@@ -77,5 +68,16 @@ class GenerationController extends Controller
         }
         $generation->delete();
         return redirect()->back()->with('Success', 'Data angkatan berhasil dihapus');
+    }
+
+    public function search(Request $request) {
+        $years = $request->search;
+        $generations = Generation::where('semester', 'like', "%" . $years . "%")->paginate(5);
+
+        if ($generations) {
+            return view('pagination.pagination_generation', compact('generations'))->render();
+        } else {
+            return redirect('/generation')->json(['status' => 'not_found']);
+        }
     }
 }
