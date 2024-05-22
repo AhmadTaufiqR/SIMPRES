@@ -47,17 +47,9 @@ RUN groupadd -g 1000 www \
 # Copy the application code and set the appropriate permissions
 COPY --chown=www:www . /var/www
 
-# Change permissions of the app directory
-RUN chmod -R 777 /var/www/app
-
-RUN chmod -R 777 bootstrap/cache/
-
-RUN chmod -R 777 /var/www/storage
-
 # Switch to the non-root user
 USER www
 
 # Expose port 9000 and start PHP-FPM
 EXPOSE 9000
 CMD ["php-fpm"]
-
