@@ -1,39 +1,63 @@
-# Use PHP with Apache as the base image
-FROM php:8.2-apache as web
+# Use the official PHP image as a base
+FROM php:8.2-fpm
 
-# Install Additional System Dependencies
-RUN apt-get update && apt-get install -y \
-    libzip-dev \
-    zip
+# Set the environment variable
+ENV DEBIAN_FRONTEND=noninteractive
 
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Enable Apache mod_rewrite for URL rewriting
-RUN a2enmod rewrite
-
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql zip
-
-# Configure Apache DocumentRoot to point to Laravel's public directory
-# and update Apache configuration files
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
-
-# Copy the application code
-COPY . /var/www/html
+# Copy the composer files
+COPY composer.lock composer.json /var/www/
 
 # Set the working directory
-WORKDIR /var/www/html
+WORKDIR /var/www
 
-# Install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# Install system dependencies
+RUN set -eux; \
+    apt-get update; \
+    apt-get upgrade -y; \
+    apt-get install -y --no-install-recommends \
+    curl \
+    libmemcached-dev \
+    libz-dev \
+    libpq-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libssl-dev \
+    libwebp-dev \
+    libxpm-dev \
+    libmcrypt-dev \
+    libonig-dev; \
+    rm -rf /var/lib/apt/lists/*
 
-# Install project dependencies
-RUN composer install
+# Install PHP extensions
+RUN set -eux; \
+    docker-php-ext-install pdo_mysql pdo_pgsql; \
+    docker-php-ext-configure gd \
+    --prefix=/usr \
+    --with-jpeg \
+    --with-webp \
+    --with-xpm \
+    --with-freetype; \
+    docker-php-ext-install gd; \
+    php -r 'var_dump(gd_info());'
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# Create a user group and user for the web application
+RUN groupadd -g 1000 www \
+    && useradd -u 1000 -ms /bin/bash -g www www
 
+# Copy the application code and set the appropriate permissions
+COPY --chown=www:www . /var/www
+
+# Change permissions of the app directory
+RUN chmod -R 777 /var/www/app
+
+RUN chmod -R 777 bootstrap/cache/
+
+RUN chmod -R 777 /var/www/storage
+
+# Switch to the non-root user
+USER www
+
+# Expose port 9000 and start PHP-FPM
+EXPOSE 9000
+CMD ["php-fpm"]
 

@@ -24,11 +24,10 @@ Route::group(['namespace' => 'headmaster'], function () {
 
 //Teacher
 Route::group(['namespace' => 'teacher'], function () {
-    Route::get('/teacher', [TeacherController::class, 'index']);
+    Route::get('/teacher', [TeacherController::class, 'index'])->name('teacher.view');
     Route::post('/teacher-create-data', [TeacherController::class, 'store']);
     Route::post('teacher/{id}/edit', [TeacherController::class, 'update'])->name('teacher.edit');
     Route::delete('/teacher/{id}/hapus', [TeacherController::class, 'hapus'])->name('teacher.hapus');
-    Route::get('/teacher/search', [TeacherController::class, 'search'])->name('teacher.search');
 });
 
 
@@ -47,7 +46,6 @@ Route::group(['namespace' => 'admin'], function () {
     Route::post('/admin-create-data', [AdminController::class, 'store']);
     Route::get('admin/{id}/edit', [AdminController::class, 'update']);
     Route::delete('admin/{id}/hapus', [AdminController::class, 'hapus'])->name('admin.hapus');
-    Route::get('/admin/search', [AdminController::class, 'searchAdmin'])->name('admin.search');
 });
 
 //Generations
@@ -106,3 +104,7 @@ Route::group(['namespace' => 'presences'], function () {
     Route::post('/presences/add-presence-data/{id}', [PresenceController::class, 'store']);
 });
 
+
+Route::get('taufiq', function () {
+    return view('templates.taufiq.profile');
+});

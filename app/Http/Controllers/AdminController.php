@@ -11,7 +11,7 @@ class AdminController extends Controller
 {
     public function show()
     {
-        $admin = Admin::orderBy('id', 'desc')->paginate(5);
+        $admin = Admin::orderBy('id', 'desc')->paginate(10);
         return view('pages.aisyah.admin', ['admin' => $admin]);
     }
 
@@ -36,9 +36,17 @@ class AdminController extends Controller
             'phone.required' => 'Nomor telepon tidak boleh kosong',
             'password.required' => 'Password tidak boleh kosong',
         ]);
+
+        $email = $request->input('email') . '@gmail.com';
+
+        $admin_email = Admin::where('email', $email)->first();
+        if ($admin_email) {
+            return redirect('/admin')->withErrors('Email sudah terdaftar');
+        }
+
         $admin = Admin::create([
             'name' => $request->input('name'),
-            'email' => $request->input('email'),
+            'email' => $email,
             'username' => $request->input('username'),
             'phone' => $request->input('phone'),
             'password' => Hash::make($request->input('password')),
@@ -47,40 +55,7 @@ class AdminController extends Controller
             Session::flush();
             return redirect('admin')->with('Success', 'Data admin berhasil ditambahkan');
         } else {
-            var_dump('kososng');
-        }
-    }
-
-    public function update(Request $request, int $id)
-    {
-        Admin::findOrFail($id)->update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'username' => $request->input('username'),
-            'phone' => $request->input('phone'),
-            'password' => Hash::make($request->input('password')),
-        ]);
-        return redirect()->back()->with('Success', 'Data admin berhasil diubah');
-    }
-    
-    public function hapus(int $id)
-    {
-        $admin = Admin::find($id);
-        if (!$admin) {
-            dd('Record not found');
-        }
-        $admin->delete();
-        return redirect()->back()->with('Success', 'Data admin berhasil dihapus');
-    }
-    public function searchAdmin(Request $request)
-    {
-        $search = $request->search;
-        $admin = Admin::where('name', 'like', '%' . $search . '%')->orderBy('id', 'desc')->paginate(5);
-
-        if ($admin->count() > 0) {
-            return view('pagination.pagination_admin', compact('admin'))->render();
-        } else {
-            return redirect()->back()->withErrors('Data tidak ditemukan');
+            return redirect('admin')->withErrors('Data admin gagal ditambahkan');
         }
     }
 }
