@@ -30,7 +30,7 @@ class AdminTable extends Component
 
     public function updateAdmin()
     {
-        $email = $this->email . '@gmail.com';
+        $email = $this->email . '@sepatumas.sch.id';
         
         $admin = Admin::find($this->adminID);
         $admin->name = $this->name;

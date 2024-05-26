@@ -26,6 +26,8 @@
     <!-- custom Css-->
     <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
 
+    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
     <!-- Tuliskan ini di dalam bagian head -->
     {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     </head> --}}
@@ -47,7 +49,7 @@
                                     <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="17">
+                                    <img src="assets/images/SIMPRES.png" alt="" height="17">
                                 </span>
                             </a>
                             <a href="index.html" class="logo logo-light">
@@ -55,8 +57,7 @@
                                     <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{ asset('assets/images/logo-light.png') }}" alt=""
-                                        height="17">
+                                    <img src="assets/images/SIMPRES.png" alt="" height="17">
                                 </span>
                             </a>
                         </div>
@@ -175,15 +176,15 @@
                                         src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
                                         <span
-                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">fsdfssf</span>
+                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Session::get('name') }}</span>
                                         <span
-                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
+                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Admin</span>
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <h6 class="dropdown-header">Welcome tyjty</h6>
+                                <h6 class="dropdown-header">Welcome {{ Session::get('name') }}</h6>
                                 <a class="dropdown-item" href="/headmaster"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Profil Kepala Sekolah</span></a>
@@ -235,7 +236,7 @@
                         <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="17">
+                        <img src="assets/images/SIMPRES.png" alt="" height="17">
                     </span>
                 </a>
                 <!-- Light Logo-->
@@ -244,7 +245,7 @@
                         <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="17">
+                        <img src="assets/images/SIMPRES.png" alt="" height="17">
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
@@ -440,18 +441,19 @@
                                     <label for="start">Waktu mulai</label>
                                     <input type="time" class="form-control" name="start-time"
                                         value="{{ isset($currentData) && $currentData->start_attendance ? substr($currentData->start_attendance, 0, 5) : '' }}"
-                                        placeholder="Waktu mulai" data-provider="timepickr" data-time-hrs="true"
+                                        placeholder="Waktu mulai" data-provider="timepickr" data-time-hrs="true" required
                                         id="timepicker-24hrs">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="start">Waktu berakhir</label>
                                     <input type="time" class="form-control" name="end-time"
                                         value="{{ isset($currentData) && $currentData->end_attendance ? substr($currentData->end_attendance, 0, 5) : '' }}"
+                                        required
                                         placeholder="Waktu Berakhir" data-provider="timepickr" data-time-hrs="true"
                                         id="timepicker-24hrs">
                                 </div>
-                                <button class="btn btn-primary"><i class="fas fa-paper-plane"></i>Simpan</button>
-                                <a href="{{ url('/schedules') }}" class="btn btn-warning">Kembali</a>
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i>Simpan</button>
+                                <a href="{{ url('/schedules') }}" class="btn btn-warning">Kembali</a>   
                             </form>
                     </div>
                 </div>
@@ -728,6 +730,22 @@
                 showCloseButton: true,
             });
         </script>
+    @endif
+
+     @if ($errors->any())
+        @foreach ($errors->all() as $item)
+            <script>
+                Swal.fire({
+                    html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/tdrtiskw.json" trigger="loop" colors="primary:#f06548,secondary:#f7b84b" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Oops...!</h4><p class="text-muted mx-4 mb-0">{{ $item }}</p></div></div>',
+                    showCancelButton: !0,
+                    showConfirmButton: !1,
+                    cancelButtonClass: "btn btn-primary w-xs mb-1",
+                    cancelButtonText: "Tutup",
+                    buttonsStyling: !1,
+                    showCloseButton: !0,
+                });
+            </script>
+        @endforeach
     @endif
 
 

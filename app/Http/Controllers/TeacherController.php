@@ -34,7 +34,7 @@ class TeacherController extends Controller
             'phone' => 'required',
         ]);
 
-        $email = $request->input('email') . '@gmail.com';
+        $email = $request->input('email') . '@sepatumas.sch.id';
 
         $teacher_email = Teacher::where('email', $email)->first();
         if ($teacher_email) {

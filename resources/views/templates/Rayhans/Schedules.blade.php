@@ -43,7 +43,7 @@
                                     <img src="assets/images/logo-sm.png" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-dark.png" alt="" height="17">
+                                    <img src="assets/images/SIMPRES.png" alt="" height="17">
                                 </span>
                             </a>
                             <a href="index.html" class="logo logo-light">
@@ -51,7 +51,7 @@
                                     <img src="assets/images/logo-sm.png" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-light.png" alt="" height="17">
+                                    <img src="assets/images/SIMPRES.png" alt="" height="17">
                                 </span>
 
                             </a>
@@ -173,15 +173,15 @@
                                         src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
                                         <span
-                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">fsdfssf</span>
+                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Session::get('name') }}</span>
                                         <span
-                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
+                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Admin</span>
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <h6 class="dropdown-header">Welcome tyjty</h6>
+                                <h6 class="dropdown-header">Welcome {{ Session::get('name') }}</h6>
                                 <a class="dropdown-item" href="/headmaster"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Profil Kepala Sekolah</span></a>
@@ -233,7 +233,7 @@
                         <img src="assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-dark.png" alt="" height="17">
+                        <img src="assets/images/SIMPRES.png" alt="" height="17">
                     </span>
                 </a>
                 <!-- Light Logo-->
@@ -242,7 +242,7 @@
                         <img src="assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-light.png" alt="" height="17">
+                        <img src="assets/images/SIMPRES.png" alt="" height="17">
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
@@ -427,203 +427,209 @@
                                                         </thead>
                                                         <tbody class="list form-check-all">
                                                             @foreach ($Schedules as $schedule)
-                                                                <tr>
-                                                                    <td>{{ $loop->iteration }}</td>
-                                                                    <td>{{ $schedule->teacher->name }}</td>
-                                                                    <td>{{ $schedule->course->name }}</td>
-                                                                    <td>{{ $schedule->room->name_class }}</td>
-                                                                    @switch($schedule->day)
-                                                                        @case('Monday')
-                                                                            <td>Senin</td>
-                                                                        @break
+                                                                @if (!$schedule->trashed())
+                                                                    <tr>
+                                                                        <td>{{ $loop->iteration }}</td>
+                                                                        <td>{{ $schedule->teacher->name }}</td>
+                                                                        <td>{{ $schedule->course->name }}</td>
+                                                                        <td>{{ $schedule->room->name_class }}</td>
+                                                                        @switch($schedule->day)
+                                                                            @case('Monday')
+                                                                                <td>Senin</td>
+                                                                            @break
 
-                                                                        @case('Tuesday')
-                                                                            <td>Selasa</td>
-                                                                        @break
+                                                                            @case('Tuesday')
+                                                                                <td>Selasa</td>
+                                                                            @break
 
-                                                                        @case('Wednesday')
-                                                                            <td>Rabu</td>
-                                                                        @break
+                                                                            @case('Wednesday')
+                                                                                <td>Rabu</td>
+                                                                            @break
 
-                                                                        @case('Thursday')
-                                                                            <td>Kamis</td>
-                                                                        @break
+                                                                            @case('Thursday')
+                                                                                <td>Kamis</td>
+                                                                            @break
 
-                                                                        @case('Friday')
-                                                                            <td>Jumat</td>
-                                                                        @break
+                                                                            @case('Friday')
+                                                                                <td>Jumat</td>
+                                                                            @break
 
-                                                                        @case('Saturday')
-                                                                            <td>Sabtu</td>
-                                                                        @break
+                                                                            @case('Saturday')
+                                                                                <td>Sabtu</td>
+                                                                            @break
 
-                                                                        @default
-                                                                    @endswitch
-                                                                    <td>{{ $schedule->generation->academic_years }}</td>
-                                                                    <td>{{ $schedule->generation->semester }}</td>
-                                                                    <td>{{ $schedule->start_attendance }}</td>
-                                                                    <td>{{ $schedule->end_attendance }}</td>
-                                                                    <td>
-                                                                        <a class="btn btn-success btn-sm mx-2 edit-item-btn"
-                                                                            href="{{ url('schedules-edit-data', $schedule->id) }}">EDIT</a>
-                                                                        <button
-                                                                            class="btn btn-danger btn-sm remove-item-btn"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#deleteRecordModal-{{ $schedule->id }}">HAPUS</button>
-                                                                    </td>
-                                                                    <div id="editModals-{{ $schedule->id }}"
-                                                                        class="modal fade" tabindex="-1"
-                                                                        aria-hidden="true" style="display: none;">
-                                                                        <div
-                                                                            class="modal-dialog modal-dialog-centered">
+                                                                            @default
+                                                                        @endswitch
+                                                                        <td>{{ $schedule->generation->academic_years }}
+                                                                        </td>
+                                                                        <td>{{ $schedule->generation->semester }}</td>
+                                                                        <td>{{ $schedule->start_attendance }}</td>
+                                                                        <td>{{ $schedule->end_attendance }}</td>
+                                                                        <td>
+                                                                            <a class="btn btn-success btn-sm mx-2 edit-item-btn"
+                                                                                href="{{ url('schedules-edit-data', $schedule->id) }}">EDIT</a>
+                                                                            <button
+                                                                                class="btn btn-danger btn-sm remove-item-btn"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#deleteRecordModal-{{ $schedule->id }}">HAPUS</button>
+                                                                        </td>
+                                                                        <div id="editModals-{{ $schedule->id }}"
+                                                                            class="modal fade" tabindex="-1"
+                                                                            aria-hidden="true" style="display: none;">
                                                                             <div
-                                                                                class="modal-content border-0 overflow-hidden">
-                                                                                <div class="modal-header p-3">
-                                                                                    <h4 class="card-title mb-0">EDIT
-                                                                                        DATA
-                                                                                        JADWAL</h4>
-                                                                                    <button type="button"
-                                                                                        class="btn-close"
-                                                                                        data-bs-dismiss="modal"
-                                                                                        aria-label="Close"></button>
-                                                                                </div>
-                                                                                <div class="modal-body">
-                                                                                    <form
-                                                                                        action='{{ url('schedules/' . $schedule->id . '/edit') }}'
-                                                                                        method="POST">
-                                                                                        @csrf
-                                                                                        @method('patch')
-                                                                                        <div class="mb-3">
-                                                                                            <label for="nip"
-                                                                                                class="form-label">Nama
-                                                                                                Guru</label>
-                                                                                            <input type="text"
-                                                                                                name="guru"
-                                                                                                class="form-control"
-                                                                                                value="{{ $schedule->teachers_id }}"
-                                                                                                id="guru"
-                                                                                                placeholder="Masukkan Nama">
-                                                                                            @error('teachers_id')
-                                                                                                <span
-                                                                                                    class="text-danger">{{ $message }}</span>
-                                                                                            @enderror
-                                                                                        </div>
-                                                                                        <div class="mb-3">
-                                                                                            <label for="name"
-                                                                                                class="form-label">Mata
-                                                                                                Pelajaran</label>
-                                                                                            <input type="text"
-                                                                                                name="matapelajaran"
-                                                                                                class="form-control"
-                                                                                                value="{{ $schedule->courses_id }}"
-                                                                                                id="nama"
-                                                                                                placeholder="Masukkan Mata Pelajaran">
-                                                                                            @error('courses_id')
-                                                                                                <span
-                                                                                                    class="text-danger">{{ $message }}</span>
-                                                                                            @enderror
-                                                                                        </div>
-                                                                                        <div class="mb-3">
-                                                                                            <label for="name"
-                                                                                                class="form-label">Kelas</label>
-                                                                                            <input type="room"
-                                                                                                name="room"
-                                                                                                class="form-control"
-                                                                                                value="{{ $schedule->rooms_id }}"
-                                                                                                id="room"
-                                                                                                placeholder="Masukkan Kelas">
-                                                                                            @error('rooms_id')
-                                                                                                <span
-                                                                                                    class="text-danger">{{ $message }}</span>
-                                                                                            @enderror
-                                                                                        </div>
-                                                                                        <div class="mb-3">
-                                                                                            <label for="day"
-                                                                                                class="form-label">Hari</label>
-                                                                                            <input type="text"
-                                                                                                name="day"
-                                                                                                class="form-control"
-                                                                                                value="{{ $schedule->day }}"
-                                                                                                id="day"
-                                                                                                placeholder="Masukkan Hari">
-                                                                                            @error('day')
-                                                                                                <span
-                                                                                                    class="text-danger">{{ $message }}</span>
-                                                                                            @enderror
-                                                                                        </div>
-                                                                                        <div class="mb-3">
-                                                                                            <label for="phone"
-                                                                                                class="form-label">Tahun
-                                                                                                Akademik</label>
-                                                                                            <input type="text"
-                                                                                                name="phone"
-                                                                                                class="form-control"
-                                                                                                value="{{ $schedule->generations_id }}"
-                                                                                                id="generations_id"
-                                                                                                placeholder="Masukkan Semester">
-                                                                                            @error('generations_id')
-                                                                                                <span
-                                                                                                    class="text-danger">{{ $message }}</span>
-                                                                                            @enderror
-                                                                                        </div>
-                                                                                        <div class="text-end">
-                                                                                            <button
-                                                                                                type="submit"class="btn btn-primary">Simpan</button>
-                                                                                        </div>
-                                                                                    </form>
-                                                                                </div>
-                                                                            </div><!-- /.modal-content -->
-                                                                        </div><!-- /.modal-dialog -->
-                                                                    </div><!-- /.modal -->
-
-                                                                    <!-- Modal -->
-                                                                    <div class="modal fade zoomIn"
-                                                                        id="deleteRecordModal-{{ $schedule->id }}"
-                                                                        tabindex="-1" aria-hidden="true">
-                                                                        <div
-                                                                            class="modal-dialog modal-dialog-centered">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-header">
-                                                                                    <button type="button"
-                                                                                        class="btn-close"
-                                                                                        data-bs-dismiss="modal"
-                                                                                        aria-label="Close"
-                                                                                        id="btn-close"></button>
-                                                                                </div>
-                                                                                <div class="modal-body">
-                                                                                    <div class="mt-2 text-center">
-                                                                                        <lord-icon
-                                                                                            src="https://cdn.lordicon.com/gsqxdxog.json"
-                                                                                            trigger="loop"
-                                                                                            colors="primary:#f7b84b,secondary:#f06548"
-                                                                                            style="width:100px;height:100px"></lord-icon>
-                                                                                        <div
-                                                                                            class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                                                                                            <h4>Apakah Anda Yakin Ingin
-                                                                                                Menghapus ?</h4>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                                                                                class="modal-dialog modal-dialog-centered">
+                                                                                <div
+                                                                                    class="modal-content border-0 overflow-hidden">
+                                                                                    <div class="modal-header p-3">
+                                                                                        <h4 class="card-title mb-0">
+                                                                                            EDIT
+                                                                                            DATA
+                                                                                            JADWAL</h4>
                                                                                         <button type="button"
-                                                                                            class="btn w-sm btn-light"
-                                                                                            data-bs-dismiss="modal">TUTUP</button>
-                                                                                        <form method="POST"
-                                                                                            action="{{ route('schedules.hapus', $schedule->id) }}"
-                                                                                            class="d-inline">
+                                                                                            class="btn-close"
+                                                                                            data-bs-dismiss="modal"
+                                                                                            aria-label="Close"></button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <form
+                                                                                            action='{{ url('schedules/' . $schedule->id . '/edit') }}'
+                                                                                            method="POST">
                                                                                             @csrf
-                                                                                            @method('DELETE')
-                                                                                            <button type="submit"
-                                                                                                class="btn w-sm btn-danger ">YA,
-                                                                                                HAPUS
-                                                                                                !</button>
+                                                                                            @method('patch')
+                                                                                            <div class="mb-3">
+                                                                                                <label for="nip"
+                                                                                                    class="form-label">Nama
+                                                                                                    Guru</label>
+                                                                                                <input type="text"
+                                                                                                    name="guru"
+                                                                                                    class="form-control"
+                                                                                                    value="{{ $schedule->teachers_id }}"
+                                                                                                    id="guru"
+                                                                                                    placeholder="Masukkan Nama">
+                                                                                                @error('teachers_id')
+                                                                                                    <span
+                                                                                                        class="text-danger">{{ $message }}</span>
+                                                                                                @enderror
+                                                                                            </div>
+                                                                                            <div class="mb-3">
+                                                                                                <label for="name"
+                                                                                                    class="form-label">Mata
+                                                                                                    Pelajaran</label>
+                                                                                                <input type="text"
+                                                                                                    name="matapelajaran"
+                                                                                                    class="form-control"
+                                                                                                    value="{{ $schedule->courses_id }}"
+                                                                                                    id="nama"
+                                                                                                    placeholder="Masukkan Mata Pelajaran">
+                                                                                                @error('courses_id')
+                                                                                                    <span
+                                                                                                        class="text-danger">{{ $message }}</span>
+                                                                                                @enderror
+                                                                                            </div>
+                                                                                            <div class="mb-3">
+                                                                                                <label for="name"
+                                                                                                    class="form-label">Kelas</label>
+                                                                                                <input type="room"
+                                                                                                    name="room"
+                                                                                                    class="form-control"
+                                                                                                    value="{{ $schedule->rooms_id }}"
+                                                                                                    id="room"
+                                                                                                    placeholder="Masukkan Kelas">
+                                                                                                @error('rooms_id')
+                                                                                                    <span
+                                                                                                        class="text-danger">{{ $message }}</span>
+                                                                                                @enderror
+                                                                                            </div>
+                                                                                            <div class="mb-3">
+                                                                                                <label for="day"
+                                                                                                    class="form-label">Hari</label>
+                                                                                                <input type="text"
+                                                                                                    name="day"
+                                                                                                    class="form-control"
+                                                                                                    value="{{ $schedule->day }}"
+                                                                                                    id="day"
+                                                                                                    placeholder="Masukkan Hari">
+                                                                                                @error('day')
+                                                                                                    <span
+                                                                                                        class="text-danger">{{ $message }}</span>
+                                                                                                @enderror
+                                                                                            </div>
+                                                                                            <div class="mb-3">
+                                                                                                <label for="phone"
+                                                                                                    class="form-label">Tahun
+                                                                                                    Akademik</label>
+                                                                                                <input type="text"
+                                                                                                    name="phone"
+                                                                                                    class="form-control"
+                                                                                                    value="{{ $schedule->generations_id }}"
+                                                                                                    id="generations_id"
+                                                                                                    placeholder="Masukkan Semester">
+                                                                                                @error('generations_id')
+                                                                                                    <span
+                                                                                                        class="text-danger">{{ $message }}</span>
+                                                                                                @enderror
+                                                                                            </div>
+                                                                                            <div class="text-end">
+                                                                                                <button
+                                                                                                    type="submit"class="btn btn-primary">Simpan</button>
+                                                                                            </div>
                                                                                         </form>
+                                                                                    </div>
+                                                                                </div><!-- /.modal-content -->
+                                                                            </div><!-- /.modal-dialog -->
+                                                                        </div><!-- /.modal -->
+
+                                                                        <!-- Modal -->
+                                                                        <div class="modal fade zoomIn"
+                                                                            id="deleteRecordModal-{{ $schedule->id }}"
+                                                                            tabindex="-1" aria-hidden="true">
+                                                                            <div
+                                                                                class="modal-dialog modal-dialog-centered">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <button type="button"
+                                                                                            class="btn-close"
+                                                                                            data-bs-dismiss="modal"
+                                                                                            aria-label="Close"
+                                                                                            id="btn-close"></button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <div class="mt-2 text-center">
+                                                                                            <lord-icon
+                                                                                                src="https://cdn.lordicon.com/gsqxdxog.json"
+                                                                                                trigger="loop"
+                                                                                                colors="primary:#f7b84b,secondary:#f06548"
+                                                                                                style="width:100px;height:100px"></lord-icon>
+                                                                                            <div
+                                                                                                class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
+                                                                                                <h4>Apakah Anda Yakin
+                                                                                                    Ingin
+                                                                                                    Menghapus ?</h4>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                                                                                            <button type="button"
+                                                                                                class="btn w-sm btn-light"
+                                                                                                data-bs-dismiss="modal">TUTUP</button>
+                                                                                            <form method="POST"
+                                                                                                action="{{ route('schedules.hapus', $schedule->id) }}"
+                                                                                                class="d-inline">
+                                                                                                @csrf
+                                                                                                @method('DELETE')
+                                                                                                <button type="submit"
+                                                                                                    class="btn w-sm btn-danger ">YA,
+                                                                                                    HAPUS
+                                                                                                    !</button>
+                                                                                            </form>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <!--end modal -->
+                                                                    </tr>
+                                                                @endif
+                                                                <!--end modal -->
                                                             @endforeach
 
                                                         </tbody>

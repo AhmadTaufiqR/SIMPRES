@@ -74,7 +74,7 @@
                                     <img src="assets/images/logo-sm.png" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-dark.png" alt="" height="17">
+                                    <img src="assets/images/SIMPRES.png" alt="" height="17">
                                 </span>
                             </a>
 
@@ -83,7 +83,7 @@
                                     <img src="assets/images/logo-sm.png" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-light.png" alt="" height="17">
+                                    <img src="assets/images/SIMPRES.png" alt="" height="17">
                                 </span>
                             </a>
                         </div>
@@ -117,15 +117,15 @@
                                         src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
                                         <span
-                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">fsdfssf</span>
+                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Session::get('name') }}</span>
                                         <span
-                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
+                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Admin</span>
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <h6 class="dropdown-header">Welcome tyjty</h6>
+                                <h6 class="dropdown-header">Welcome {{ Session::get('name') }}</h6>
                                 <a class="dropdown-item" href="/headmaster"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Profil Kepala Sekolah</span></a>
@@ -177,7 +177,7 @@
                         <img src="assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-dark.png" alt="" height="17">
+                        <img src="assets/images/SIMPRES.png" alt="" height="17">
                     </span>
                 </a>
                 <!-- Light Logo-->
@@ -186,7 +186,7 @@
                         <img src="assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-light.png" alt="" height="17">
+                        <img src="assets/images/SIMPRES.png" alt="" height="17">
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
@@ -317,7 +317,7 @@
                                                                         <div class="mb-3">
                                                                             <label for="username"
                                                                                 class="form-label">NIP</label>
-                                                                            <input type="number" name="nip"
+                                                                            <input type="number" name="nip" id="nip-input"
                                                                                 class="form-control"
                                                                                 value="{{ Session::get('nip') }}" required
                                                                                 id="nip"
@@ -355,7 +355,7 @@
                                                                                     aria-label="Enter your email"
                                                                                     aria-describedby="basic-addon2">
                                                                                 <span class="input-group-text"
-                                                                                    id="basic-addon2">@gmail.com</span>
+                                                                                    id="basic-addon2">@sepatumas.sch.id</span>
                                                                             </div>
                                                                             @error('email')
                                                                                 <span
@@ -388,7 +388,7 @@
                                                                         <div class="mb-3">
                                                                             <label for="name"
                                                                                 class="form-label">No Handphone</label>
-                                                                            <input type="number" name="phone"
+                                                                            <input type="number" name="phone" id="phone-input"
                                                                                 class="form-control"
                                                                                 value="{{ Session::get('phone') }}"
                                                                                 id="phone" required
@@ -773,6 +773,8 @@
     
     <!-- App js -->
     <script src="assets/js/app.js"></script>
+    
+    <script src="assets/js/validations/validations.js"></script>
     
     @livewireScripts
 

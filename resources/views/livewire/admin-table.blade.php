@@ -101,7 +101,7 @@
                                                                             placeholder="Masukkan email admin"
                                                                             aria-describedby="basic-addon2">
                                                                         <span class="input-group-text"
-                                                                            id="basic-addon2">@gmail.com</span>
+                                                                            id="basic-addon2">@sepatumas.sch.id</span>
                                                                     </div>
                                                                     @error('email')
                                                                         <span
@@ -112,6 +112,8 @@
                                                                     <label for="phone" class="form-label">Phone
                                                                     </label>
                                                                     <input type="number" name="phone"
+                                                                        id="phone-input-{{ $admins->id }}"
+                                                                        onclick="phoneValidation({{ $admins->id }})"
                                                                         class="form-control" wire:model="phone"
                                                                         id="phone" placeholder="Masukkan nohp admin">
                                                                     @error('phone')

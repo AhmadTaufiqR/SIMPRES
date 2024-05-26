@@ -45,7 +45,7 @@
                                     <img src="assets/images/logo-sm.png" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-dark.png" alt="" height="17">
+                                    <img src="assets/images/SIMPRES.png" alt="" height="17">
                                 </span>
                             </a>
 
@@ -54,7 +54,7 @@
                                     <img src="assets/images/logo-sm.png" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-light.png" alt="" height="17">
+                                    <img src="assets/images/SIMPRES.png" alt="" height="17">
                                 </span>
                             </a>
                         </div>
@@ -175,15 +175,15 @@
                                         src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
                                         <span
-                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">adadas</span>
+                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Session::get('name') }}</span>
                                         <span
-                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
+                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Admin</span>
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <h6 class="dropdown-header">Welcome hrthrt</h6>
+                                <h6 class="dropdown-header">Welcome {{ Session::get('name') }}</h6>
                                 <a class="dropdown-item" href="/headmaster"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Profil Kepala Sekolah</span></a>
@@ -323,15 +323,21 @@
                         <div class="card" id="invoiceList">
                             <div class="card-header border-0">
                                 <div class="d-flex align-items-center">
-                                    <h5 class="card-title mb-0 flex-grow-1">Angkatan</h5>
+                                    <h5 class="card-title mb-0 flex-grow-1">Tahun Akademik</h5>
                                     <div class="flex-shrink-0">
                                         <div class="d-flex gap-2 flex-wrap">
                                             <button class="btn btn-primary" id="remove-actions"
                                                 onClick="deleteMultiple()"><i
                                                     class="ri-delete-bin-2-line"></i></button>
-                                            <button href="" class="btn btn-danger" data-bs-toggle="modal"
+                                            @if (isset($generations))
+                                                <button href="" class="btn btn-danger" data-bs-toggle="modal" disabled
                                                 data-bs-target="#signupModals"><i
                                                     class="ri-add-line align-bottom me-1"></i> Tambah Angkatan</button>
+                                            @else
+                                                <button href="" class="btn btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#signupModals"><i
+                                                    class="ri-add-line align-bottom me-1"></i> Tambah Angkatan</button>
+                                            @endif
 
                                             <!-- tambah modals -->
                                             <div id="signupModals" class="modal fade" tabindex="-1"
@@ -340,7 +346,7 @@
                                                     <div class="modal-content border-0 overflow-hidden">
                                                         <div class="modal-header">
                                                             <h2 class="modal-title">Tambah Angkatan</h2>
-                                                            <button type="button" class="btn-close"
+                                                            <button type="button" class="btn-close" disabled
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
 
@@ -396,24 +402,7 @@
                                 </div>
                             </div>
                             <div class="card-body bg-soft-light border border-dashed border-start-0 border-end-0">
-                                <form>
-                                    <div class="row g-3">
-                                        <div class="col-xxl-5 col-sm-12">
-                                            <div class="search-box">
-                                                <input type="text" name="search" id="search"
-                                                    class="form-control search bg-light border-light"
-                                                    placeholder="Cari nama..">
-                                                <i class="ri-search-line search-icon"></i>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-
-                                        <!--end col-->
-                                    </div>
-
-                                    </select>
-                                    <!--end row-->
-                                </form>
+                               
                             </div>
 
                             <div class="card-body">
@@ -446,13 +435,8 @@
                                                                         class="btn btn-sm btn-success edit-item-btn"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#editModals-{{ $generation->id }}">Edit</button>
-                                                                    <button
-                                                                        class="btn btn-danger btn-sm remove-item-btn"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#deleteRecordModal-{{ $generation->id }}">Delete</button>
                                                                 </td>
                                                             </tr>
-
                                                             <div id="editModals-{{ $generation->id }}"
                                                                 class="modal fade" tabindex="-1" aria-hidden="true">
                                                                 <div class="modal-dialog modal-dialog-centered">
@@ -525,55 +509,6 @@
                                                             </div>
 
                                                             <!-- Modal -->
-                                                            <div class="modal fade zoomIn"
-                                                                id="deleteRecordModal-{{ $generation->id }}"
-                                                                tabindex="-1" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <button type="button" class="btn-close"
-                                                                                data-bs-dismiss="modal"
-                                                                                aria-label="Close"
-                                                                                id="btn-close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <div class="mt-2 text-center">
-                                                                                <lord-icon
-                                                                                    src="https://cdn.lordicon.com/gsqxdxog.json"
-                                                                                    trigger="loop"
-                                                                                    colors="primary:#f7b84b,secondary:#f06548"
-                                                                                    style="width:100px;height:100px"></lord-icon>
-                                                                                <div
-                                                                                    class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                                                                                    <h4>Are you Sure ?</h4>
-                                                                                    <p class="text-muted mx-4 mb-0">
-                                                                                        Are you Sure You want to
-                                                                                        Remove this Record ?
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div
-                                                                            class="d-flex gap-2 justify-content-center mt-4 mb-2">
-                                                                            <button type="button"
-                                                                                class="btn w-sm btn-light"
-                                                                                data-bs-dismiss="modal">Close</button>
-
-                                                                            <form method="POST"
-                                                                                action="{{ route('generation.hapus', $generation->id) }}"
-                                                                                class="d-inline">
-                                                                                @csrf
-                                                                                @method('DELETE')
-                                                                                <button type="submit"
-                                                                                    class="btn w-sm btn-danger ">Yes,
-                                                                                    Delete
-                                                                                    It!</button>
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!--end modal -->
                                                         @endforeach
                                                     </tbody>
 
@@ -592,7 +527,7 @@
                                                 </div>
                                                 <div class="d-flex justify-content-end mt-3">
                                                     <div class="pagination-wrap hstack gap-2">
-                                                        {{ $generations->links() }}
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

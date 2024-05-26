@@ -23,6 +23,8 @@
     <!-- custom Css-->
     <link href="assets/css/custom.min.css" rel="stylesheet" type="text/css" />
 
+    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body>
@@ -47,11 +49,10 @@
                     <div class="col-lg-12">
                         <div class="text-center mt-sm-5 mb-4 text-white-50">
                             <div>
-                                <a href="index.html" class="d-inline-block auth-logo">
-                                    <img src="assets/images/logo-light.png" alt="" height="20">
-                                </a>
+
+
                             </div>
-                            <p class="mt-3 fs-15 fw-medium">Premium Admin & Dashboard Template</p>
+                            {{-- <p class="mt-3 fs-15 fw-medium">Premium Admin & Dashboard Template</p> --}}
                         </div>
                     </div>
                 </div>
@@ -63,8 +64,9 @@
 
                             <div class="card-body p-4">
                                 <div class="text-center mt-2">
-                                    <h5 class="text-primary">Welcome Back !</h5>
-                                    <p class="text-muted">Sign in to continue to Velzon.</p>
+                                    <img src="assets/images/logo_smp_1_maesan1.png" alt="" height="100">
+                                    <h5 class="text-primary">Selamat datang</h5>
+                                    <p class="text-muted">Di SMP Negeri 1 Maesan</p>
                                 </div>
                                 <div class="p-2 mt-4">
                                     <form method="post" action="{{ route('login.store') }}">
@@ -88,7 +90,7 @@
                                         @enderror
                                         <div class="mb-3">
                                             <div class="float-end">
-                                                <a href="{{ route('forgot-password') }}" class="text-muted">Forgot
+                                                <a href="{{ route('forgot-password') }}" class="text-muted">Lupa
                                                     password?</a>
                                             </div>
                                             <label class="form-label" for="password-input">Password</label>
@@ -107,36 +109,12 @@
                                             @enderror
                                         </div>
 
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="auth-remember-check">
-                                            <label class="form-check-label" for="auth-remember-check">Remember
-                                                me</label>
-                                        </div>
+
 
                                         <div class="mt-4">
-                                            <button class="btn btn-success w-100" type="submit">Sign In</button>
+                                            <button class="btn btn-success w-100 mt-5" type="submit">Log in</button>
                                         </div>
 
-                                        <div class="mt-4 text-center">
-                                            <div class="signin-other-title">
-                                                <h5 class="fs-13 mb-4 title">Sign In with</h5>
-                                            </div>
-                                            <div>
-                                                <button type="button"
-                                                    class="btn btn-primary btn-icon waves-effect waves-light"><i
-                                                        class="ri-facebook-fill fs-16"></i></button>
-                                                <button type="button"
-                                                    class="btn btn-danger btn-icon waves-effect waves-light"><i
-                                                        class="ri-google-fill fs-16"></i></button>
-                                                <button type="button"
-                                                    class="btn btn-dark btn-icon waves-effect waves-light"><i
-                                                        class="ri-github-fill fs-16"></i></button>
-                                                <button type="button"
-                                                    class="btn btn-info btn-icon waves-effect waves-light"><i
-                                                        class="ri-twitter-fill fs-16"></i></button>
-                                            </div>
-                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -144,10 +122,10 @@
                         </div>
                         <!-- end card -->
 
-                        <div class="mt-4 text-center">
+                        {{-- <div class="mt-4 text-center">
                             <p class="mb-0">Don't have an account ? <a href="{{ url('/register') }}"> Signup </a>
                             </p>
-                        </div>
+                        </div> --}}
 
                     </div>
                 </div>
@@ -167,7 +145,7 @@
                                 <script>
                                     document.write(new Date().getFullYear())
                                 </script> Velzon. Crafted with <i class="mdi mdi-heart text-danger"></i>
-                                by Themesbrand
+                                by SCODE
                             </p>
                         </div>
                     </div>
@@ -192,6 +170,41 @@
     <script src="assets/js/pages/particles.app.js"></script>
     <!-- password-addon init -->
     <script src="assets/js/pages/password-addon.init.js"></script>
+
+    <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+    <script src="assets/js/app.js"></script>
+
+    @if (Session::has('Success') || session('Success'))
+        <script>
+            Swal.fire({
+                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Yeeaayy !</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
+                showCancelButton: true,
+                showConfirmButton: false,
+                cancelButtonClass: "btn btn-primary w-xs mb-1",
+                cancelButtonText: "Kembali",
+                buttonsStyling: false,
+                showCloseButton: true,
+            });
+        </script>
+    @endif
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $item)
+            <script>
+                Swal.fire({
+                    html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/tdrtiskw.json" trigger="loop" colors="primary:#f06548,secondary:#f7b84b" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Oops...!</h4><p class="text-muted mx-4 mb-0">{{ $item }}</p></div></div>',
+                    showCancelButton: !0,
+                    showConfirmButton: !1,
+                    cancelButtonClass: "btn btn-primary w-xs mb-1",
+                    cancelButtonText: "Tutup",
+                    buttonsStyling: !1,
+                    showCloseButton: !0,
+                });
+            </script>
+        @endforeach
+    @endif
+
 </body>
 
 </html>

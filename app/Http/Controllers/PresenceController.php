@@ -10,7 +10,7 @@ class PresenceController extends Controller
 {
     public function index()
     {
-        $presences = Presence::with('schedule')->orderBy('id', 'desc')->paginate(5);
+        $presences = Presence::withTrashed()->with('schedule')->orderBy('id', 'desc')->paginate(5);
         return view('templates.amel.presences', compact('presences'));
     }
 

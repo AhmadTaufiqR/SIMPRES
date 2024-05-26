@@ -5,10 +5,10 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Kelas | SCode</title>
+    <title>Kelas | SCODE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesbrand" name="author" />
+    <meta content="scode" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
@@ -44,7 +44,7 @@
                                     <img src="assets/images/logo-sm.png" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-dark.png" alt="" height="17">
+                                    <img src="assets/images/SIMPRES.png" alt="" height="17">
                                 </span>
                             </a>
 
@@ -53,7 +53,7 @@
                                     <img src="assets/images/logo-sm.png" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-light.png" alt="" height="17">
+                                    <img src="assets/images/SIMPRES.png" alt="" height="17">
                                 </span>
                             </a>
                         </div>
@@ -174,15 +174,15 @@
                                         src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
                                         <span
-                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">adadas</span>
+                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Session::get('name') }}</span>
                                         <span
-                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
+                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Admin</span>
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <h6 class="dropdown-header">Welcome hrthrt</h6>
+                                <h6 class="dropdown-header">Welcome {{ Session::get('name') }}</h6>
                                 <a class="dropdown-item" href="/headmaster"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Profil Kepala Sekolah</span></a>
@@ -205,7 +205,7 @@
                         <img src="assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-dark.png" alt="" height="17">
+                        <img src="assets/images/SIMPRES.png" alt="" height="17">
                     </span>
                 </a>
                 <!-- Light Logo-->
@@ -214,7 +214,7 @@
                         <img src="assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-light.png" alt="" height="17">
+                        <img src="assets/images/SIMPRES.png" alt="" height="17">
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
@@ -357,9 +357,9 @@
                                                                 <div class="mb-3">
                                                                     <label for="name" class="form-label">Nama
                                                                     </label>
-                                                                    <input type="name" name="name_class"
+                                                                    <input type="text" name="name_class" maxlength="2"
                                                                         class="form-control" value=""
-                                                                        id="name"
+                                                                        id="room-input-name"
                                                                         placeholder="Masukkan nama Kelas">
                                                                     @error('name')
                                                                         <span
@@ -455,9 +455,9 @@
                                                         <div class="mb-3">
                                                             <label for="name" class="form-label">Nama Kelas
                                                             </label>
-                                                            <input type="name" name="name_class"
+                                                            <input type="name" name="name_class" maxlength="2"
                                                                 class="form-control" value="{{ $rooms->name_class }}"
-                                                                id="name" placeholder="Masukkan Nama Kelas">
+                                                                id="room" placeholder="Masukkan Nama Kelas">
                                                             @error('name')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
@@ -834,6 +834,8 @@
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>
+
+    <script src="assets/js/validations/validations.js"></script>
 
     @if (Session::has('Success'))
         <script>

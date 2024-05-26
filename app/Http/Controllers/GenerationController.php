@@ -12,7 +12,7 @@ class GenerationController extends Controller
     public function show()
     {
         // Mengambil semua data generasi dari model Generation
-        $generations = Generation::orderBy('id', 'desc')->paginate(5);
+        $generations = Generation::get();
         return view('templates.adel.generation', ['generations' => $generations]); // Menampilkan view dengan data tahun
     }
 
@@ -70,14 +70,14 @@ class GenerationController extends Controller
         return redirect()->back()->with('Success', 'Data angkatan berhasil dihapus');
     }
 
-    public function search(Request $request) {
-        $years = $request->search;
-        $generations = Generation::where('semester', 'like', "%" . $years . "%")->paginate(5);
+    // public function search(Request $request) {
+    //     $years = $request->search;
+    //     $generations = Generation::where('semester', 'like', "%" . $years . "%")->paginate(5);
 
-        if ($generations) {
-            return view('pagination.pagination_generation', compact('generations'))->render();
-        } else {
-            return redirect('/generation')->json(['status' => 'not_found']);
-        }
-    }
+    //     if ($generations) {
+    //         return view('pagination.pagination_generation', compact('generations'))->render();
+    //     } else {
+    //         return redirect('/generation')->json(['status' => 'not_found']);
+    //     }
+    // }
 }

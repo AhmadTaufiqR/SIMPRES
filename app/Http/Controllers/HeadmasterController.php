@@ -7,6 +7,7 @@ use App\Models\Headmaster;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 
 class HeadmasterController extends Controller
 {
@@ -82,6 +83,54 @@ class HeadmasterController extends Controller
         $headmaster->password = bcrypt($request->input('password'));
         $headmaster->save();
         return redirect('headmaster')->with('Success', 'Password Berhasil Diubah');
+    }
+
+    
+    public function postImages(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $headmaster = Headmaster::where('id', $request->input('id'))->firstOrFail();
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->storePublicly('images', 'public');
+            $headmaster->images = $imagePath;
+        }
+
+        $headmaster->save();
+
+        return redirect('headmaster')->with('Success', 'Foto Berhasil Diubah');
+    
+    }
+    public function editImages(Request $request, $id)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        
+        $headmaster = Headmaster::find($id);
+
+        if (!$headmaster) {
+            return redirect('headmaster')->with('Error', 'Headmaster not found');
+        }
+
+        if ($request->hasFile('image')) {
+            // Hapus gambar lama jika ada
+            if (Storage::exists($headmaster->images)) {
+                Storage::delete([$headmaster->images]);
+            }
+
+            $imagePath = $request->file('image')->storePublicly('images', 'public');
+            $headmaster->images = $imagePath;
+        }
+
+        $headmaster->save();
+
+        return redirect('headmaster')->with('Success', 'Foto Berhasil Diubah');
+
     }
 
 }

@@ -235,7 +235,7 @@
                         <img src="assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-dark.png" alt="" height="17">
+                        <img src="assets/images/SIMPRES.png" alt="" height="17">
                     </span>
                 </a>
                 <!-- Light Logo-->
@@ -244,7 +244,7 @@
                         <img src="assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-light.png" alt="" height="17">
+                        <img src="assets/images/SIMPRES.png" alt="" height="17">
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
@@ -399,7 +399,7 @@
                                                                             aria-label="Enter your email"
                                                                             aria-describedby="basic-addon2">
                                                                         <span class="input-group-text"
-                                                                            id="basic-addon2">@gmail.com</span>
+                                                                            id="basic-addon2">@sepatumas.sch.id</span>
                                                                     </div>
                                                                     @error('email')
                                                                         <span
@@ -409,7 +409,7 @@
                                                                 <div class="mb-3">
                                                                     <label for="phone" class="form-label">Phone
                                                                     </label>
-                                                                    <input type="number" name="phone"
+                                                                    <input type="number" name="phone" id="phone-input"
                                                                         class="form-control"
                                                                         value="{{ Session::get('phone') }}"
                                                                         id="phone" placeholder="Masukkan nohp admin">
@@ -798,6 +798,8 @@
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>
+
+    <script src="assets/js/validations/validations.js"></script>
 
     @if (Session::has('Success'))
         <script>

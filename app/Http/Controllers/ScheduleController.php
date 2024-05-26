@@ -15,12 +15,13 @@ class ScheduleController extends Controller
 
     public function index()
     {
-        $schedule = Schedule::
-        whereHas('room')
-        ->whereHas('course')
-        ->whereHas('generation')
-        ->whereHas('teacher')
-        ->orderBy('id', 'desc')->paginate(5);
+        $schedule = Schedule::withTrashed()
+            ->whereHas('room')
+            ->whereHas('course')
+            ->whereHas('generation')
+            ->whereHas('teacher')
+            ->orderBy('id', 'desc')
+            ->paginate(5);
 
         return view('templates.Rayhans.Schedules', ['Schedules' => $schedule]);
     }
@@ -51,7 +52,6 @@ class ScheduleController extends Controller
 
     public function store(Request $request)
     {
-        try {
             // Validasi input
             $validatedData = $request->validate([
                 'teacher' => 'required',
@@ -61,10 +61,18 @@ class ScheduleController extends Controller
                 'day' => 'required',
                 'start-time' => 'required',
                 'end-time' => 'required',
+            ], [
+                'teacher.required' => 'Guru harus diisi',
+                'course.required' => 'Mata pelajaran harus diisi',
+                'room.required' => 'Ruangan harus diisi',
+                'generation.required' => 'Angkatan harus diisi',
+                'day.required' => 'Hari harus diisi',
+                'start-time.required' => 'Jam mulai harus diisi',
+                'end-time.required' => 'Jam selesai harus diisi',
             ]);
 
             // Simpan data
-            Schedule::create([
+           $schedule = Schedule::create([
                 "teachers_id" => $validatedData["teacher"],
                 "courses_id" => $validatedData["course"],
                 "rooms_id" => $validatedData["room"],
@@ -74,12 +82,12 @@ class ScheduleController extends Controller
                 "end_attendance" => $validatedData["end-time"],
             ]);
 
-            return redirect("schedules")->with('success', 'Jadwal berhasil disimpan.');
+            if ($schedule) {
+                return redirect("schedules")->with('success', 'Jadwal berhasil disimpan.');
+            } else {
+                return redirect("schedules-create-data")->withErrors('Jadwal berhasil disimpan.');
+            }
 
-        } catch (\Throwable $th) {
-            //jika tidak berhasil maka akan muncul error ini
-            return redirect("schedules")->withErrors('Jadwal gagal disimpan.');
-        }
     }
 
     public function update(Request $request, Schedule $schedule)
@@ -93,6 +101,14 @@ class ScheduleController extends Controller
             'day' => 'required',
             'start-time' => 'required',
             'end-time' => 'required',
+        ], [
+            'teacher.required' => 'Guru harus diisi',
+            'course.required' => 'Mata pelajaran harus diisi',
+            'room.required' => 'Ruangan harus diisi',
+            'generation.required' => 'Angkatan harus diisi',
+            'day.required' => 'Hari harus diisi',
+            'start-time.required' => 'Jam mulai harus diisi',
+            'end-time.required' => 'Jam selesai harus diisi',
         ]);
 
         $schedule->update([
@@ -106,9 +122,9 @@ class ScheduleController extends Controller
         ]);
 
         if ($schedule) {
-            return redirect('/schedules')->with('Success', 'Yeeayy!! Data Jadwal berhasil diubah');
+            return redirect("schedules")->with('success', 'Jadwal berhasil disimpan.');
         } else {
-            return redirect('/schedules')->withErrors('Data Jadwal gagal diubah');
+            return redirect()->back()->withErrors('Jadwal berhasil disimpan.');
         }
     }
 

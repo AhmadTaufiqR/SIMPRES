@@ -88,7 +88,8 @@
                                                                         <div class="mb-3">
                                                                             <label for="nip"
                                                                                 class="form-label">NIP</label>
-                                                                            <input type="text" name="nip"
+                                                                            <input type="text" name="nip" id="nip-input-{{ $teachers->id }}"
+                                                                                onclick="nipValidation({{ $teachers->id }})"
                                                                                 class="form-control" autocomplete="off"
                                                                                 wire:model="nip"
                                                                                 placeholder="Masukkan NIP guru">
@@ -122,7 +123,7 @@
                                                                                     placeholder="Masukkan email guru"
                                                                                     aria-describedby="basic-addon2">
                                                                                 <span class="input-group-text"
-                                                                                    id="basic-addon2">@gmail.com</span>
+                                                                                    id="basic-addon2">@sepatumas.sch.id</span>
                                                                             </div>
                                                                             @error('email')
                                                                                 <span
@@ -138,8 +139,9 @@
                                                                             <label for="name"
                                                                                 class="form-label">Jenis
                                                                                 kelamin</label>
-                                                                            <select class="form-control" name="gender" wire:model="gender"
-                                                                                data-choices data-choices-search
+                                                                            <select class="form-control" name="gender"
+                                                                                wire:model="gender" data-choices
+                                                                                data-choices-search
                                                                                 data-choices-removeItem>
                                                                                 <option
                                                                                     {{ $gender == '' ? 'selected' : '' }}>
@@ -164,6 +166,8 @@
                                                                                 class="form-label">No
                                                                                 Handphone</label>
                                                                             <input type="text" name="phone"
+                                                                                id="phone-input-{{ $teachers->id }}"
+                                                                                onclick="phoneValidation({{ $teachers->id }})"
                                                                                 class="form-control"
                                                                                 wire:model="phone"
                                                                                 placeholder="Masukkan no hp guru">
@@ -201,12 +205,23 @@
                                                                         </div>
 
 
-                                                                        <div wire:ignore.self id="password-contain-{{ $teachers->id }}" class="p-3 bg-light mb-2 rounded">
-                                                                            <h5 class="fs-13">Password must contain:</h5>
-                                                                            <p id="pass-length-{{ $teachers->id }}" class="invalid fs-12 mb-2">Minimum <b>characters</b></p>
-                                                                            <p id="pass-lower-{{ $teachers->id }}" class="invalid fs-12 mb-2">At least <b>lowercase</b> letter (a-z)</p>
-                                                                            <p id="pass-upper-{{ $teachers->id }}" class="invalid fs-12 mb-2 ">At least <b>uppercase</b> letter (A-Z)</p>
-                                                                            <p id="pass-number-{{ $teachers->id }}" class="invalid fs-12 mb-0 ">At least <b>number</b> (0-9)</p>
+                                                                        <div wire:ignore.self
+                                                                            id="password-contain-{{ $teachers->id }}"
+                                                                            class="p-3 bg-light mb-2 rounded">
+                                                                            <h5 class="fs-13">Password must contain:
+                                                                            </h5>
+                                                                            <p id="pass-length-{{ $teachers->id }}"
+                                                                                class="invalid fs-12 mb-2">Minimum
+                                                                                <b>characters</b></p>
+                                                                            <p id="pass-lower-{{ $teachers->id }}"
+                                                                                class="invalid fs-12 mb-2">At least
+                                                                                <b>lowercase</b> letter (a-z)</p>
+                                                                            <p id="pass-upper-{{ $teachers->id }}"
+                                                                                class="invalid fs-12 mb-2 ">At least
+                                                                                <b>uppercase</b> letter (A-Z)</p>
+                                                                            <p id="pass-number-{{ $teachers->id }}"
+                                                                                class="invalid fs-12 mb-0 ">At least
+                                                                                <b>number</b> (0-9)</p>
                                                                         </div>
                                                                     </div><!--end col-->
                                                                     <div class="col-lg-12">

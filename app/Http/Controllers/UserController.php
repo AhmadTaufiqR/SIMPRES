@@ -6,6 +6,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -82,23 +83,29 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-            $request->validate([
-                'username' => ['required'],
-                'password' => ['required'],
-            ], [
-                'username.required' => 'username tidak boleh kosong',
-                'password.required' => 'Password tidak boleh kosong',
-            ]);
+        $request->validate([
+            'username' => ['required'],
+            'password' => ['required'],
+        ], [
+            'username.required' => 'username tidak boleh kosong',
+            'password.required' => 'Password tidak boleh kosong',
+        ]);
 
-            $users = Admin::where('username', $request->username)->first();
+        $credentials = [
+            'username' => $request->username,
+            'password' => $request->password,
+        ];
 
-            if ($users && Hash::check($request->password, $users->password)) {
-                $request->session()->regenerate();
-                return redirect('headmaster')->with('Success', 'Login Success');
-            }
+        $users = Admin::where('username', $request->username)->first();
 
-            return back()->with('loginError', 'Login Failed');
-        
+        if ($users && Hash::check($request->password, $users->password)) {
+            Session::put('name', $users->name);
+            Auth::guard('admin')->attempt($credentials);
+            $request->session()->regenerate();
+            return redirect('headmaster')->with('Success', 'Login Success');
+        }
+
+        return back()->with('loginError', 'Login Failed');
     }
 
 
@@ -109,15 +116,26 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'username' => 'required|string|username:dns|unique:users',
+            'username' => 'required|string|unique:admins,username',
+            'email' => 'required|string|unique:admins,email',
             'password' => 'required|string|min:8'
         ]);
-        Admin::create([
+
+        $email = $request->email . '@sepatumas.sch.id';
+
+        $admin = Admin::create([
             'name' => $request->name,
             'username' => $request->username,
+            'email' => $email,
+            'phone' => $request->phone,
             'password' => bcrypt($request->password)
         ]);
-        return to_route('login');
+
+        if ($admin) {
+            return redirect('/')->with('Success', 'User berhasil ditambahkan');
+        } else {
+            return redirect()->back()->with('error', 'Gagal menambahkan user');
+        }
     }
 
 
@@ -144,19 +162,9 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function logout()
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        Auth::guard('admin')->logout();
+        return redirect('/');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Schedule;
 use App\Models\Teacher;
 use Livewire\Component;
 
@@ -36,7 +37,7 @@ class TeacherTable extends Component
 
     public function updateTeacher()
     {
-        $email = $this->email . '@gmail.com';
+        $email = $this->email . '@sepatumas.sch.id';
 
         $teacher = Teacher::find($this->teacherID);
         $teacher->nip = $this->nip;
@@ -57,6 +58,8 @@ class TeacherTable extends Component
     {
         // Perform deletion logic
         Teacher::find($teacherId)->delete();
+        Schedule::where('teachers_id', $teacherId)->delete();
+        
 
         // Optionally add a session flash message or any other post-deletion logic
         session()->flash('Success', 'Guru berhasil dihapus');

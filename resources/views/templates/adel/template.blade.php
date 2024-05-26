@@ -65,54 +65,7 @@
                             </span>
                         </button>
 
-                        <!-- App Search-->
-                        <form class="app-search d-none d-md-block">
-                            
-                            <div class="dropdown-menu dropdown-menu-lg" id="search-dropdown">
-                                <div data-simplebar style="max-height: 320px;">
-                                    <!-- item-->
-                                    <div class="dropdown-header">
-                                        <h6 class="text-overflow text-muted mb-0 text-uppercase">Recent Searches</h6>
-                                    </div>
 
-                                    <div class="dropdown-item bg-transparent text-wrap">
-                                        <a href="index.html" class="btn btn-soft-secondary btn-sm btn-rounded">how to
-                                            setup <i class="mdi mdi-magnify ms-1"></i></a>
-                                        <a href="index.html" class="btn btn-soft-secondary btn-sm btn-rounded">buttons
-                                            <i class="mdi mdi-magnify ms-1"></i></a>
-                                    </div>
-                                    <!-- item-->
-                                    <div class="dropdown-header mt-2">
-                                        <h6 class="text-overflow text-muted mb-1 text-uppercase">Pages</h6>
-                                    </div>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="ri-bubble-chart-line align-middle fs-18 text-muted me-2"></i>
-                                        <span>Analytics Dashboard</span>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="ri-lifebuoy-line align-middle fs-18 text-muted me-2"></i>
-                                        <span>Help Center</span>
-                                    </a>
-
-                                    <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="ri-user-settings-line align-middle fs-18 text-muted me-2"></i>
-                                        <span>My account settings</span>
-                                    </a>
-
-                                    <!-- item-->
-                                    <div class="dropdown-header mt-2">
-                                        <h6 class="text-overflow text-muted mb-2 text-uppercase">Members</h6>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </form>
                     </div>
 
                     <div class="d-flex align-items-center">
@@ -131,29 +84,16 @@
                                     <img class="rounded-circle header-profile-user"
                                         src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
-                                        @if (isset($headmaster) && $headmaster->name != '')
                                             <span
-                                                class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ $headmaster->name }}</span>
+                                                class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Session::get('name') }}</span>
                                             <span
-                                                class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Kepala
-                                                Sekolahr</span>
-                                        @else
-                                            <span
-                                                class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">-</span>
-                                            <span
-                                                class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Kepala
-                                                Sekolah</span>
-                                        @endif
+                                                class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Admin</span>
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                @if (isset($headmaster) && $headmaster->name != '')
-                                    <h6 class="dropdown-header">Welcome {{ $headmaster->name }}</h6>
-                                @else
-                                    <h6 class="dropdown-header">-</h6>
-                                @endif
+                                    <h6 class="dropdown-header">Welcome {{ Session::get('name') }}</h6>
                                 <a class="dropdown-item" href="/headmaster"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Profil Kepala Sekolah</span></a>
@@ -177,7 +117,7 @@
                         <img src="assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-dark.png" alt="" height="17">
+                        <img src="assets/images/SIMPRES.png" alt="" height="17">
                     </span>
                 </a>
                 <!-- Light Logo-->
@@ -186,7 +126,7 @@
                         <img src="assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-light.png" alt="" height="17">
+                        <img src="assets/images/SIMPRES.png" alt="" height="17">
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
@@ -298,19 +238,23 @@
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
-                                            <img src="assets/images/users/avatar-1.jpg"
+                                            <img src="{{ url('storage/'.$headmaster->images) }}"
                                                 class="rounded-circle avatar-xl img-thumbnail user-profile-image"
                                                 alt="user-profile-image">
                                             <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
-                                                <!-- TODO: add image to database and create field photo in admin migration -->
-                                                <input id="profile-img-file-input" type="file"
-                                                    class="profile-img-file-input">
-                                                <label for="profile-img-file-input"
-                                                    class="profile-photo-edit avatar-xs">
-                                                    <span class="avatar-title rounded-circle bg-light text-body">
-                                                        <i class="ri-camera-fill"></i>
-                                                    </span>
-                                                </label>
+                                                <form id="image-upload-form"
+                                                    action="{{ isset($headmaster) && $headmaster->images ? '/headmaster/edit/image/' . $headmaster->id : 'headmaster/post/image' }}"
+                                                    enctype="multipart/form-data" method="POST">
+                                                    @csrf
+                                                    <input id="profile-img-file-input" type="file" name="image" onchange="uploadImage()"
+                                                        class="profile-img-file-input">
+                                                    <label for="profile-img-file-input"
+                                                        class="profile-photo-edit avatar-xs">
+                                                        <span class="avatar-title rounded-circle bg-light text-body">
+                                                            <i class="ri-camera-fill"></i>
+                                                        </span>
+                                                    </label>
+                                                </form>
                                             </div>
                                         </div>
                                         @if (isset($headmaster) && $headmaster->name != '')
@@ -319,31 +263,6 @@
                                             <h5 class="fs-16 mb-1">-</h5>
                                         @endif
                                         <p class="text-muted mb-0">Kepala Sekolah</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end card-->
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center mb-4">
-                                    </div>
-                                    <div class="mb-3 d-flex">
-                                        <div class="avatar-xs d-block flex-shrink-0 me-3">
-                                            <span class="avatar-title rounded-circle fs-16 bg-dark text-light">
-                                                <i class="ri-instagram-fill"></i>
-                                            </span>
-                                        </div>
-                                        <input type="email" class="form-control" id="gitUsername"
-                                            placeholder="Username" value="@daveadame">
-                                    </div>
-                                    <div class="mb-3 d-flex">
-                                        <div class="avatar-xs d-block flex-shrink-0 me-3">
-                                            <span class="avatar-title rounded-circle fs-16 bg-primary">
-                                                <i class="ri-global-fill"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" class="form-control" id="websiteInput"
-                                            placeholder="www.example.com" value="www.velzon.com">
                                     </div>
                                 </div>
                             </div>
@@ -387,9 +306,9 @@
                                                     @csrf
                                                     <div class="row">
                                                         <div class="col-lg-6">
-                                                            <input type="text" class="form-control"
-                                                                    name="id" placeholder="Enter your id"
-                                                                    value="{{ $headmaster->id }}" hidden>
+                                                            <input type="text" class="form-control" name="id"
+                                                                placeholder="Enter your id"
+                                                                value="{{ $headmaster->id }}" hidden>
                                                             <div class="mb-3">
                                                                 <label>Nip</label>
                                                                 <input type="text" class="form-control"
@@ -444,7 +363,7 @@
                                                             <div class="mb-3">
                                                                 <label>Phone</label>
                                                                 <input type="text" class="form-control"
-                                                                    name="phone"
+                                                                    name="phone" id="phone-input"
                                                                     placeholder="Enter your phone number"
                                                                     value="{{ $headmaster->phone }}">
                                                                 @error('phone')
@@ -900,6 +819,14 @@
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>
+
+    <script src="assets/js/validations/validations.js"></script>
+
+    <script>
+        function uploadImage() {
+            document.getElementById('image-upload-form').submit();
+        }
+    </script>
 </body>
 
 </html>

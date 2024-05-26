@@ -37,7 +37,7 @@ class AdminController extends Controller
             'password.required' => 'Password tidak boleh kosong',
         ]);
 
-        $email = $request->input('email') . '@gmail.com';
+        $email = $request->input('email') . '@sepatumas.sch.id';
 
         $admin_email = Admin::where('email', $email)->first();
         if ($admin_email) {
