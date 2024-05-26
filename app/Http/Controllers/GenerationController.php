@@ -28,7 +28,7 @@ class GenerationController extends Controller
         if ($generation) {
             return redirect('generation')->with('Success', 'Data Tahun Angkatan berhasil ditambahkan');
         } else {
-            return redirect()->back()->with('error', 'Gagal menambahkan data Tahun Angkatan');
+            return redirect()->back()->withErrors('Gagal menambahkan data Tahun Angkatan');
         }
     }
 
@@ -70,14 +70,4 @@ class GenerationController extends Controller
         return redirect()->back()->with('Success', 'Data angkatan berhasil dihapus');
     }
 
-    // public function search(Request $request) {
-    //     $years = $request->search;
-    //     $generations = Generation::where('semester', 'like', "%" . $years . "%")->paginate(5);
-
-    //     if ($generations) {
-    //         return view('pagination.pagination_generation', compact('generations'))->render();
-    //     } else {
-    //         return redirect('/generation')->json(['status' => 'not_found']);
-    //     }
-    // }
 }

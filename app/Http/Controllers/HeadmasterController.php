@@ -18,10 +18,8 @@ class HeadmasterController extends Controller
     {
         $headmaster = Headmaster::orderBy('created_at', 'desc')->first();
 
-        if ($headmaster) {
+        
             return view('templates.adel.headmasters', ['headmaster' => $headmaster]);
-        }
-        return view('templates.adel.headmasters');
     }
 
     public function setting()
@@ -86,24 +84,24 @@ class HeadmasterController extends Controller
     }
 
     
-    public function postImages(Request $request)
-    {
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+    // public function postImages(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //     ]);
 
-        $headmaster = Headmaster::where('id', $request->input('id'))->firstOrFail();
+    //     $headmaster = Headmaster::where('id', $id)->firstOrFail();
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->storePublicly('images', 'public');
-            $headmaster->images = $imagePath;
-        }
+    //     if ($request->hasFile('image')) {
+    //         $imagePath = $request->file('image')->storePublicly('images', 'public');
+    //         $headmaster->images = $imagePath;
+    //     }
 
-        $headmaster->save();
+    //     $headmaster->save();
 
-        return redirect('headmaster')->with('Success', 'Foto Berhasil Diubah');
+    //     return redirect('headmaster')->with('Success', 'Foto Berhasil Diubah');
     
-    }
+    // }
     public function editImages(Request $request, $id)
     {
         $request->validate([
@@ -114,13 +112,14 @@ class HeadmasterController extends Controller
         $headmaster = Headmaster::find($id);
 
         if (!$headmaster) {
-            return redirect('headmaster')->with('Error', 'Headmaster not found');
+            return redirect('headmaster-create')->withErrors('Harap isi dulu data kepala sekolah!');
         }
 
         if ($request->hasFile('image')) {
-            // Hapus gambar lama jika ada
-            if (Storage::exists($headmaster->images)) {
-                Storage::delete([$headmaster->images]);
+            if ($headmaster->images != null) {
+                if (Storage::exists($headmaster->images)) {
+                    Storage::delete([$headmaster->images]);
+                }
             }
 
             $imagePath = $request->file('image')->storePublicly('images', 'public');

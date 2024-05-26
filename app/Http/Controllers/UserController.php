@@ -118,6 +118,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'username' => 'required|string|unique:admins,username',
             'email' => 'required|string|unique:admins,email',
+            'phone' => 'required',
             'password' => 'required|string|min:8'
         ]);
 
@@ -164,6 +165,7 @@ class UserController extends Controller
 
     public function logout()
     {
+        Session::flush();
         Auth::guard('admin')->logout();
         return redirect('/');
     }

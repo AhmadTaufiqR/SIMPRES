@@ -70,7 +70,7 @@
 
                         <!-- App Search-->
                         <form class="app-search d-none d-md-block">
-                            
+
                             <div class="dropdown-menu dropdown-menu-lg" id="search-dropdown">
                                 <div data-simplebar style="max-height: 320px;">
                                     <!-- item-->
@@ -901,14 +901,14 @@
     <!-- App js -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
 
-    @if (Session::has('Success'))
+    @if (Session::has('Success') || session('Success'))
         <script>
             Swal.fire({
-                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Well done !</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
+                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Yeeaayy !</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
                 showCancelButton: true,
                 showConfirmButton: false,
                 cancelButtonClass: "btn btn-primary w-xs mb-1",
-                cancelButtonText: "Back",
+                cancelButtonText: "Kembali",
                 buttonsStyling: false,
                 showCloseButton: true,
             });

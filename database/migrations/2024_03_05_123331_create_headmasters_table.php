@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone');
             $table->string('address');
-            $table->string('image');
+            $table->string('images')->nullable(true);
             $table->softDeletes();
             $table->timestamps();
         });

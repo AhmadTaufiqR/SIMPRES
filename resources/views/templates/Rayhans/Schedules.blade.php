@@ -987,18 +987,34 @@
         })
     </script>
 
-    @if (Session::has('Success'))
+    @if (Session::has('Success') || session('Success'))
         <script>
             Swal.fire({
-                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Well done !</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
+                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Yeeaayy !</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
                 showCancelButton: true,
                 showConfirmButton: false,
                 cancelButtonClass: "btn btn-primary w-xs mb-1",
-                cancelButtonText: "Back",
+                cancelButtonText: "Kembali",
                 buttonsStyling: false,
                 showCloseButton: true,
             });
         </script>
+    @endif
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $item)
+            <script>
+                Swal.fire({
+                    html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/tdrtiskw.json" trigger="loop" colors="primary:#f06548,secondary:#f7b84b" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Oops...!</h4><p class="text-muted mx-4 mb-0">{{ $item }}</p></div></div>',
+                    showCancelButton: !0,
+                    showConfirmButton: !1,
+                    cancelButtonClass: "btn btn-primary w-xs mb-1",
+                    cancelButtonText: "Tutup",
+                    buttonsStyling: !1,
+                    showCloseButton: !0,
+                });
+            </script>
+        @endforeach
     @endif
 
 

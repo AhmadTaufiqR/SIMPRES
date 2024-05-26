@@ -16,6 +16,8 @@
     <script src="assets/js/layout.js"></script>
     <!-- Bootstrap Css -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
@@ -84,16 +86,16 @@
                                     <img class="rounded-circle header-profile-user"
                                         src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
-                                            <span
-                                                class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Session::get('name') }}</span>
-                                            <span
-                                                class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Admin</span>
+                                        <span
+                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Session::get('name') }}</span>
+                                        <span
+                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Admin</span>
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                    <h6 class="dropdown-header">Welcome {{ Session::get('name') }}</h6>
+                                <h6 class="dropdown-header">Welcome {{ Session::get('name') }}</h6>
                                 <a class="dropdown-item" href="/headmaster"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Profil Kepala Sekolah</span></a>
@@ -238,16 +240,21 @@
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
-                                            <img src="{{ url('storage/'.$headmaster->images) }}"
-                                                class="rounded-circle avatar-xl img-thumbnail user-profile-image"
-                                                alt="user-profile-image">
+                                            @if (isset($headmaster) && $headmaster->images != '')
+                                                <img src="{{ url('storage/' . $headmaster->images) }}" alt="user-img"
+                                                    class="rounded-circle avatar-xl img-thumbnail user-profile-image" />
+                                            @else
+                                                <img src="assets/images/users/avatar-5.jpg" alt="user-img"
+                                                    class="rounded-circle avatar-xl img-thumbnail user-profile-image" />
+                                            @endif
                                             <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
+                                                
                                                 <form id="image-upload-form"
-                                                    action="{{ isset($headmaster) && $headmaster->images ? '/headmaster/edit/image/' . $headmaster->id : 'headmaster/post/image' }}"
+                                                    action="{{ '/headmaster/edit/image/' . ($headmaster->id ?? 'default') }}"
                                                     enctype="multipart/form-data" method="POST">
                                                     @csrf
-                                                    <input id="profile-img-file-input" type="file" name="image" onchange="uploadImage()"
-                                                        class="profile-img-file-input">
+                                                    <input id="profile-img-file-input" type="file" name="image"
+                                                        onchange="uploadImage()" class="profile-img-file-input">
                                                     <label for="profile-img-file-input"
                                                         class="profile-photo-edit avatar-xs">
                                                         <span class="avatar-title rounded-circle bg-light text-body">
@@ -311,7 +318,7 @@
                                                                 value="{{ $headmaster->id }}" hidden>
                                                             <div class="mb-3">
                                                                 <label>Nip</label>
-                                                                <input type="text" class="form-control"
+                                                                <input type="number" id="nip-input" class="form-control"
                                                                     name="nip" placeholder="Enter your nip"
                                                                     value="{{ $headmaster->nip }}">
                                                                 @error('nip')
@@ -362,7 +369,7 @@
                                                         <div class="col-lg-6">
                                                             <div class="mb-3">
                                                                 <label>Phone</label>
-                                                                <input type="text" class="form-control"
+                                                                <input type="number" maxlength="13" class="form-control"
                                                                     name="phone" id="phone-input"
                                                                     placeholder="Enter your phone number"
                                                                     value="{{ $headmaster->phone }}">
@@ -455,7 +462,7 @@
                                                         <div class="col-lg-6">
                                                             <div class="mb-3">
                                                                 <label>Nip</label>
-                                                                <input type="text" class="form-control"
+                                                                <input type="number" id="nip-input" class="form-control"
                                                                     name="nip" placeholder="Enter your nip">
                                                                 @error('nip')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -499,7 +506,7 @@
                                                         <div class="col-lg-6">
                                                             <div class="mb-3">
                                                                 <label>Phone</label>
-                                                                <input type="text" class="form-control"
+                                                                <input type="number" id="phone-input" class="form-control"
                                                                     name="phone"
                                                                     placeholder="Enter your phone number">
                                                                 @error('phone')
@@ -817,6 +824,8 @@
     <!-- profile-setting init js -->
     <script src="assets/js/pages/profile-setting.init.js"></script>
 
+    <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
     <!-- App js -->
     <script src="assets/js/app.js"></script>
 
@@ -827,6 +836,22 @@
             document.getElementById('image-upload-form').submit();
         }
     </script>
+
+        @if ($errors->any())
+        @foreach ($errors->all() as $item)
+            <script>
+                Swal.fire({
+                    html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/tdrtiskw.json" trigger="loop" colors="primary:#f06548,secondary:#f7b84b" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Oops...!</h4><p class="text-muted mx-4 mb-0">{{ $item }}</p></div></div>',
+                    showCancelButton: !0,
+                    showConfirmButton: !1,
+                    cancelButtonClass: "btn btn-primary w-xs mb-1",
+                    cancelButtonText: "Tutup",
+                    buttonsStyling: !1,
+                    showCloseButton: !0,
+                });
+            </script>
+        @endforeach
+    @endif
 </body>
 
 </html>

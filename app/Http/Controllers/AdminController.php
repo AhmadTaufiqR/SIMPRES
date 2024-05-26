@@ -17,11 +17,7 @@ class AdminController extends Controller
 
     public function store(Request $request)
     {
-        Session::flash('name', $request->name);
-        Session::flash('email', $request->email);
-        Session::flash('username', $request->username);
-        Session::flash('phone', $request->phone);
-
+        
         
         $request->validate([
             'name' => 'required',
@@ -44,6 +40,11 @@ class AdminController extends Controller
             return redirect('/admin')->withErrors('Email sudah terdaftar');
         }
 
+        $admin_username = Admin::where('username', $request->input('username'))->first();
+        if ($admin_username) {
+            return redirect('/admin')->withErrors('Username sudah terdaftar');
+        }
+
         $admin = Admin::create([
             'name' => $request->input('name'),
             'email' => $email,
@@ -52,7 +53,6 @@ class AdminController extends Controller
             'password' => Hash::make($request->input('password')),
         ]);
         if ($admin) {
-            Session::flush();
             return redirect('admin')->with('Success', 'Data admin berhasil ditambahkan');
         } else {
             return redirect('admin')->withErrors('Data admin gagal ditambahkan');

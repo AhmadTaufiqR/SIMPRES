@@ -16,6 +16,8 @@
     <script src="assets/js/layout.js"></script>
     <!-- Bootstrap Css -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
@@ -48,7 +50,7 @@
                         <div class="text-center mt-sm-5 mb-4 text-white-50">
                             <div>
                                 <a href="index.html" class="d-inline-block auth-logo">
-                                    <img src="assets/images/logo-light.png" alt="" height="20">
+                                    <img src="assets/images/SIMPRES.png" alt="" height="20">
                                 </a>
                             </div>
                         </div>
@@ -63,7 +65,6 @@
                             <div class="card-body p-4">
                                 <div class="text-center mt-2">
                                     <h5 class="text-primary">Create New Account</h5>
-                                    <p class="text-muted">Get your free velzon account now</p>
                                 </div>
                                 <div class="p-2 mt-4">
                                     <form method="post" class="needs-validation" novalidate
@@ -93,6 +94,21 @@
                                                 id="username" placeholder="Enter username" required>
                                             <div class="invalid-feedback">
                                                 Please enter username
+                                            </div>
+                                            @error('name')
+                                                <small class="btn btn-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="no_hp" class="form-label">No HP <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="number" id="phone-input" name="phone"
+                                                class="form-control @error('name') is invalid
+                                            @enderror form-control"
+                                                placeholder="Enter No HP" required>
+                                            <div class="invalid-feedback">
+                                                Please enter No HP
                                             </div>
                                             @error('name')
                                                 <small class="btn btn-danger">{{ $message }}</small>
@@ -214,6 +230,8 @@
     <script src="assets/js/pages/form-validation.init.js"></script>
     <!-- password create init -->
     <script src="assets/js/pages/passowrd-create.init.js"></script>
+
+    <script src="assets/js/validations/validations.js"></script>
 
     <script src="assets/js/app.js"></script>
 

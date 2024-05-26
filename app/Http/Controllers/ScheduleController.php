@@ -83,7 +83,7 @@ class ScheduleController extends Controller
             ]);
 
             if ($schedule) {
-                return redirect("schedules")->with('success', 'Jadwal berhasil disimpan.');
+                return redirect("schedules")->with('Success', 'Jadwal berhasil disimpan.');
             } else {
                 return redirect("schedules-create-data")->withErrors('Jadwal berhasil disimpan.');
             }
@@ -122,7 +122,7 @@ class ScheduleController extends Controller
         ]);
 
         if ($schedule) {
-            return redirect("schedules")->with('success', 'Jadwal berhasil disimpan.');
+            return redirect("schedules")->with('Success', 'Jadwal berhasil disimpan.');
         } else {
             return redirect()->back()->withErrors('Jadwal berhasil disimpan.');
         }
@@ -135,7 +135,7 @@ class ScheduleController extends Controller
             dd('Record not found');
         }
         $schedule->delete();
-        return redirect()->back()->with('Success', 'Yeeayy!! Data jadwal berhasil dihapus');
+        return redirect()->back()->with('Success', 'Data jadwal berhasil dihapus');
     }
 
     public function search(Request $request)

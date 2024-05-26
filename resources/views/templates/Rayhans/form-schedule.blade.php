@@ -441,19 +441,19 @@
                                     <label for="start">Waktu mulai</label>
                                     <input type="time" class="form-control" name="start-time"
                                         value="{{ isset($currentData) && $currentData->start_attendance ? substr($currentData->start_attendance, 0, 5) : '' }}"
-                                        placeholder="Waktu mulai" data-provider="timepickr" data-time-hrs="true" required
-                                        id="timepicker-24hrs">
+                                        placeholder="Waktu mulai" data-provider="timepickr" data-time-hrs="true"
+                                        required id="timepicker-24hrs">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="start">Waktu berakhir</label>
                                     <input type="time" class="form-control" name="end-time"
                                         value="{{ isset($currentData) && $currentData->end_attendance ? substr($currentData->end_attendance, 0, 5) : '' }}"
-                                        required
-                                        placeholder="Waktu Berakhir" data-provider="timepickr" data-time-hrs="true"
-                                        id="timepicker-24hrs">
+                                        required placeholder="Waktu Berakhir" data-provider="timepickr"
+                                        data-time-hrs="true" id="timepicker-24hrs">
                                 </div>
-                                <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i>Simpan</button>
-                                <a href="{{ url('/schedules') }}" class="btn btn-warning">Kembali</a>   
+                                <button type="submit" class="btn btn-primary"><i
+                                        class="fas fa-paper-plane"></i>Simpan</button>
+                                <a href="{{ url('/schedules') }}" class="btn btn-warning">Kembali</a>
                             </form>
                     </div>
                 </div>
@@ -718,21 +718,21 @@
     <!-- App js -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
 
-    @if (Session::has('Success'))
+    @if (Session::has('Success') || session('Success'))
         <script>
             Swal.fire({
-                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Well done !</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
+                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Yeeaayy !</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
                 showCancelButton: true,
                 showConfirmButton: false,
                 cancelButtonClass: "btn btn-primary w-xs mb-1",
-                cancelButtonText: "Back",
+                cancelButtonText: "Kembali",
                 buttonsStyling: false,
                 showCloseButton: true,
             });
         </script>
     @endif
 
-     @if ($errors->any())
+    @if ($errors->any())
         @foreach ($errors->all() as $item)
             <script>
                 Swal.fire({

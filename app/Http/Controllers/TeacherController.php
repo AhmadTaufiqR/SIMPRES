@@ -17,12 +17,6 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
 
-        Session::flash('nip', $request->nip);
-        Session::flash('name', $request->name);
-        Session::flash('email', $request->email);
-        Session::flash('address', $request->address);
-        Session::flash('gender', $request->gender);
-        Session::flash('phone', $request->phone);
 
         $request->validate([
             'nip' => 'required',
@@ -52,8 +46,7 @@ class TeacherController extends Controller
         ]);
 
         if ($teacher) {
-            Session::flush();
-            return redirect('/teacher')->with('Success', 'Yeeayy!! Data guru berhasil ditambahkan');
+            return redirect('/teacher')->with('Success', 'Data guru berhasil ditambahkan');
         } else {
             return redirect('/teacher')->withErrors('Data guru gagal ditambahkan');
         }

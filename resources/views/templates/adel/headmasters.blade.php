@@ -309,15 +309,20 @@
                 <div class="container-fluid">
                     <div class="profile-foreground position-relative mx-n4 mt-n4">
                         <div class="profile-wid-bg">
-                            <img src="assets/images/profile-bg.jpg" alt="" class="profile-wid-img" />
+                            <img src="assets/images/users/avatar-3.jpg" alt="" class="profile-wid-img" />
                         </div>
                     </div>
                     <div class="pt-4 mb-4 mb-lg-3 pb-lg-4 profile-wrapper">
                         <div class="row g-4">
                             <div class="col-auto">
                                 <div class="profile-user">
+                                    @if (isset($headmaster) && $headmaster->images != '')
                                     <img src="{{ url('storage/' . $headmaster->images) }}" alt="user-img"
+                                    class="rounded-circle avatar-xl img-thumbnail user-profile-image" />
+                                    @else
+                                    <img src="assets/images/users/avatar-5.jpg" alt="user-img"
                                         class="rounded-circle avatar-xl img-thumbnail user-profile-image" />
+                                    @endif
                                 </div>
                             </div>
                             <!--end col-->

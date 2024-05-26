@@ -329,15 +329,20 @@
                                             <button class="btn btn-primary" id="remove-actions"
                                                 onClick="deleteMultiple()"><i
                                                     class="ri-delete-bin-2-line"></i></button>
-                                            @if (isset($generations))
-                                                <button href="" class="btn btn-danger" data-bs-toggle="modal" disabled
-                                                data-bs-target="#signupModals"><i
-                                                    class="ri-add-line align-bottom me-1"></i> Tambah Angkatan</button>
-                                            @else
-                                                <button href="" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#signupModals"><i
-                                                    class="ri-add-line align-bottom me-1"></i> Tambah Angkatan</button>
-                                            @endif
+                                            
+                                                @if (isset($generations) && count($generations) < 1)
+                                                    <button href="" class="btn btn-danger"
+                                                        data-bs-toggle="modal" data-bs-target="#signupModals"><i
+                                                            class="ri-add-line align-bottom me-1"></i> Tambah
+                                                        Angkatan</button>
+                                                @else
+                                                    <button href="" class="btn btn-danger"
+                                                        data-bs-toggle="modal" disabled
+                                                        data-bs-target="#signupModals"><i
+                                                            class="ri-add-line align-bottom me-1"></i> Tambah
+                                                        Angkatan</button>
+                                                @endif
+                                            
 
                                             <!-- tambah modals -->
                                             <div id="signupModals" class="modal fade" tabindex="-1"
@@ -402,7 +407,7 @@
                                 </div>
                             </div>
                             <div class="card-body bg-soft-light border border-dashed border-start-0 border-end-0">
-                               
+
                             </div>
 
                             <div class="card-body">
@@ -527,7 +532,7 @@
                                                 </div>
                                                 <div class="d-flex justify-content-end mt-3">
                                                     <div class="pagination-wrap hstack gap-2">
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -850,28 +855,45 @@
     <script src="assets/libs/prismjs/prism.js"></script>
     <script src="assets/libs/list.js/list.min.js"></script>
     <script src="assets/libs/list.pagination.js/list.pagination.min.js"></script>
+    
+    <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
 
     <!-- listjs init -->
     <script src="assets/js/pages/listjs.init.js"></script>
 
     <!-- Sweet Alerts js -->
-    <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>
 
-    @if (Session::has('Success'))
-        <script>
-            Swal.fire({
-                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Well done !</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
-                showCancelButton: true,
+    @if (Session::has('Success') || session('Success'))
+    <script>
+        Swal.fire({
+            html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Yeeaayy !</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
+            showCancelButton: true,
                 showConfirmButton: false,
                 cancelButtonClass: "btn btn-primary w-xs mb-1",
-                cancelButtonText: "Back",
+                cancelButtonText: "Kembali",
                 buttonsStyling: false,
                 showCloseButton: true,
             });
         </script>
+    @endif
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $item)
+            <script>
+                Swal.fire({
+                    html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/tdrtiskw.json" trigger="loop" colors="primary:#f06548,secondary:#f7b84b" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Oops...!</h4><p class="text-muted mx-4 mb-0">{{ $item }}</p></div></div>',
+                    showCancelButton: !0,
+                    showConfirmButton: !1,
+                    cancelButtonClass: "btn btn-primary w-xs mb-1",
+                    cancelButtonText: "Tutup",
+                    buttonsStyling: !1,
+                    showCloseButton: !0,
+                });
+            </script>
+        @endforeach
     @endif
 
     <script>

@@ -19,10 +19,11 @@ Route::group(['namespace' => 'headmaster', 'middleware' => 'isAdmin'], function 
     Route::get('/headmaster-create', [HeadmasterController::class, 'setting']);
     Route::post('headmaster/create', [HeadmasterController::class, 'store']);
     Route::post('headmaster/edit', [HeadmasterController::class, 'update']);
-    Route::post('headmaster/edit/image/{id}', [HeadmasterController::class, 'editImages']);
-    Route::post('headmaster/post/image', [HeadmasterController::class, 'postImages']);
     Route::post('headmaster/edit/password', [HeadmasterController::class, 'passwordUpdate']);
+    Route::post('headmaster/post/image{id}', [HeadmasterController::class, 'postImages']);
+    Route::post('headmaster/edit/image/{id}', [HeadmasterController::class, 'editImages']);
 });
+
 
 //Teacher
 Route::group(['namespace' =>'teacher', 'middleware' => 'isAdmin'], function () {
@@ -84,7 +85,7 @@ Route::group(['namespace' =>'login', 'middleware' => 'isLogin'], function () {
 });
 
 //Logout
-Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('isAdmin');
 
 //Courses
 Route::group(['namespace' =>'courses', 'middleware' => 'isAdmin'], function () {
