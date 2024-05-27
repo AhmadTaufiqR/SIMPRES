@@ -248,7 +248,7 @@
                                                     class="rounded-circle avatar-xl img-thumbnail user-profile-image" />
                                             @endif
                                             <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
-                                                
+
                                                 <form id="image-upload-form"
                                                     action="{{ '/headmaster/edit/image/' . ($headmaster->id ?? 'default') }}"
                                                     enctype="multipart/form-data" method="POST">
@@ -318,9 +318,13 @@
                                                                 value="{{ $headmaster->id }}" hidden>
                                                             <div class="mb-3">
                                                                 <label>Nip</label>
-                                                                <input type="number" id="nip-input" class="form-control"
-                                                                    name="nip" placeholder="Enter your nip"
+                                                                <input type="number" id="nip-input"
+                                                                    class="form-control" name="nip"
+                                                                    placeholder="Enter your nip"
                                                                     value="{{ $headmaster->nip }}">
+                                                                <span id="nip-error" class="text-danger"
+                                                                    style="display: none;">NIP harus
+                                                                    memiliki minimal 18 karakter.</span>
                                                                 @error('nip')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
@@ -369,8 +373,9 @@
                                                         <div class="col-lg-6">
                                                             <div class="mb-3">
                                                                 <label>Phone</label>
-                                                                <input type="number" maxlength="13" class="form-control"
-                                                                    name="phone" id="phone-input"
+                                                                <input type="number" maxlength="13"
+                                                                    class="form-control" name="phone"
+                                                                    id="phone-input"
                                                                     placeholder="Enter your phone number"
                                                                     value="{{ $headmaster->phone }}">
                                                                 @error('phone')
@@ -462,8 +467,12 @@
                                                         <div class="col-lg-6">
                                                             <div class="mb-3">
                                                                 <label>Nip</label>
-                                                                <input type="number" id="nip-input" class="form-control"
-                                                                    name="nip" placeholder="Enter your nip">
+                                                                <input type="number" id="nip-input"
+                                                                    class="form-control" name="nip"
+                                                                    placeholder="Enter your nip">
+                                                                <span id="nip-error" class="text-danger"
+                                                                    style="display: none;">NIP harus
+                                                                    memiliki minimal 18 karakter.</span>
                                                                 @error('nip')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
@@ -506,8 +515,8 @@
                                                         <div class="col-lg-6">
                                                             <div class="mb-3">
                                                                 <label>Phone</label>
-                                                                <input type="number" id="phone-input" class="form-control"
-                                                                    name="phone"
+                                                                <input type="number" id="phone-input"
+                                                                    class="form-control" name="phone"
                                                                     placeholder="Enter your phone number">
                                                                 @error('phone')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -837,7 +846,7 @@
         }
     </script>
 
-        @if ($errors->any())
+    @if ($errors->any())
         @foreach ($errors->all() as $item)
             <script>
                 Swal.fire({

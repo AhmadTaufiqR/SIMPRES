@@ -16,6 +16,15 @@ document.getElementById("nip-input").addEventListener("input", function (e) {
     e.target.value = value;
 });
 
+document.getElementById("nip-input").addEventListener("input", function () {
+    var nip = this.value;
+    if (nip.length < 18) {
+        document.getElementById("nip-error").style.display = "block";
+    } else {
+        document.getElementById("nip-error").style.display = "none";
+    }
+});
+
 document.getElementById("room-input-name").addEventListener("input", function (e) {
     // Hapus semua karakter yang tidak valid
     let value = e.target.value;

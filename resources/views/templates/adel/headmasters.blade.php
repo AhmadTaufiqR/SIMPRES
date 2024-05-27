@@ -813,6 +813,8 @@
     <!-- swiper js -->
     <script src="{{ asset('assets/libs/swiper/swiper-bundle.min.js') }}"></script>
 
+    <script src="assets/js/validations/validations.js"></script>
+
     <!-- profile init js -->
     <script src="{{ asset('assets/js/pages/profile.init.js') }}"></script>
 

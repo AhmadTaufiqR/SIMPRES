@@ -44,8 +44,14 @@ RUN set -eux; \
 RUN groupadd -g 1000 www \
     && useradd -u 1000 -ms /bin/bash -g www www
 
+COPY . /var/www
+
 # Copy the application code and set the appropriate permissions
 COPY --chown=www:www . /var/www
+
+# Set correct permissions for storage and bootstrap/cache directories
+RUN chmod 777 -R /var/www/app
+RUN chmod -R 777 storage/
 
 # Switch to the non-root user
 USER www

@@ -317,11 +317,14 @@
                                                                         <div class="mb-3">
                                                                             <label for="username"
                                                                                 class="form-label">NIP</label>
-                                                                            <input type="number" name="nip" id="nip-input"
-                                                                                class="form-control"
-                                                                                value="{{ Session::get('nip') }}" required
-                                                                                id="nip"
+                                                                            <input type="number" name="nip"
+                                                                                id="nip-input" class="form-control"
+                                                                                value="{{ Session::get('nip') }}"
+                                                                                required id="nip"
                                                                                 placeholder="Masukkan NIP guru">
+                                                                            <span id="nip-error" class="text-danger"
+                                                                                style="display: none;">NIP harus
+                                                                                memiliki minimal 18 karakter.</span>
                                                                             @error('nip')
                                                                                 <span
                                                                                     class="text-danger">{{ $message }}</span>
@@ -334,8 +337,8 @@
                                                                                 class="form-label">Nama</label>
                                                                             <input type="text" name="name"
                                                                                 class="form-control"
-                                                                                value="{{ Session::get('name') }}" required
-                                                                                id="nama"
+                                                                                value="{{ Session::get('name') }}"
+                                                                                required id="nama"
                                                                                 placeholder="Masukkan nama guru">
                                                                             @error('name')
                                                                                 <span
@@ -388,8 +391,8 @@
                                                                         <div class="mb-3">
                                                                             <label for="name"
                                                                                 class="form-label">No Handphone</label>
-                                                                            <input type="number" name="phone" id="phone-input"
-                                                                                class="form-control"
+                                                                            <input type="number" name="phone"
+                                                                                id="phone-input" class="form-control"
                                                                                 value="{{ Session::get('phone') }}"
                                                                                 id="phone" required
                                                                                 placeholder="Masukkan no hp guru">
@@ -429,11 +432,20 @@
                                                                         </div>
                                                                         <div id="password-contain"
                                                                             class="p-3 bg-light mb-2 rounded">
-                                                                            <h5 class="fs-13">Sandi harus memiliki:</h5>
-                                                                            <p id="pass-length" class="invalid fs-12 mb-2">Minimal <b>8 Karakter</b></p>
-                                                                            <p id="pass-lower" class="invalid fs-12 mb-2">Terdapat <b>Huruf Kecil</b> (a-z)</p>
-                                                                            <p id="pass-upper" class="invalid fs-12 mb-2">Terdapat <b>Huruf Besar</b> (A-Z)</p>
-                                                                            <p id="pass-number" class="invalid fs-12 mb-0">Terdapat <b>Angka</b> (0-9)</p>
+                                                                            <h5 class="fs-13">Sandi harus memiliki:
+                                                                            </h5>
+                                                                            <p id="pass-length"
+                                                                                class="invalid fs-12 mb-2">Minimal <b>8
+                                                                                    Karakter</b></p>
+                                                                            <p id="pass-lower"
+                                                                                class="invalid fs-12 mb-2">Terdapat
+                                                                                <b>Huruf Kecil</b> (a-z)</p>
+                                                                            <p id="pass-upper"
+                                                                                class="invalid fs-12 mb-2">Terdapat
+                                                                                <b>Huruf Besar</b> (A-Z)</p>
+                                                                            <p id="pass-number"
+                                                                                class="invalid fs-12 mb-0">Terdapat
+                                                                                <b>Angka</b> (0-9)</p>
                                                                         </div>
                                                                     </div><!--end col-->
                                                                     <div class="col-lg-12">
@@ -756,33 +768,33 @@
     <script src="assets/libs/prismjs/prism.js"></script>
     <script src="assets/libs/list.js/list.min.js"></script>
     <script src="assets/libs/list.pagination.js/list.pagination.min.js"></script>
-    
+
     <!-- validation init -->
     <script src="assets/js/pages/form-validation.init.js"></script>
     <!-- password create init -->
     {{-- <script src="assets/js/pages/passowrd-create.init.js"></script> --}}
-    
+
     <script src="assets/js/pages/password-new.init.js"></script>
-    
-    
+
+
     <!-- listjs init -->
     <script src="assets/js/pages/listjs.init.js"></script>
-    
+
     <!-- Sweet Alerts js -->
     <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
-    
+
     <!-- App js -->
     <script src="assets/js/app.js"></script>
-    
+
     <script src="assets/js/validations/validations.js"></script>
-    
+
     @livewireScripts
 
     @if (Session::has('Success') || session('Success'))
-    <script>
-        Swal.fire({
-            html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Yeeaayy !</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
-            showCancelButton: true,
+        <script>
+            Swal.fire({
+                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Yeeaayy !</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
+                showCancelButton: true,
                 showConfirmButton: false,
                 cancelButtonClass: "btn btn-primary w-xs mb-1",
                 cancelButtonText: "Kembali",
