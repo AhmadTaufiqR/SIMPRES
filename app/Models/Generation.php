@@ -12,4 +12,5 @@ class Generation extends Model
     use SoftDeletes;
 
     protected $fillable = ['academic_years', 'semester'];
+
 }

@@ -11,29 +11,31 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HeadmasterController;
 use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\RoomController;
-
-
+use App\Http\Controllers\ScheduleController;
 
 //Headmaster
-Route::group(['namespace' => 'headmaster'], function () {
+Route::group(['namespace' => 'headmaster', 'middleware' => 'isAdmin'], function () {
     Route::get('/headmaster', [HeadmasterController::class, 'index']);
     Route::get('/headmaster-create', [HeadmasterController::class, 'setting']);
     Route::post('headmaster/create', [HeadmasterController::class, 'store']);
     Route::post('headmaster/edit', [HeadmasterController::class, 'update']);
     Route::post('headmaster/edit/password', [HeadmasterController::class, 'passwordUpdate']);
+    Route::post('headmaster/post/image{id}', [HeadmasterController::class, 'postImages']);
+    Route::post('headmaster/edit/image/{id}', [HeadmasterController::class, 'editImages']);
 });
 
+
 //Teacher
-Route::group(['namespace' => 'teacher'], function () {
-    Route::get('/teacher', [TeacherController::class, 'index']);
+Route::group(['namespace' =>'teacher', 'middleware' => 'isAdmin'], function () {
+    Route::get('/teacher', [TeacherController::class, 'index'])->name('teacher.view');
     Route::post('/teacher-create-data', [TeacherController::class, 'store']);
-    Route::post('teacher/{id}/edit', [TeacherController::class, 'update']);
+    Route::post('teacher/{id}/edit', [TeacherController::class, 'update'])->name('teacher.edit');
     Route::delete('/teacher/{id}/hapus', [TeacherController::class, 'hapus'])->name('teacher.hapus');
 });
 
 
 //Rooms
-Route::group(['namespace' => 'room'], function () {
+Route::group(['namespace' =>'room', 'middleware' => 'isAdmin'], function () {
     Route::get('/room', [RoomController::class, 'index']);
     Route::post('/room', [RoomController::class, 'store']);
     Route::post('/room-create-data', [RoomController::class, 'store']);
@@ -42,7 +44,7 @@ Route::group(['namespace' => 'room'], function () {
 });
 
 //Admin
-Route::group(['namespace' => 'admin'], function () {
+Route::group(['namespace' =>'admin', 'middleware' => 'isAdmin'], function () {
     Route::get('/admin', [AdminController::class, 'show']);
     Route::post('/admin-create-data', [AdminController::class, 'store']);
     Route::get('admin/{id}/edit', [AdminController::class, 'update']);
@@ -50,32 +52,28 @@ Route::group(['namespace' => 'admin'], function () {
 });
 
 //Generations
-Route::group(['namespace' => 'generation'], function () {
+Route::group(['namespace' =>'generation', 'middleware' => 'isAdmin'], function () {
     Route::get('/generation', [GenerationController::class, 'show']);
     Route::post('/generation-create-data', [GenerationController::class, 'store']);
     Route::get('generation/{id}/edit', [GenerationController::class, 'update']);
     Route::delete('generation/{id}', [GenerationController::class, 'hapus'])->name('generation.hapus');
+    Route::get('/generation/search', [GenerationController::class, 'search'])->name('generation.search');
 });
 
 
 //Schedule
-Route::group(['namespace' => 'schedule'],function () {
-
-});
-
-//Presence
-Route::group(['namespace' => 'presences'], function () {
-});
-
-
-//Details Presence
-Route::group(['namespace' => 'details_presence'], function () {
-    Route::get('/detail_presences', [DetailPresencesController::class, 'show']);
-    
+Route::group(['namespace' =>'schedule', 'middleware' => 'isAdmin'], function () {
+    Route::get('/schedules', [ScheduleController::class, 'index']);
+    Route::get('/schedules-create-data', [ScheduleController::class, 'add']);
+    Route::get('/schedules-edit-data/{schedule}', [ScheduleController::class, 'edit']);
+    Route::post('/schedules-create-data', [ScheduleController::class, 'store']);
+    Route::patch('/schedules-edit-data/{schedule}', [ScheduleController::class, 'update']);
+    Route::delete('/schedules/{id}/hapus', [ScheduleController::class, 'destroy'])->name('schedules.hapus');
+    Route::get('/schedules/search', [ScheduleController::class, 'search'])->name('schedule.search');
 });
 
 //Login
-Route::group(['namespace' => 'login'], function () {
+Route::group(['namespace' =>'login', 'middleware' => 'isLogin'], function () {
     Route::get('/', [UserController::class, 'index_login'])->name('login');
     Route::post('/log', [UserController::class, 'login'])->name('login.store');
     Route::get('/forgot-password', [UserController::class, 'forgot_password'])->name('forgot-password');
@@ -86,10 +84,19 @@ Route::group(['namespace' => 'login'], function () {
     Route::post('/register', [UserController::class, 'store'])->name('register.store');
 });
 
+//Logout
+Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('isAdmin');
+
 //Courses
-Route::group(['namespace' => 'courses'], function () {
+Route::group(['namespace' =>'courses', 'middleware' => 'isAdmin'], function () {
     Route::get('/courses', [CourseController::class, 'index_course']);
     Route::post('/courses_create', [CourseController::class, 'store']);
     Route::post('courses/{id}/edit', [CourseController::class, 'update']);
     Route::delete('courses/{id}/delete', [CourseController::class, 'delete'])->name('delete.course');
+});
+
+Route::group(['namespace' =>'presences', 'middleware' => 'isAdmin'], function () {
+    Route::get('/presences', [PresenceController::class, 'index']);
+    Route::get('/presences/add-presence-data', [PresenceController::class, 'getSchedule']);
+    Route::post('/presences/add-presence-data/{id}', [PresenceController::class, 'store']);
 });

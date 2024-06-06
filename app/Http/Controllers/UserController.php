@@ -2,18 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\Return_;
-use App\Models\PasswordResetToken;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Auth\Events\Validated;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Auth\Events\PasswordReset;
-use Symfony\Component\VarDumper\VarDumper;
-use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -44,24 +37,24 @@ class UserController extends Controller
     public function forgot_password_act(Request $request)
     {
         $customMessage = [
-            'email.required'    => 'Email tidak boleh kosong',
-            'email.email'       => 'Email tidak valid',
-            'email.exist'       => 'Email tidak terdaftar',
+            'username.required'    => 'username tidak boleh kosong',
+            'username.username'       => 'username tidak valid',
+            'username.exist'       => 'username tidak terdaftar',
         ];
 
         $request->validate([
-            'email' => 'required|email|exists:users,email'
+            'username' => 'required|username|exists:users,username'
         ], $customMessage);
 
         [
-            'email' => $request->email,
+            'username' => $request->username,
             'created_at' => now(),
         ];
 
-        $user = User::where('email', '=', $request->input('email'))->first();
+        $user = Admin::where('username', '=', $request->input('username'))->first();
 
         if ($user) {
-            return redirect('reset-password')->with('users', $request->input('email'));
+            return redirect('reset-password')->with('users', $request->input('username'));
         }
     }
 
@@ -76,7 +69,7 @@ class UserController extends Controller
             'password_confirmation' => 'required',
         ]);
 
-        $users = User::where('email', '=', $request->input('email'))->first();
+        $users = Admin::where('username', '=', $request->input('username'))->first();
 
         if ($users) {
             $users->password = bcrypt($request->input('password_confirmation'));
@@ -90,17 +83,29 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-            $credentials = $request->validate([
-                'email' => ['required'],
-                'password' => ['required'],
-            ]);
+        $request->validate([
+            'username' => ['required'],
+            'password' => ['required'],
+        ], [
+            'username.required' => 'username tidak boleh kosong',
+            'password.required' => 'Password tidak boleh kosong',
+        ]);
 
-            if (Auth::attempt($credentials)) {
-                $request->session()->regenerate();
-                return redirect('headmaster')->with('Success', 'Login Success');
-            }
-            return back()->with('loginError', 'Login Failed');
-        
+        $credentials = [
+            'username' => $request->username,
+            'password' => $request->password,
+        ];
+
+        $users = Admin::where('username', $request->username)->first();
+
+        if ($users && Hash::check($request->password, $users->password)) {
+            Session::put('name', $users->name);
+            Auth::guard('admin')->attempt($credentials);
+            $request->session()->regenerate();
+            return redirect('headmaster')->with('Success', 'Login Success');
+        }
+
+        return back()->with('loginError', 'Login Failed');
     }
 
 
@@ -111,15 +116,27 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email:dns|unique:users',
+            'username' => 'required|string|unique:admins,username',
+            'email' => 'required|string|unique:admins,email',
+            'phone' => 'required',
             'password' => 'required|string|min:8'
         ]);
-        User::create([
+
+        $email = $request->email . '@sepatumas.sch.id';
+
+        $admin = Admin::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'username' => $request->username,
+            'email' => $email,
+            'phone' => $request->phone,
             'password' => bcrypt($request->password)
         ]);
-        return to_route('login');
+
+        if ($admin) {
+            return redirect('/')->with('Success', 'User berhasil ditambahkan');
+        } else {
+            return redirect()->back()->with('error', 'Gagal menambahkan user');
+        }
     }
 
 
@@ -129,36 +146,27 @@ class UserController extends Controller
     public function store_reset_pw(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'string'],
+            'username' => ['required', 'string'],
             'password' => ['required', 'confirmed', 'min:3']
         ]);
 
-        $users = User::create([
-            'email' => $request->email,
+        $users = Admin::create([
+            'username' => $request->username,
             'password' => Hash::make(value: $request->password),
         ]);
 
-        $user = " ";
-        if (!$user) {
+        $users = " ";
+        if (!$users) {
             return redirect()->route('users.create')->with('success', 'Password berhasil diubah');
         } else {
             return redirect()->back()->with('error', 'Gagal membuat password baru');
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function logout()
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        Session::flush();
+        Auth::guard('admin')->logout();
+        return redirect('/');
     }
 }

@@ -46,7 +46,7 @@
                                     <img src="assets/images/logo-sm.png" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-dark.png" alt="" height="17">
+                                    <img src="assets/images/SIMPRES.png" alt="" height="17">
                                 </span>
                             </a>
 
@@ -55,7 +55,7 @@
                                     <img src="assets/images/logo-sm.png" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-light.png" alt="" height="17">
+                                    <img src="assets/images/SIMPRES.png" alt="" height="17">
                                 </span>
                             </a>
                         </div>
@@ -72,13 +72,7 @@
 
                         <!-- App Search-->
                         <form class="app-search d-none d-md-block">
-                            <div class="position-relative">
-                                <input type="text" class="form-control" placeholder="Search..." autocomplete="off"
-                                    id="search-options" value="">
-                                <span class="mdi mdi-magnify search-widget-icon"></span>
-                                <span class="mdi mdi-close-circle search-widget-icon search-widget-icon-close d-none"
-                                    id="search-close-options"></span>
-                            </div>
+
                             <div class="dropdown-menu dropdown-menu-lg" id="search-dropdown">
                                 <div data-simplebar style="max-height: 320px;">
                                     <!-- item-->
@@ -183,36 +177,20 @@
                                     <img class="rounded-circle header-profile-user"
                                         src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
-                                        @if (isset($headmaster) && $headmaster->name != '')
-                                            <span
-                                                class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ $headmaster->name }}</span>
-                                        @else
-                                            <span
-                                                class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">-</span>
-                                        @endif
                                         <span
-                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
+                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Session::get('name') }}</span>
+                                        <span
+                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Admin</span>
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                @if (isset($headmaster) && $headmaster->name != '')
-                                    <h6 class="dropdown-header">Welcome {{ $headmaster->name }}</h6>
-                                @else
-                                    <h6 class="dropdown-header">-</h6>
-                                @endif
-                                <a class="dropdown-item" href="pages-profile.html"><i
-                                        class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i>
-                                    <span class="align-middle">Profile</span></a>
-                                <a class="dropdown-item" href="pages-profile-settings.html"><span
-                                        class="badge bg-soft-success text-success mt-1 float-end">New</span><i
-                                        class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span
-                                        class="align-middle">Settings</span></a>
-                                <a class="dropdown-item" href="auth-lockscreen-basic.html"><i
-                                        class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span
-                                        class="align-middle">Lock screen</span></a>
-                                <a class="dropdown-item" href="/"><i
+                                <h6 class="dropdown-header">Welcome {{ Session::get('name')  }}</h6>
+                                <a class="dropdown-item" href="/headmaster"><i
+                                        class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
+                                        class="align-middle">Profil Kepala Sekolah</span></a>
+                                <a class="dropdown-item" href="/logout"><i
                                         class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle" data-key="t-logout">Logout</span></a>
                             </div>
@@ -289,13 +267,24 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="/courses">
-                                <i class="las la-book"></i> <span data-key="t-headmasters">Mata Pelajran</span>
+                                <i class="las la-book"></i> <span data-key="t-headmasters">Mata Pelajaran</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="/generation">
                                 <i class="las la-calendar-alt"></i> <span data-key="t-headmasters">Tahun
                                     Akademik</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="/schedules">
+                                <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal
+                                    Pelajaran</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="/presences">
+                                <i class="mdi mdi-format-list-checks"></i> <span data-key="presences">Presensi</span>
                             </a>
                         </li>
                     </ul>
@@ -320,15 +309,20 @@
                 <div class="container-fluid">
                     <div class="profile-foreground position-relative mx-n4 mt-n4">
                         <div class="profile-wid-bg">
-                            <img src="assets/images/profile-bg.jpg" alt="" class="profile-wid-img" />
+                            <img src="assets/images/users/avatar-3.jpg" alt="" class="profile-wid-img" />
                         </div>
                     </div>
                     <div class="pt-4 mb-4 mb-lg-3 pb-lg-4 profile-wrapper">
                         <div class="row g-4">
                             <div class="col-auto">
-                                <div class="avatar-lg">
-                                    <img src="assets/images/users/avatar-1.jpg" alt="user-img"
-                                        class="img-thumbnail rounded-circle" />
+                                <div class="profile-user">
+                                    @if (isset($headmaster) && $headmaster->images != '')
+                                    <img src="{{ url('storage/' . $headmaster->images) }}" alt="user-img"
+                                    class="rounded-circle avatar-xl img-thumbnail user-profile-image" />
+                                    @else
+                                    <img src="assets/images/users/avatar-5.jpg" alt="user-img"
+                                        class="rounded-circle avatar-xl img-thumbnail user-profile-image" />
+                                    @endif
                                 </div>
                             </div>
                             <!--end col-->
@@ -378,7 +372,7 @@
                                             <a class="nav-link fs-14 active" data-bs-toggle="tab"
                                                 href="#overview-tab" role="tab">
                                                 <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span
-                                                    class="d-none d-md-inline-block">Overview</span>
+                                                    class="d-none d-md-inline-block">Ringkasan</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -408,7 +402,7 @@
                                                                 <tbody>
                                                                     @if (isset($headmaster) && $headmaster->name != '')
                                                                         <tr>
-                                                                            <th class="ps-0" scope="row">Nip
+                                                                            <th class="ps-0" scope="row">NIP
                                                                                 :
                                                                             </th>
                                                                             <td class="text-muted">
@@ -484,62 +478,18 @@
                                             <div class="col-xxl-9">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h5 class="card-title mb-3">About</h5>
-                                                        <p>SMP Negeri 1 Maesan
-                                                            Jl. Sukowono, Krajan 2, Sumbersari, Maesan, Kabupaten
-                                                            Bondowoso, Jawa Timur 68262, Indonesia
-                                                            Kabupaten Jember, Jawa Timur, 68262</p>
+                                                        <h5 class="card-title mb-3">Tentang</h5>
+
                                                         <p>
-                                                            Berapakah nomor telepon untuk SMP Negeri 1 Maesan?
-                                                            Nomor telepon untuk SMP Negeri 1 Maesan adalah (0332)
-                                                            426490.
-                                                            Q2
-                                                            Di manakah lokasi SMP Negeri 1 Maesan?
-                                                            SMP Negeri 1 Maesan berlokasi di Jl. Sukowono, Krajan 2,
-                                                            Sumbersari, Maesan, Kabupaten Bondowoso, Jawa Timur
-                                                            68262,
-                                                            Indonesia, Kabupaten Jember.
-                                                            Q3
-                                                            Apakah ada kontak utama untuk SMP Negeri 1 Maesan?
+                                                            SMPN 1 Maesan adalah sekolah favorit di Kecamatan Maesan,
+                                                            dimana kami memiliki banyak ekstrakulikuler
+                                                            dengan segudang prestasi. Banyak calon generasi bangsa
+                                                            lulusan dari SMPN 1 Maesan yang memiliki prestasi di tingkat
+                                                            kabupaten. Jika Anda ingin mengetahui lebih lanjut tentang
+                                                            kami,
                                                             Anda bisa menghubungi SMP Negeri 1 Maesan lewat telepon
                                                             menggunakan nomor (0332) 426490.</p>
-                                                        <div class="row">
-                                                            <div class="col-6 col-md-4">
-                                                                <div class="d-flex mt-4">
-                                                                    <div
-                                                                        class="flex-shrink-0 avatar-xs align-self-center me-3">
-                                                                        <div
-                                                                            class="avatar-title bg-light rounded-circle fs-16 text-primary">
-                                                                            <i class="ri-user-2-fill"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex-grow-1 overflow-hidden">
-                                                                        <p class="mb-1">Designation :</p>
-                                                                        <h6 class="text-truncate mb-0">Lead
-                                                                            Designer /
-                                                                            Developer</h6>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!--end col-->
-                                                            <div class="col-6 col-md-4">
-                                                                <div class="d-flex mt-4">
-                                                                    <div
-                                                                        class="flex-shrink-0 avatar-xs align-self-center me-3">
-                                                                        <div
-                                                                            class="avatar-title bg-light rounded-circle fs-16 text-primary">
-                                                                            <i class="ri-global-line"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex-grow-1 overflow-hidden">
-                                                                        <p class="mb-1">Website :</p>
-                                                                        <a href="#"
-                                                                            class="fw-semibold">www.velzon.com</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!--end col-->
-                                                        </div>
+
                                                         <!--end row-->
                                                     </div>
                                                     <!--end card-body-->
@@ -863,6 +813,8 @@
     <!-- swiper js -->
     <script src="{{ asset('assets/libs/swiper/swiper-bundle.min.js') }}"></script>
 
+    <script src="assets/js/validations/validations.js"></script>
+
     <!-- profile init js -->
     <script src="{{ asset('assets/js/pages/profile.init.js') }}"></script>
 
@@ -873,7 +825,7 @@
     @if (Session::has('Success'))
         <script>
             Swal.fire({
-                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Well done !</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
+                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Yeayy !</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
                 showCancelButton: true,
                 showConfirmButton: false,
                 cancelButtonClass: "btn btn-primary w-xs mb-1",
@@ -884,6 +836,21 @@
         </script>
     @endif
 
+    @if ($errors->any())
+        @foreach ($errors->all() as $item)
+            <script>
+                Swal.fire({
+                    html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/tdrtiskw.json" trigger="loop" colors="primary:#f06548,secondary:#f7b84b" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Oops...!</h4><p class="text-muted mx-4 mb-0">{{ $item }}</p></div></div>',
+                    showCancelButton: !0,
+                    showConfirmButton: !1,
+                    cancelButtonClass: "btn btn-primary w-xs mb-1",
+                    cancelButtonText: "Tutup",
+                    buttonsStyling: !1,
+                    showCloseButton: !0,
+                });
+            </script>
+        @endforeach
+    @endif
 
 
 
