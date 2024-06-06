@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Headmaster extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'headmasters';
     protected $fillable = [
@@ -20,5 +21,4 @@ class Headmaster extends Model
         'address'
     ];
 
-    use SoftDeletes;
 }

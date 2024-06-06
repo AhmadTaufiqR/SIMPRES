@@ -7,6 +7,7 @@ use App\Models\Headmaster;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 
 class HeadmasterController extends Controller
 {
@@ -17,10 +18,8 @@ class HeadmasterController extends Controller
     {
         $headmaster = Headmaster::orderBy('created_at', 'desc')->first();
 
-        if ($headmaster) {
+        
             return view('templates.adel.headmasters', ['headmaster' => $headmaster]);
-        }
-        return view('templates.adel.headmasters');
     }
 
     public function setting()
@@ -66,7 +65,7 @@ class HeadmasterController extends Controller
      */
     public function update(Request $request)
     {
-        $headmaster = Headmaster::where('nip', $request->input('nip'))->firstOrFail();
+        $headmaster = Headmaster::where('id', $request->input('id'))->firstOrFail();
         $headmaster->nip = $request->input('nip');
         $headmaster->name = $request->input('name');
         $headmaster->username = $request->input('username');
@@ -82,6 +81,55 @@ class HeadmasterController extends Controller
         $headmaster->password = bcrypt($request->input('password'));
         $headmaster->save();
         return redirect('headmaster')->with('Success', 'Password Berhasil Diubah');
+    }
+
+    
+    // public function postImages(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //     ]);
+
+    //     $headmaster = Headmaster::where('id', $id)->firstOrFail();
+
+    //     if ($request->hasFile('image')) {
+    //         $imagePath = $request->file('image')->storePublicly('images', 'public');
+    //         $headmaster->images = $imagePath;
+    //     }
+
+    //     $headmaster->save();
+
+    //     return redirect('headmaster')->with('Success', 'Foto Berhasil Diubah');
+    
+    // }
+    public function editImages(Request $request, $id)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        
+        $headmaster = Headmaster::find($id);
+
+        if (!$headmaster) {
+            return redirect('headmaster-create')->withErrors('Harap isi dulu data kepala sekolah!');
+        }
+
+        if ($request->hasFile('image')) {
+            if ($headmaster->images != null) {
+                if (Storage::exists($headmaster->images)) {
+                    Storage::delete([$headmaster->images]);
+                }
+            }
+
+            $imagePath = $request->file('image')->storePublicly('images', 'public');
+            $headmaster->images = $imagePath;
+        }
+
+        $headmaster->save();
+
+        return redirect('headmaster')->with('Success', 'Foto Berhasil Diubah');
+
     }
 
 }

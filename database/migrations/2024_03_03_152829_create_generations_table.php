@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('academic_years');
             $table->enum('semester', ['ganjil', 'genap']);
+            $table->enum('status', ['on', 'off']);
             $table->softDeletes();
             $table->timestamps();
         });

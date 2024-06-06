@@ -5,10 +5,10 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Kelas | SCode</title>
+    <title>Kelas | SCODE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesbrand" name="author" />
+    <meta content="scode" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
@@ -44,7 +44,7 @@
                                     <img src="assets/images/logo-sm.png" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-dark.png" alt="" height="17">
+                                    <img src="assets/images/SIMPRES.png" alt="" height="17">
                                 </span>
                             </a>
 
@@ -53,7 +53,7 @@
                                     <img src="assets/images/logo-sm.png" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-light.png" alt="" height="17">
+                                    <img src="assets/images/SIMPRES.png" alt="" height="17">
                                 </span>
                             </a>
                         </div>
@@ -70,13 +70,7 @@
 
                         <!-- App Search-->
                         <form class="app-search d-none d-md-block">
-                            <div class="position-relative">
-                                <input type="text" class="form-control" placeholder="Search..." autocomplete="off"
-                                    id="search-options" value="">
-                                <span class="mdi mdi-magnify search-widget-icon"></span>
-                                <span class="mdi mdi-close-circle search-widget-icon search-widget-icon-close d-none"
-                                    id="search-close-options"></span>
-                            </div>
+
                             <div class="dropdown-menu dropdown-menu-lg" id="search-dropdown">
                                 <div data-simplebar style="max-height: 320px;">
                                     <!-- item-->
@@ -180,25 +174,18 @@
                                         src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
                                         <span
-                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">adadas</span>
+                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Session::get('name') }}</span>
                                         <span
-                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
+                                            class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Admin</span>
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <h6 class="dropdown-header">Welcome hrthrt</h6>
-                                <a class="dropdown-item" href="pages-profile.html"><i
+                                <h6 class="dropdown-header">Welcome {{ Session::get('name') }}</h6>
+                                <a class="dropdown-item" href="/headmaster"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
-                                        class="align-middle">Profile</span></a>
-                                <a class="dropdown-item" href="pages-profile-settings.html"><span
-                                        class="badge bg-soft-success text-success mt-1 float-end">New</span><i
-                                        class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span
-                                        class="align-middle">Settings</span></a>
-                                <a class="dropdown-item" href="auth-lockscreen-basic.html"><i
-                                        class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span
-                                        class="align-middle">Lock screen</span></a>
+                                        class="align-middle">Profil Kepala Sekolah</span></a>
                                 <a class="dropdown-item" href="/"><i
                                         class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle" data-key="t-logout">Logout</span></a>
@@ -218,7 +205,7 @@
                         <img src="assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-dark.png" alt="" height="17">
+                        <img src="assets/images/SIMPRES.png" alt="" height="17">
                     </span>
                 </a>
                 <!-- Light Logo-->
@@ -227,7 +214,7 @@
                         <img src="assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-light.png" alt="" height="17">
+                        <img src="assets/images/SIMPRES.png" alt="" height="17">
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
@@ -279,7 +266,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="/courses">
-                                    <i class="las la-book"></i> <span data-key="t-headmasters">Mata Pelajaaran</span>
+
+                                    <i class="las la-book"></i> <span data-key="t-headmasters">Mata Pelajaran</span>
+
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -290,7 +279,14 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="/schedules">
-                                    <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal Pelajaran</span>
+                                    <i class="las la-clipboard"></i> <span data-key="t-headmasters">Jadwal
+                                        Pelajaran</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="/presences">
+                                    <i class="mdi mdi-format-list-checks"></i> <span
+                                        data-key="presences">Presensi</span>
                                 </a>
                             </li>
                         </ul>
@@ -363,9 +359,9 @@
                                                                 <div class="mb-3">
                                                                     <label for="name" class="form-label">Nama
                                                                     </label>
-                                                                    <input type="name" name="name_class"
+                                                                    <input type="text" name="name_class" maxlength="2"
                                                                         class="form-control" value=""
-                                                                        id="name"
+                                                                        id="room-input-name"
                                                                         placeholder="Masukkan nama Kelas">
                                                                     @error('name')
                                                                         <span
@@ -461,9 +457,9 @@
                                                         <div class="mb-3">
                                                             <label for="name" class="form-label">Nama Kelas
                                                             </label>
-                                                            <input type="name" name="name_class"
+                                                            <input type="name" name="name_class" maxlength="2"
                                                                 class="form-control" value="{{ $rooms->name_class }}"
-                                                                id="name" placeholder="Masukkan Nama Kelas">
+                                                                id="room" placeholder="Masukkan Nama Kelas">
                                                             @error('name')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
@@ -841,11 +837,13 @@
     <!-- App js -->
     <script src="assets/js/app.js"></script>
 
-    @if (Session::has('Success'))
-        <script>
-            Swal.fire({
-                html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Selamat!</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
-                showCancelButton: true,
+    <script src="assets/js/validations/validations.js"></script>
+
+    @if (Session::has('Success') || session('Success'))
+    <script>
+        Swal.fire({
+            html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" colors="primary:#0ab39c,secondary:#405189" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Yeeaayy !</h4><p class="text-muted mx-4 mb-0">{{ Session::get('Success') }}</p></div></div>',
+            showCancelButton: true,
                 showConfirmButton: false,
                 cancelButtonClass: "btn btn-primary w-xs mb-1",
                 cancelButtonText: "Kembali",
@@ -853,6 +851,22 @@
                 showCloseButton: true,
             });
         </script>
+    @endif
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $item)
+            <script>
+                Swal.fire({
+                    html: '<div class="mt-3"><lord-icon src="https://cdn.lordicon.com/tdrtiskw.json" trigger="loop" colors="primary:#f06548,secondary:#f7b84b" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Oops...!</h4><p class="text-muted mx-4 mb-0">{{ $item }}</p></div></div>',
+                    showCancelButton: !0,
+                    showConfirmButton: !1,
+                    cancelButtonClass: "btn btn-primary w-xs mb-1",
+                    cancelButtonText: "Tutup",
+                    buttonsStyling: !1,
+                    showCloseButton: !0,
+                });
+            </script>
+        @endforeach
     @endif
 
 </body>
