@@ -10,7 +10,7 @@ class RoomController extends Controller
     public function index()
     {
         $rooms = Room::all();
-        return view('templates.Rayhans.room', compact('rooms'));
+        return view('templates.Rayhans.Room', compact('rooms'));
     }
     public function store(Request $request)
     {
@@ -19,7 +19,7 @@ class RoomController extends Controller
 
         ]);
         if ($room) {
-            return redirect('/room')->with('Success', 'Yeeayy!! Data kelas berhasil ditambahkan');
+            return redirect('/room')->with('Success', 'Data kelas berhasil ditambahkan');
         } else {
             return redirect('/room')->withErrors('Data kelas gagal ditambahkan');
         }
@@ -32,7 +32,7 @@ class RoomController extends Controller
 
         ]);    
         if ($room) {
-            return redirect()->back()->with('Success', 'Yeeayy!! Data kelas berhasil diubah');
+            return redirect()->back()->with('Success', 'Data kelas berhasil diubah');
         } else {
             return redirect('/room')->withErrors('Data kelas gagal diubah');
         }
@@ -48,6 +48,6 @@ class RoomController extends Controller
             dd('Record not found');
         }
         $room->delete();
-        return redirect()->back()->with('Success', 'Yeeayy!! Data kelas berhasil dihapus');
+        return redirect()->back()->with('Success', 'Data kelas berhasil dihapus');
     }
 }

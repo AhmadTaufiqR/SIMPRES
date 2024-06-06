@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('rooms_id')->constrained()->onDelete('cascade');
             $table->foreignId('generations_id')->constrained()->onDelete('cascade');
             $table->string('day');
+            $table->time('start_attendance');
+            $table->time('end_attendance');
             $table->softDeletes();
             $table->timestamps();
         });

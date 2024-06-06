@@ -9,22 +9,17 @@ use App\Models\Teacher;
 use App\Models\Course;
 use App\Models\Room;
 use App\Models\Generation;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Schedule extends Model
 {
 
     use HasFactory, SoftDeletes;
-
-    protected $table = "schedules";
-    protected $primaryKey = "id";
     protected $guarded = [];
-    protected $day = ['day'];
 
     public function teacher()
     {
-        return $this->belongsTo(Teacher::class, 'teachers_id'); 
+        return $this->belongsTo(Teacher::class, 'teachers_id')->withTrashed(); 
     }
 
     public function course()

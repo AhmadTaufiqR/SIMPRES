@@ -13,14 +13,4 @@ class Teacher extends Model
 
     protected $fillable = ['nip', 'name', 'email', 'password', 'address', 'gender', 'phone'];
 
-    public function schedule()
-    {
-        return $this->hasMany(schedule::class);
-
-    // Definisikan relasi detail presensi
-    public function detailPresensi()
-    {
-        return $this->hasMany(DetailPresences::class);
-
-    }
 }

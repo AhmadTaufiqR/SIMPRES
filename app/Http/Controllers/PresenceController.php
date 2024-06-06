@@ -10,7 +10,7 @@ class PresenceController extends Controller
 {
     public function index()
     {
-        $presences = Presence::with('schedule')->get();
+        $presences = Presence::withTrashed()->with('schedule')->orderBy('id', 'desc')->paginate(5);
         return view('templates.amel.presences', compact('presences'));
     }
 
@@ -22,7 +22,6 @@ class PresenceController extends Controller
         $schedules = Schedule::whereNotIn('id', $presenceSchedulesIds)->get();
         return view('templates.amel.form-presence', compact('schedules'));
     }
-       
 
     /**
      * Store a newly created resource in storage.
